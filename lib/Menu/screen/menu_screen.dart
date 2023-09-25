@@ -1,8 +1,9 @@
-import 'package:entradex/Menu/menu_title.dart';
-import 'package:entradex/Menu/profile.dart';
-import 'package:entradex/Menu/setting_screen.dart';
+import 'package:entradex/Menu/components/menu_title.dart';
+import 'package:entradex/Menu/components/profile.dart';
+import 'package:entradex/Menu/screen/setting_screen.dart';
 import 'package:entradex/widgets/menu_select.dart';
 import 'package:flutter/material.dart';
+import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
 
 class MenuScreen extends StatefulWidget {
   const MenuScreen({super.key});
@@ -33,10 +34,13 @@ class _MenuScreenState extends State<MenuScreen> {
                   MenuSelect(icon: Icons.wallet_travel_sharp, text: "Sản phẩm"),
                   GestureDetector(
                       onTap: () {
-                        Navigator.push(context,
-                            MaterialPageRoute(builder: (context) {
-                          return SettingScreen();
-                        }));
+                        PersistentNavBarNavigator.pushNewScreen(
+                          context,
+                          screen: SettingScreen(),
+                          withNavBar: true, // OPTIONAL VALUE. True by default.
+                          pageTransitionAnimation:
+                              PageTransitionAnimation.cupertino,
+                        );
                       },
                       child: MenuSelect(icon: Icons.settings, text: "Cài đặt")),
                 ],
@@ -79,7 +83,8 @@ class _MenuScreenState extends State<MenuScreen> {
                 child: Center(
                     child: Text("Đăng xuất", style: TextStyle(fontSize: 16))),
               ),
-            )
+            ),
+            SizedBox(height: 20),
           ]),
         ),
         Profile(),

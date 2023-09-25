@@ -4,7 +4,6 @@ import 'package:entradex/theme/dark_theme.dart';
 import 'package:entradex/theme/light_theme.dart';
 import 'package:flutter/material.dart';
 import './theme/dark_theme.dart';
-import 'bottom_navbar/bottom_navbar.dart';
 
 void main() {
   runApp(const MyApp());
@@ -22,8 +21,8 @@ class MyApp extends StatelessWidget {
       theme: darkTheme,
       darkTheme: darkTheme,
       // home: BottomNavBar(),
-      // home: BotNavbar(),
-      home: FollowScreen(),
+      home: BotNavbar(),
+      // home: FollowScreen(),
     );
   }
 }

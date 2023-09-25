@@ -1,4 +1,4 @@
-import 'package:entradex/Menu/menu_screen.dart';
+import 'package:entradex/Menu/screen/menu_screen.dart';
 import 'package:entradex/follow/screen/follow_screen.dart';
 import 'package:entradex/screens/home_screen.dart';
 import 'package:entradex/screens/library_screen.dart';
@@ -34,38 +34,38 @@ class _BotNavbarState extends State<BotNavbar> {
       PersistentBottomNavBarItem(
         icon: Icon(CupertinoIcons.home),
         title: ("Home"),
-        activeColorPrimary: CupertinoColors.activeBlue,
-        inactiveColorPrimary: CupertinoColors.systemGrey,
+        activeColorPrimary: CupertinoColors.systemRed,
+        inactiveColorPrimary: CupertinoColors.white,
       ),
       PersistentBottomNavBarItem(
-        icon: Icon(CupertinoIcons.settings),
-        title: ("Settings"),
-        activeColorPrimary: CupertinoColors.activeBlue,
-        inactiveColorPrimary: CupertinoColors.systemGrey,
+        icon: Icon(CupertinoIcons.chart_bar_alt_fill),
+        title: ("Theo dõi"),
+        activeColorPrimary: CupertinoColors.systemRed,
+        inactiveColorPrimary: CupertinoColors.white,
       ),
       PersistentBottomNavBarItem(
-        icon: Icon(CupertinoIcons.settings),
-        title: ("Settings"),
-        activeColorPrimary: CupertinoColors.activeBlue,
-        inactiveColorPrimary: CupertinoColors.systemGrey,
+        icon: Icon(CupertinoIcons.news),
+        title: ("Sổ lệnh"),
+        activeColorPrimary: CupertinoColors.systemRed,
+        inactiveColorPrimary: CupertinoColors.white,
       ),
       PersistentBottomNavBarItem(
-        icon: Icon(CupertinoIcons.settings),
-        title: ("Settings"),
-        activeColorPrimary: CupertinoColors.activeBlue,
-        inactiveColorPrimary: CupertinoColors.systemGrey,
+        icon: Icon(CupertinoIcons.folder_badge_person_crop),
+        title: ("Sở hữu"),
+        activeColorPrimary: CupertinoColors.systemRed,
+        inactiveColorPrimary: CupertinoColors.white,
       ),
       PersistentBottomNavBarItem(
-        icon: Icon(CupertinoIcons.settings),
-        title: ("Settings"),
-        activeColorPrimary: CupertinoColors.activeBlue,
-        inactiveColorPrimary: CupertinoColors.systemGrey,
+        icon: Icon(CupertinoIcons.chat_bubble),
+        title: ("Tin nhắn"),
+        activeColorPrimary: CupertinoColors.systemRed,
+        inactiveColorPrimary: CupertinoColors.white,
       ),
       PersistentBottomNavBarItem(
-        icon: Icon(CupertinoIcons.settings),
-        title: ("Settings"),
-        activeColorPrimary: CupertinoColors.activeBlue,
-        inactiveColorPrimary: CupertinoColors.systemGrey,
+        icon: Icon(CupertinoIcons.person_solid),
+        title: ("Menu"),
+        activeColorPrimary: CupertinoColors.systemRed,
+        inactiveColorPrimary: CupertinoColors.white,
       ),
     ];
   }
@@ -78,7 +78,7 @@ class _BotNavbarState extends State<BotNavbar> {
       screens: _buildScreens(),
       items: _navBarsItems(),
       confineInSafeArea: true,
-      backgroundColor: Colors.white, // Default is Colors.white.
+      backgroundColor: Colors.black, // Default is Colors.white.
       handleAndroidBackButtonPress: true, // Default is true.
       resizeToAvoidBottomInset:
           true, // This needs to be true if you want to move up the screen when keyboard appears. Default is true.
@@ -103,7 +103,7 @@ class _BotNavbarState extends State<BotNavbar> {
         duration: Duration(milliseconds: 200),
       ),
       navBarStyle:
-          NavBarStyle.style1, // Choose the nav bar style with this property.
+          NavBarStyle.style6, // Choose the nav bar style with this property.
     );
   }
 }

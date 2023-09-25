@@ -3,7 +3,7 @@ import 'package:entradex/widgets/search.dart';
 import 'package:flutter/material.dart';
 import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
 
-import '../../Menu/search_screen.dart';
+import '../../Menu/screen/search_screen.dart';
 
 class FollowHeader extends StatelessWidget {
   const FollowHeader({super.key});
