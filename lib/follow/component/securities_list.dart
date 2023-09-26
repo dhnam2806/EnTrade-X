@@ -7,7 +7,7 @@ class SecuritiesList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 50,
+      height: 68,
       padding: EdgeInsets.all(4),
       child: ListView(scrollDirection: Axis.horizontal, children: [
         SecuritiesItem(

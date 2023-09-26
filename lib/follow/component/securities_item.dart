@@ -16,8 +16,13 @@ class SecuritiesItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 16),
-      child: Column(children: [
+      decoration: BoxDecoration(
+        color: Theme.of(context).colorScheme.background,
+        borderRadius: BorderRadius.circular(10),
+      ),
+      padding: EdgeInsets.symmetric(horizontal: 12),
+      margin: EdgeInsets.symmetric(horizontal: 4),
+      child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
         Row(
           children: [
             Text(
@@ -36,7 +41,7 @@ class SecuritiesItem extends StatelessWidget {
           ],
         ),
         SizedBox(height: 4),
-        Text((changePercent>0 ? "+":"-")+"$change  ($changePercent%)",
+        Text((changePercent > 0 ? "+" : "-") + "$change  ($changePercent%)",
             style: TextStyle(
               color: changePercent > 0 ? Colors.green : Colors.red,
             )),

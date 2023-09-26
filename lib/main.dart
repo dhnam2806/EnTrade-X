@@ -1,7 +1,6 @@
 import 'package:entradex/bottom_navbar/bot_navbar.dart';
 import 'package:entradex/follow/screen/follow_screen.dart';
-import 'package:entradex/theme/dark_theme.dart';
-import 'package:entradex/theme/light_theme.dart';
+import 'package:entradex/theme/theme.dart';
 import 'package:flutter/material.dart';
 import './theme/dark_theme.dart';
 
@@ -18,9 +17,9 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'EnTrade X',
-      theme: darkTheme,
-      darkTheme: darkTheme,
-      // home: BottomNavBar(),
+      theme: NAppTheme.lightTheme,
+      darkTheme: NAppTheme.darkTheme,
+      themeMode: ThemeMode.dark,
       home: BotNavbar(),
       // home: FollowScreen(),
     );

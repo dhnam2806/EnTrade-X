@@ -71,11 +71,14 @@ class _MenuScreenState extends State<MenuScreen> {
                     icon: Icons.monetization_on, text: "Gửi ý kiến phản hồi"),
               ],
             ),
+            SizedBox(
+              height: 12,
+            ),
             Container(
               width: size.width,
               height: 40,
               decoration: BoxDecoration(
-                color: Colors.grey[800],
+                color: Theme.of(context).colorScheme.background,
                 borderRadius: BorderRadius.circular(8),
               ),
               child: Padding(
@@ -84,6 +87,11 @@ class _MenuScreenState extends State<MenuScreen> {
                     child: Text("Đăng xuất", style: TextStyle(fontSize: 16))),
               ),
             ),
+            SizedBox(height: 8),
+            Text("Phiên bản 1.0.0",
+                style: TextStyle(
+                    color: Theme.of(context).colorScheme.surface,
+                    fontSize: 14)),
             SizedBox(height: 20),
           ]),
         ),

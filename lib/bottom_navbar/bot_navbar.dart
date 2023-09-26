@@ -35,37 +35,36 @@ class _BotNavbarState extends State<BotNavbar> {
         icon: Icon(CupertinoIcons.home),
         title: ("Home"),
         activeColorPrimary: CupertinoColors.systemRed,
-        inactiveColorPrimary: CupertinoColors.white,
+        inactiveColorPrimary: Theme.of(context).colorScheme.surface,
       ),
       PersistentBottomNavBarItem(
-        icon: Icon(CupertinoIcons.chart_bar_alt_fill),
-        title: ("Theo dõi"),
-        activeColorPrimary: CupertinoColors.systemRed,
-        inactiveColorPrimary: CupertinoColors.white,
-      ),
+          icon: Icon(CupertinoIcons.chart_bar_alt_fill),
+          title: ("Theo dõi"),
+          activeColorPrimary: CupertinoColors.systemRed,
+          inactiveColorPrimary: Theme.of(context).colorScheme.surface),
       PersistentBottomNavBarItem(
         icon: Icon(CupertinoIcons.news),
         title: ("Sổ lệnh"),
         activeColorPrimary: CupertinoColors.systemRed,
-        inactiveColorPrimary: CupertinoColors.white,
+        inactiveColorPrimary: Theme.of(context).colorScheme.surface,
       ),
       PersistentBottomNavBarItem(
         icon: Icon(CupertinoIcons.folder_badge_person_crop),
         title: ("Sở hữu"),
         activeColorPrimary: CupertinoColors.systemRed,
-        inactiveColorPrimary: CupertinoColors.white,
+        inactiveColorPrimary: Theme.of(context).colorScheme.surface,
       ),
       PersistentBottomNavBarItem(
         icon: Icon(CupertinoIcons.chat_bubble),
         title: ("Tin nhắn"),
         activeColorPrimary: CupertinoColors.systemRed,
-        inactiveColorPrimary: CupertinoColors.white,
+        inactiveColorPrimary: Theme.of(context).colorScheme.surface,
       ),
       PersistentBottomNavBarItem(
         icon: Icon(CupertinoIcons.person_solid),
         title: ("Menu"),
         activeColorPrimary: CupertinoColors.systemRed,
-        inactiveColorPrimary: CupertinoColors.white,
+        inactiveColorPrimary: Theme.of(context).colorScheme.surface,
       ),
     ];
   }
@@ -78,7 +77,8 @@ class _BotNavbarState extends State<BotNavbar> {
       screens: _buildScreens(),
       items: _navBarsItems(),
       confineInSafeArea: true,
-      backgroundColor: Colors.black, // Default is Colors.white.
+      backgroundColor:
+          Theme.of(context).colorScheme.background, // Default is Colors.white.
       handleAndroidBackButtonPress: true, // Default is true.
       resizeToAvoidBottomInset:
           true, // This needs to be true if you want to move up the screen when keyboard appears. Default is true.
@@ -86,7 +86,6 @@ class _BotNavbarState extends State<BotNavbar> {
       hideNavigationBarWhenKeyboardShows:
           true, // Recommended to set 'resizeToAvoidBottomInset' as true while using this argument. Default is true.
       decoration: NavBarDecoration(
-        borderRadius: BorderRadius.circular(10.0),
         colorBehindNavBar: Colors.white,
       ),
       popAllScreensOnTapOfSelectedTab: true,

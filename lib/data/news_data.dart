@@ -1,4 +1,4 @@
-  import '../model/news.dart';
+import '../model/news.dart';
 
 class NewsData {
   static List<News> newsData0 = [

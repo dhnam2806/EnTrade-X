@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:math';
 
 import 'package:bloc/bloc.dart';
 import 'package:entradex/data/stock_data.dart';
@@ -17,6 +18,8 @@ class FollowBloc extends Bloc<FollowEvent, FollowState> {
     on<NewsInitialEvent>(newsInitialEvent);
     on<StockSelectedEvent>(stockSelectedEvent);
     on<NewsSelectedEvent>(newsSelectedEvent);
+    on<StockSortEvent>(stockSortEvent);
+    on<SearchStockNavigateEvent>(searchStockNavigateEvent);
   }
 
   FutureOr<void> stockSelectedEvent(
@@ -49,7 +52,8 @@ class FollowBloc extends Bloc<FollowEvent, FollowState> {
     emit(NewsLoadedState(news: news));
   }
 
-  FutureOr<void> newsSelectedEvent(NewsSelectedEvent event, Emitter<FollowState> emit) {
+  FutureOr<void> newsSelectedEvent(
+      NewsSelectedEvent event, Emitter<FollowState> emit) {
     List<News> newsData0 = NewsData.newsData0;
     List<News> newsData1 = NewsData.newsData1;
 
@@ -58,5 +62,34 @@ class FollowBloc extends Bloc<FollowEvent, FollowState> {
     } else if (event.value == "Vĩ mô") {
       emit(NewsLoadedState(news: newsData1));
     }
+  }
+
+  FutureOr<void> searchStockNavigateEvent(
+      SearchStockNavigateEvent event, Emitter<FollowState> emit) {
+    emit(SearchStockNavigateState());
+  }
+
+  FutureOr<void> stockSortEvent(
+      StockSortEvent event, Emitter<FollowState> emit) {
+    List<Stock> stocks = event.stocks;
+    if (event.sortColumnIndex == 0) {
+      stocks.sort((a, b) => event.isAscending
+          ? a.name.compareTo(b.name)
+          : b.name.compareTo(a.name));
+    } else if (event.sortColumnIndex == 1) {
+      stocks.sort((a, b) => event.isAscending
+          ? a.price.compareTo(b.price)
+          : b.price.compareTo(a.price));
+    } else if (event.sortColumnIndex == 2) {
+      stocks.sort((a, b) => event.isAscending
+          ? a.changePercent.compareTo(b.changePercent)
+          : b.changePercent.compareTo(a.changePercent));
+    } else if (event.sortColumnIndex == 3) {
+      stocks.sort((a, b) => event.isAscending
+          ? a.total.compareTo(b.total)
+          : b.total.compareTo(a.total));
+    }
+
+    emit(StockLoadedState(stocks: stocks));
   }
 }

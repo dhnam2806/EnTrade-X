@@ -17,12 +17,12 @@ class MenuTitle extends StatelessWidget {
     return Container(
       width: size.width,
       decoration: BoxDecoration(
-        color: Theme.of(context).colorScheme.secondary,
+        color: Theme.of(context).colorScheme.background,
       ),
       child: ListTile(
         leading: Icon(
           icon,
-          color: Theme.of(context).colorScheme.tertiary,
+          color: Theme.of(context).colorScheme.surface,
         ),
         title: Text(text),
         trailing: selected

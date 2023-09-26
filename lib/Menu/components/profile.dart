@@ -18,7 +18,7 @@ class Profile extends StatelessWidget {
           borderRadius: BorderRadius.only(
               bottomLeft: Radius.circular(10),
               bottomRight: Radius.circular(10)),
-          color: Colors.grey[900]),
+          color: Theme.of(context).colorScheme.background.withOpacity(0.9)),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
@@ -36,13 +36,22 @@ class Profile extends StatelessWidget {
                     );
                   },
                   child: SearchWidget()),
-              IconButton(
-                onPressed: () {
-                  print('Light');
-                },
-                icon: Icon(Icons.lightbulb),
-                color: Colors.yellow,
-              ),
+              Container(
+                padding: EdgeInsets.all(6),
+                decoration: BoxDecoration(
+                  color: Theme.of(context).colorScheme.background,
+                  borderRadius: BorderRadius.circular(50),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.grey.withOpacity(0.2),
+                      spreadRadius: 0.4,
+                      blurRadius: 2,
+                      offset: Offset(0, 2),
+                    ),
+                  ],
+                ),
+                child: Icon(Icons.lightbulb, color: Colors.yellow),
+              )
             ],
           ),
           Row(
