@@ -1,3 +1,4 @@
+import 'package:entradex/follow/component/bottom_add.dart';
 import 'package:entradex/model/stock.dart';
 import 'package:flutter/material.dart';
 import '../bloc/follow_bloc.dart';
@@ -19,7 +20,6 @@ class _StockDataState extends State<StockData> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     followBloc.add(StockInitialEvent());
   }
@@ -29,12 +29,27 @@ class _StockDataState extends State<StockData> {
     final column = ["Mã", "Khớp", "%", "Tổng KL"];
     final popup = ["VN30", "Phá sinh", "HOSE"];
     bool isSelect = true;
+    final MediaQueryData mediaQuery = MediaQuery.of(context);
 
     return BlocConsumer<FollowBloc, FollowState>(
       bloc: followBloc,
       listener: (context, state) {
-        // TODO: implement listener
+        if (state is AddMoreState) {
+          showModalBottomSheet(
+            context: context,
+            isScrollControlled: true,
+            builder: (context) {
+              return SingleChildScrollView(
+                  child: Container(
+                      padding:
+                          EdgeInsets.only(bottom: mediaQuery.viewInsets.bottom),
+                      child: BottomAdd()));
+            },
+          );
+        }
       },
+      listenWhen: (previous, current) => current is FollowActionState,
+      buildWhen: (previous, current) => current is! FollowActionState,
       builder: (context, state) {
         if (state is FollowLoadingState) {
           return Center(
@@ -126,17 +141,59 @@ class _StockDataState extends State<StockData> {
           }
 
           return Container(
-            color: Theme.of(context).colorScheme.background,
+            color: Theme.of(context).colorScheme.background.withOpacity(0.8),
             padding: EdgeInsets.symmetric(horizontal: 8, vertical: 8),
             child: Column(
               children: [
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text(
-                      "Danh mục",
-                      style:
-                          TextStyle(fontSize: 20, fontWeight: FontWeight.w500),
+                    Row(
+                      children: [
+                        Container(
+                          width: 40,
+                          height: 40,
+                          decoration: BoxDecoration(
+                            color: Theme.of(context).colorScheme.background,
+                            borderRadius: BorderRadius.circular(4),
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.grey.withOpacity(0.2),
+                                spreadRadius: 0.4,
+                                blurRadius: 1,
+                                offset: Offset(0, 2),
+                              ),
+                            ],
+                          ),
+                          child: Center(child: Text("D1")),
+                        ),
+                        SizedBox(
+                          width: 8,
+                        ),
+                        GestureDetector(
+                          onTap: () {
+                            followBloc.add(AddMoreEvent());
+                          },
+                          child: Container(
+                            width: 40,
+                            height: 40,
+                            padding: EdgeInsets.all(8),
+                            decoration: BoxDecoration(
+                              color: Theme.of(context).colorScheme.background,
+                              borderRadius: BorderRadius.circular(4),
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.grey.withOpacity(0.2),
+                                  spreadRadius: 0.4,
+                                  blurRadius: 1,
+                                  offset: Offset(0, 2),
+                                ),
+                              ],
+                            ),
+                            child: Center(child: Text("+")),
+                          ),
+                        ),
+                      ],
                     ),
                     PopupMenuButton(
                         padding: EdgeInsets.zero,

@@ -21,5 +21,6 @@ class NewsLoadedState extends FollowState {
   NewsLoadedState({required this.news});
 }
 
-class SearchStockNavigateState extends FollowActionState {
-}
+class SearchStockNavigateState extends FollowActionState {}
+
+class AddMoreState extends FollowActionState {}

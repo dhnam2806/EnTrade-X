@@ -25,7 +25,7 @@ class SearchStockNavigateEvent extends FollowEvent {}
 
 class StockSortEvent extends FollowEvent {
   final int sortColumnIndex;
-   bool isAscending;
+  bool isAscending;
   final List<Stock> stocks;
 
   StockSortEvent({
@@ -34,3 +34,5 @@ class StockSortEvent extends FollowEvent {
     required this.stocks,
   });
 }
+
+class AddMoreEvent extends FollowEvent {}

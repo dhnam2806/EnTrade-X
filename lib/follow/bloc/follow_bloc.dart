@@ -20,6 +20,7 @@ class FollowBloc extends Bloc<FollowEvent, FollowState> {
     on<NewsSelectedEvent>(newsSelectedEvent);
     on<StockSortEvent>(stockSortEvent);
     on<SearchStockNavigateEvent>(searchStockNavigateEvent);
+    on<AddMoreEvent>(addMoreEvent);
   }
 
   FutureOr<void> stockSelectedEvent(
@@ -91,5 +92,9 @@ class FollowBloc extends Bloc<FollowEvent, FollowState> {
     }
 
     emit(StockLoadedState(stocks: stocks));
+  }
+
+  FutureOr<void> addMoreEvent(AddMoreEvent event, Emitter<FollowState> emit) {
+    emit(AddMoreState());
   }
 }

@@ -19,16 +19,15 @@ class _FollowScreenState extends State<FollowScreen> {
     return Scaffold(
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       body: SingleChildScrollView(
-        child: BlocProvider(
-          create: (context) => FollowBloc(),
-          child:
-              Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
             FollowHeader(),
             SizedBox(height: 12),
             StockData(),
             SizedBox(height: 12),
             NewsList(),
-          ]),
+          ],
         ),
       ),
     );

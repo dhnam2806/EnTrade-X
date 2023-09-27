@@ -24,7 +24,11 @@ class SettingScreen extends StatelessWidget {
             ),
             ListTile(
               title: Text('Đăng nhập sinh trắc học'),
-              trailing: SwitchButton(),
+              trailing: Switch(
+                  onChanged: (value) {
+                    print(value);
+                  },
+                  value: false),
               onTap: () {},
             ),
             ListTile(
