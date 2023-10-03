@@ -1,6 +1,7 @@
 import 'package:entradex/Menu/screen/search_screen.dart';
 import 'package:entradex/widgets/search.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
 
 class Profile extends StatelessWidget {
@@ -50,7 +51,10 @@ class Profile extends StatelessWidget {
                     ),
                   ],
                 ),
-                child: Icon(Icons.lightbulb, color: Colors.yellow),
+                child: Icon(
+                  Icons.lightbulb,
+                  color: Colors.yellow,
+                ),
               )
             ],
           ),
@@ -66,7 +70,7 @@ class Profile extends StatelessWidget {
               Text(
                 'John Wick',
                 style: TextStyle(
-                  fontSize: 20,
+                  fontSize: 20.sp,
                   fontWeight: FontWeight.bold,
                 ),
               ),

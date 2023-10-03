@@ -23,16 +23,12 @@ class NewsSelectedEvent extends FollowEvent {
 
 class SearchStockNavigateEvent extends FollowEvent {}
 
-class StockSortEvent extends FollowEvent {
-  final int sortColumnIndex;
-  bool isAscending;
-  final List<Stock> stocks;
-
-  StockSortEvent({
-    required this.sortColumnIndex,
-    required this.isAscending,
-    required this.stocks,
-  });
-}
-
 class AddMoreEvent extends FollowEvent {}
+
+class StockCollectionInitialEvent extends FollowEvent {}
+
+class AddStockEvent extends FollowEvent {
+  final String value;
+
+  AddStockEvent({required this.value});
+}

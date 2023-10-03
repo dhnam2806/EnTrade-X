@@ -2,8 +2,7 @@ import 'package:entradex/follow/component/news_info.dart';
 import 'package:entradex/follow/component/news_select.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
-import '../../model/news.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../bloc/follow_bloc.dart';
 
 class NewsList extends StatefulWidget {
@@ -49,7 +48,8 @@ class _NewsListState extends State<NewsList> {
               children: [
                 Text(
                   "Tin danh mục",
-                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500),
+                  style:
+                      TextStyle(fontSize: 20.sp, fontWeight: FontWeight.w500),
                 ),
                 Row(
                   children: [
@@ -58,7 +58,6 @@ class _NewsListState extends State<NewsList> {
                         followBloc.add(NewsSelectedEvent(value: "Theo mã"));
                         setState(() {
                           isSelect = !isSelect;
-                          // news = newsData0;
                           newsInfoHide = false;
                         });
                       },
@@ -68,14 +67,13 @@ class _NewsListState extends State<NewsList> {
                       ),
                     ),
                     SizedBox(
-                      width: 8,
+                      width: 8.w,
                     ),
                     GestureDetector(
                         onTap: () {
                           followBloc.add(NewsSelectedEvent(value: "Vĩ mô"));
                           setState(() {
                             isSelect = !isSelect;
-                            // news = newsData1;
                             newsInfoHide = !newsInfoHide;
                           });
                         },
@@ -104,7 +102,7 @@ class _NewsListState extends State<NewsList> {
                                     maxLines: 2,
                                     overflow: TextOverflow.ellipsis,
                                     style: TextStyle(
-                                      fontSize: 18,
+                                      fontSize: 16.sp,
                                     ),
                                   ),
                                   newsInfoHide
@@ -129,10 +127,11 @@ class _NewsListState extends State<NewsList> {
                                         color: Colors.grey[400],
                                       ),
                                       SizedBox(
-                                        width: 8,
+                                        width: 8.w,
                                       ),
                                       Text(news[index].time,
                                           style: TextStyle(
+                                              fontSize: 12.sp,
                                               color: Colors.grey[400]))
                                     ],
                                   )
@@ -140,11 +139,11 @@ class _NewsListState extends State<NewsList> {
                               ),
                             ),
                             SizedBox(
-                              height: 18,
+                              height: 18.h,
                             ),
                             Container(
                                 width: size.width * 0.3,
-                                padding: EdgeInsets.only(left: 16),
+                                padding: EdgeInsets.only(left: 16.w),
                                 child: Image.asset('images/john-wick.jpg')),
                           ],
                         ),

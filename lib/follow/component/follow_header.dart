@@ -29,7 +29,7 @@ class FollowHeader extends StatelessWidget {
         }
       },
       child: Container(
-        height: size.height * 0.22,
+        height: size.height * 0.2,
         padding: EdgeInsets.only(top: safePadding),
         decoration: BoxDecoration(
             borderRadius: BorderRadius.only(

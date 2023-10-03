@@ -3,6 +3,7 @@ import 'package:entradex/Menu/components/profile.dart';
 import 'package:entradex/Menu/screen/setting_screen.dart';
 import 'package:entradex/widgets/menu_select.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
 
 class MenuScreen extends StatefulWidget {
@@ -72,11 +73,11 @@ class _MenuScreenState extends State<MenuScreen> {
               ],
             ),
             SizedBox(
-              height: 12,
+              height: 12.h,
             ),
             Container(
               width: size.width,
-              height: 40,
+              height: 40.h,
               decoration: BoxDecoration(
                 color: Theme.of(context).colorScheme.background,
                 borderRadius: BorderRadius.circular(8),
@@ -87,12 +88,12 @@ class _MenuScreenState extends State<MenuScreen> {
                     child: Text("Đăng xuất", style: TextStyle(fontSize: 16))),
               ),
             ),
-            SizedBox(height: 8),
+            SizedBox(height: 8.h),
             Text("Phiên bản 1.0.0",
                 style: TextStyle(
                     color: Theme.of(context).colorScheme.surface,
-                    fontSize: 14)),
-            SizedBox(height: 20),
+                    fontSize: 14.sp)),
+            SizedBox(height: 20.h),
           ]),
         ),
         Profile(),

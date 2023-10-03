@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class NewsSelect extends StatelessWidget {
   String title;
@@ -12,8 +13,8 @@ class NewsSelect extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       margin: EdgeInsets.symmetric(vertical: 8),
-      width: 80,
-      height: 24,
+      width: 80.w,
+      height: 24.h,
       decoration: BoxDecoration(
         color:
             isSelected ? Colors.red : Theme.of(context).colorScheme.background,
@@ -21,7 +22,12 @@ class NewsSelect extends StatelessWidget {
       ),
       child: Center(
         child: Text(title,
-            style: TextStyle(fontSize: 15, fontWeight: FontWeight.w500)),
+            style: TextStyle(
+                fontSize: 15.sp,
+                fontWeight: FontWeight.w500,
+                color: isSelected
+                    ? Colors.white
+                    : Theme.of(context).colorScheme.onSecondary)),
       ),
     );
   }

@@ -1,12 +1,12 @@
 import 'dart:async';
-import 'dart:math';
-
 import 'package:bloc/bloc.dart';
+import 'package:entradex/data/category.dart';
 import 'package:entradex/data/stock_data.dart';
 import 'package:entradex/model/news.dart';
 import 'package:meta/meta.dart';
 
 import '../../data/news_data.dart';
+import '../../model/collection.dart';
 import '../../model/stock.dart';
 
 part 'follow_event.dart';
@@ -18,9 +18,10 @@ class FollowBloc extends Bloc<FollowEvent, FollowState> {
     on<NewsInitialEvent>(newsInitialEvent);
     on<StockSelectedEvent>(stockSelectedEvent);
     on<NewsSelectedEvent>(newsSelectedEvent);
-    on<StockSortEvent>(stockSortEvent);
     on<SearchStockNavigateEvent>(searchStockNavigateEvent);
     on<AddMoreEvent>(addMoreEvent);
+    on<StockCollectionInitialEvent>(stockCollectionInitialEvent);
+    on<AddStockEvent>(addStockEvent);
   }
 
   FutureOr<void> stockSelectedEvent(
@@ -70,31 +71,16 @@ class FollowBloc extends Bloc<FollowEvent, FollowState> {
     emit(SearchStockNavigateState());
   }
 
-  FutureOr<void> stockSortEvent(
-      StockSortEvent event, Emitter<FollowState> emit) {
-    List<Stock> stocks = event.stocks;
-    if (event.sortColumnIndex == 0) {
-      stocks.sort((a, b) => event.isAscending
-          ? a.name.compareTo(b.name)
-          : b.name.compareTo(a.name));
-    } else if (event.sortColumnIndex == 1) {
-      stocks.sort((a, b) => event.isAscending
-          ? a.price.compareTo(b.price)
-          : b.price.compareTo(a.price));
-    } else if (event.sortColumnIndex == 2) {
-      stocks.sort((a, b) => event.isAscending
-          ? a.changePercent.compareTo(b.changePercent)
-          : b.changePercent.compareTo(a.changePercent));
-    } else if (event.sortColumnIndex == 3) {
-      stocks.sort((a, b) => event.isAscending
-          ? a.total.compareTo(b.total)
-          : b.total.compareTo(a.total));
-    }
-
-    emit(StockLoadedState(stocks: stocks));
-  }
-
   FutureOr<void> addMoreEvent(AddMoreEvent event, Emitter<FollowState> emit) {
     emit(AddMoreState());
+  }
+
+  FutureOr<void> addStockEvent(AddStockEvent event, Emitter<FollowState> emit) {
+    collection.add(CollectionModel(name: event.value));
+    emit(AddStockState(value: collection));
+  }
+
+  FutureOr<void> stockCollectionInitialEvent(StockCollectionInitialEvent event, Emitter<FollowState> emit) {
+    emit(AddStockState(value: collection));
   }
 }

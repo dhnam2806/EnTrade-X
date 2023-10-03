@@ -1,6 +1,7 @@
-import 'package:entradex/follow/component/bottom_add.dart';
+import 'package:entradex/follow/component/collection.dart';
 import 'package:entradex/model/stock.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../bloc/follow_bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -27,27 +28,11 @@ class _StockDataState extends State<StockData> {
   @override
   Widget build(BuildContext context) {
     final column = ["Mã", "Khớp", "%", "Tổng KL"];
-    final popup = ["VN30", "Phá sinh", "HOSE"];
-    bool isSelect = true;
-    final MediaQueryData mediaQuery = MediaQuery.of(context);
+    final popup = ["VN30", "Phái sinh", "HOSE"];
 
     return BlocConsumer<FollowBloc, FollowState>(
       bloc: followBloc,
-      listener: (context, state) {
-        if (state is AddMoreState) {
-          showModalBottomSheet(
-            context: context,
-            isScrollControlled: true,
-            builder: (context) {
-              return SingleChildScrollView(
-                  child: Container(
-                      padding:
-                          EdgeInsets.only(bottom: mediaQuery.viewInsets.bottom),
-                      child: BottomAdd()));
-            },
-          );
-        }
-      },
+      listener: (context, state) {},
       listenWhen: (previous, current) => current is FollowActionState,
       buildWhen: (previous, current) => current is! FollowActionState,
       builder: (context, state) {
@@ -105,8 +90,8 @@ class _StockDataState extends State<StockData> {
                   child: Text(
                     column,
                     style: TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.w500,
+                        fontSize: 14.sp,
+                        fontWeight: FontWeight.w400,
                         color: Colors.grey),
                   ),
                 ),
@@ -119,7 +104,7 @@ class _StockDataState extends State<StockData> {
               return DataCell(Text(
                 data.toString(),
                 style: TextStyle(
-                    fontSize: 16,
+                    fontSize: 14.sp,
                     fontWeight: FontWeight.w500,
                     color: changePercent == 0
                         ? Colors.yellow
@@ -150,49 +135,10 @@ class _StockDataState extends State<StockData> {
                   children: [
                     Row(
                       children: [
-                        Container(
-                          width: 40,
-                          height: 40,
-                          decoration: BoxDecoration(
-                            color: Theme.of(context).colorScheme.background,
-                            borderRadius: BorderRadius.circular(4),
-                            boxShadow: [
-                              BoxShadow(
-                                color: Colors.grey.withOpacity(0.2),
-                                spreadRadius: 0.4,
-                                blurRadius: 1,
-                                offset: Offset(0, 2),
-                              ),
-                            ],
-                          ),
-                          child: Center(child: Text("D1")),
-                        ),
                         SizedBox(
-                          width: 8,
-                        ),
-                        GestureDetector(
-                          onTap: () {
-                            followBloc.add(AddMoreEvent());
-                          },
-                          child: Container(
-                            width: 40,
-                            height: 40,
-                            padding: EdgeInsets.all(8),
-                            decoration: BoxDecoration(
-                              color: Theme.of(context).colorScheme.background,
-                              borderRadius: BorderRadius.circular(4),
-                              boxShadow: [
-                                BoxShadow(
-                                  color: Colors.grey.withOpacity(0.2),
-                                  spreadRadius: 0.4,
-                                  blurRadius: 1,
-                                  offset: Offset(0, 2),
-                                ),
-                              ],
-                            ),
-                            child: Center(child: Text("+")),
-                          ),
-                        ),
+                            width: MediaQuery.of(context).size.width * 0.6,
+                            height: 32.h,
+                            child: Collection()),
                       ],
                     ),
                     PopupMenuButton(
@@ -269,7 +215,9 @@ class _StockDataState extends State<StockData> {
                               Text(
                                 select,
                                 style: TextStyle(
-                                    fontSize: 16, fontWeight: FontWeight.w500),
+                                    fontSize: 16.sp,
+                                    fontWeight: FontWeight.w500,
+                                    color: Colors.white),
                               ),
                               Icon(Icons.arrow_drop_down, color: Colors.white),
                             ],

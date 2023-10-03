@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class SecuritiesItem extends StatelessWidget {
   String name;
@@ -20,27 +21,27 @@ class SecuritiesItem extends StatelessWidget {
         color: Theme.of(context).colorScheme.background,
         borderRadius: BorderRadius.circular(10),
       ),
-      padding: EdgeInsets.symmetric(horizontal: 12),
-      margin: EdgeInsets.symmetric(horizontal: 4),
+      padding: EdgeInsets.symmetric(horizontal: 12.w),
+      margin: EdgeInsets.symmetric(horizontal: 4.w),
       child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
         Row(
           children: [
             Text(
               name.toUpperCase(),
-              style: TextStyle(fontSize: 15),
+              style: TextStyle(fontSize: 14.sp),
             ),
-            SizedBox(width: 8),
+            SizedBox(width: 8.w),
             Text(
               price.toString(),
               style: TextStyle(
-                fontSize: 18,
+                fontSize: 16.sp,
                 fontWeight: FontWeight.w500,
                 color: changePercent > 0 ? Colors.green : Colors.red,
               ),
             ),
           ],
         ),
-        SizedBox(height: 4),
+        SizedBox(height: 4.h),
         Text((changePercent > 0 ? "+" : "-") + "$change  ($changePercent%)",
             style: TextStyle(
               color: changePercent > 0 ? Colors.green : Colors.red,

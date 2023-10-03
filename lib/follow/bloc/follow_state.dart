@@ -24,3 +24,9 @@ class NewsLoadedState extends FollowState {
 class SearchStockNavigateState extends FollowActionState {}
 
 class AddMoreState extends FollowActionState {}
+
+class AddStockState extends FollowState {
+  final List<CollectionModel> value;
+
+  AddStockState({required this.value});
+}

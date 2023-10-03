@@ -12,7 +12,7 @@ class NAppTheme {
       background: Color.fromARGB(255, 255, 255, 255),
       error: Color.fromARGB(255, 255, 255, 255),
       onPrimary: Color.fromARGB(255, 240, 239, 239),
-      onSecondary: Color.fromARGB(255, 255, 255, 255),
+      onSecondary: Color.fromARGB(255, 0, 0, 0),
       onSurface: Color.fromARGB(255, 255, 255, 255),
       onBackground: Color.fromARGB(255, 255, 255, 255),
       onError: Color.fromARGB(255, 255, 255, 255),

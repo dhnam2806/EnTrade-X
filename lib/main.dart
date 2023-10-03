@@ -4,6 +4,7 @@ import 'package:entradex/theme/bloc/theme_bloc.dart';
 import 'package:entradex/theme/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 void main() {
   runApp(const MyApp());
@@ -23,16 +24,25 @@ class MyApp extends StatelessWidget {
       child: BlocBuilder<ThemeBloc, ThemeState>(
         builder: (context, state) {
           final success = state as ThemeInitial;
-          return MaterialApp(
-            debugShowCheckedModeBanner: false,
-            title: 'EnTrade X',
-            theme: success.isDarkTheme
-                ? NAppTheme.darkTheme
-                : NAppTheme.lightTheme,
-            // darkTheme: NAppTheme.darkTheme,
-            // themeMode: ThemeMode.dark,
-            home: BotNavbar(),
-            // home: FollowScreen(),
+          return ScreenUtilInit(
+            minTextAdapt: true,
+            splitScreenMode: true,
+            builder: (BuildContext context, Widget? child) {
+              return MaterialApp(
+                builder: (context, child) => MediaQuery(
+                  data: MediaQuery.of(context).copyWith(
+                    textScaleFactor: 1.0,
+                  ),
+                  child: child!,
+                ),
+                debugShowCheckedModeBanner: false,
+                title: 'EnTrade X',
+                theme: success.isDarkTheme
+                    ? NAppTheme.darkTheme
+                    : NAppTheme.lightTheme,
+                home: BotNavbar(),
+              );
+            },
           );
         },
       ),
