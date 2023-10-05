@@ -7,8 +7,7 @@ class SearchWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     final Size size = MediaQuery.of(context).size;
     return Container(
-      width: size.width * 0.8,
-      padding: EdgeInsets.all(6),
+      padding: EdgeInsets.symmetric(horizontal: 6, vertical: 8),
       decoration: BoxDecoration(
         color: Theme.of(context).colorScheme.background,
         borderRadius: BorderRadius.circular(50),
@@ -24,7 +23,7 @@ class SearchWidget extends StatelessWidget {
       child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
         Icon(Icons.language_rounded, color: Colors.red),
         Container(
-          width: size.width * 0.6,
+          width: size.width * 0.58,
           child: Text(
             'Tìm mã để đặt lệnh',
             style: TextStyle(

@@ -2,8 +2,10 @@ import 'package:entradex/follow/component/collection.dart';
 import 'package:entradex/model/stock.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
 import '../bloc/follow_bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import '../../stock_detail/screen/detail_screen.dart';
 
 class StockData extends StatefulWidget {
   const StockData({super.key});
@@ -32,7 +34,16 @@ class _StockDataState extends State<StockData> {
 
     return BlocConsumer<FollowBloc, FollowState>(
       bloc: followBloc,
-      listener: (context, state) {},
+      listener: (context, state) {
+        if (state is SelectStockState) {
+          PersistentNavBarNavigator.pushNewScreen(
+            context,
+            screen: DetailScreen(),
+            withNavBar: true,
+            pageTransitionAnimation: PageTransitionAnimation.cupertino,
+          );
+        }
+      },
       listenWhen: (previous, current) => current is FollowActionState,
       buildWhen: (previous, current) => current is! FollowActionState,
       builder: (context, state) {
@@ -86,14 +97,13 @@ class _StockDataState extends State<StockData> {
                     sortCount++;
                   });
                 },
-                label: Expanded(
-                  child: Text(
-                    column,
-                    style: TextStyle(
-                        fontSize: 14.sp,
-                        fontWeight: FontWeight.w400,
-                        color: Colors.grey),
-                  ),
+                label: Text(
+                  column,
+                  style: TextStyle(
+                      overflow: TextOverflow.ellipsis,
+                      fontSize: 14.sp,
+                      fontWeight: FontWeight.w400,
+                      color: Colors.grey),
                 ),
               );
             }).toList();
@@ -101,14 +111,23 @@ class _StockDataState extends State<StockData> {
 
           List<DataCell> getCells(List<dynamic> cells, double changePercent) {
             return cells.map((data) {
-              return DataCell(Text(
-                data.toString(),
-                style: TextStyle(
-                    fontSize: 14.sp,
-                    fontWeight: FontWeight.w500,
-                    color: changePercent == 0
-                        ? Colors.yellow
-                        : (changePercent < 0 ? Colors.red : Colors.green)),
+              return DataCell(GestureDetector(
+                onTap: () {
+                  followBloc.add(SelectStockEvent(value: data.toString()));
+                },
+                child: Padding(
+                  padding: const EdgeInsets.only(right: 8, top: 4, bottom: 4),
+                  child: Text(
+                    data.toString(),
+                    style: TextStyle(
+                        overflow: TextOverflow.ellipsis,
+                        fontSize: 14.sp,
+                        fontWeight: FontWeight.w500,
+                        color: changePercent == 0
+                            ? Colors.yellow
+                            : (changePercent < 0 ? Colors.red : Colors.green)),
+                  ),
+                ),
               ));
             }).toList();
           }

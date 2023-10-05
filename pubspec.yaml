@@ -39,6 +39,7 @@ dependencies:
   persistent_bottom_nav_bar: ^5.0.2
   auto_size_text:
   flutter_screenutil:
+  syncfusion_flutter_datagrid:
 
 dev_dependencies:
   flutter_test:

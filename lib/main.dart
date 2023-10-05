@@ -1,5 +1,7 @@
-import 'package:entradex/bottom_navbar/bot_navbar.dart';
+import 'package:entradex/bot_navbar.dart';
 import 'package:entradex/follow/bloc/follow_bloc.dart';
+import 'package:entradex/follow/component/datagrid.dart';
+import 'package:entradex/stock_detail/screen/detail_screen.dart';
 import 'package:entradex/theme/bloc/theme_bloc.dart';
 import 'package:entradex/theme/theme.dart';
 import 'package:flutter/material.dart';
@@ -37,10 +39,11 @@ class MyApp extends StatelessWidget {
                 ),
                 debugShowCheckedModeBanner: false,
                 title: 'EnTrade X',
-                theme: success.isDarkTheme
+                theme: !success.isDarkTheme
                     ? NAppTheme.darkTheme
                     : NAppTheme.lightTheme,
-                home: BotNavbar(),
+                // home: BotNavbar(),
+                home: DetailScreen(),
               );
             },
           );

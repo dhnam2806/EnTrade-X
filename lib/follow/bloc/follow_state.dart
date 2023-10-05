@@ -30,3 +30,9 @@ class AddStockState extends FollowState {
 
   AddStockState({required this.value});
 }
+
+class SelectStockState extends FollowActionState {
+  final List<Stock> value;
+
+  SelectStockState({required this.value});
+}
