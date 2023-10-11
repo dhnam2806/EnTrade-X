@@ -26,64 +26,67 @@ class _ListPageState extends State<ListPage> {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Row(
-          children: [
-            GestureDetector(
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+          child: Row(
+            children: [
+              GestureDetector(
+                  onTap: () {
+                    _controller.animateToPage(0,
+                        duration: Duration(milliseconds: 300),
+                        curve: Curves.easeInOut);
+                  },
+                  child: Text(
+                    "Bước giá",
+                    style: TextStyle(
+                        fontSize: 16.sp,
+                        color: _selectedIndex == 0 ? Colors.red : Colors.white),
+                  )),
+              SizedBox(width: 16.w),
+              GestureDetector(
                 onTap: () {
-                  _controller.animateToPage(0,
+                  _controller.animateToPage(1,
                       duration: Duration(milliseconds: 300),
                       curve: Curves.easeInOut);
                 },
                 child: Text(
-                  "Bước giá",
+                  "Khớp lệnh",
                   style: TextStyle(
                       fontSize: 16.sp,
-                      color: _selectedIndex == 0 ? Colors.red : Colors.white),
-                )),
-            SizedBox(width: 16.w),
-            GestureDetector(
-              onTap: () {
-                _controller.animateToPage(1,
-                    duration: Duration(milliseconds: 300),
-                    curve: Curves.easeInOut);
-              },
-              child: Text(
-                "Khớp lệnh",
-                style: TextStyle(
-                    fontSize: 16.sp,
-                    color: _selectedIndex == 1 ? Colors.red : Colors.white),
+                      color: _selectedIndex == 1 ? Colors.red : Colors.white),
+                ),
               ),
-            ),
-            SizedBox(width: 16.w),
-            GestureDetector(
-                onTap: () {
-                  _controller.animateToPage(2,
-                      duration: Duration(milliseconds: 300),
-                      curve: Curves.easeInOut);
-                },
-                child: Text(
-                  "Lô lẻ",
-                  style: TextStyle(
-                      fontSize: 16.sp,
-                      color: _selectedIndex == 2 ? Colors.red : Colors.white),
-                )),
-            SizedBox(width: 16.w),
-            GestureDetector(
-                onTap: () {
-                  _controller.animateToPage(3,
-                      duration: Duration(milliseconds: 300),
-                      curve: Curves.easeInOut);
-                },
-                child: Text(
-                  "Sự kiện",
-                  style: TextStyle(
-                      fontSize: 16.sp,
-                      color: _selectedIndex == 3 ? Colors.red : Colors.white),
-                )),
-          ],
+              SizedBox(width: 16.w),
+              GestureDetector(
+                  onTap: () {
+                    _controller.animateToPage(2,
+                        duration: Duration(milliseconds: 300),
+                        curve: Curves.easeInOut);
+                  },
+                  child: Text(
+                    "Lô lẻ",
+                    style: TextStyle(
+                        fontSize: 16.sp,
+                        color: _selectedIndex == 2 ? Colors.red : Colors.white),
+                  )),
+              SizedBox(width: 16.w),
+              GestureDetector(
+                  onTap: () {
+                    _controller.animateToPage(3,
+                        duration: Duration(milliseconds: 300),
+                        curve: Curves.easeInOut);
+                  },
+                  child: Text(
+                    "Sự kiện",
+                    style: TextStyle(
+                        fontSize: 16.sp,
+                        color: _selectedIndex == 3 ? Colors.red : Colors.white),
+                  )),
+            ],
+          ),
         ),
         Container(
-          height: 220.h,
+          height: 240.h,
           child: PageView.builder(
               controller: _controller,
               onPageChanged: (value) {
