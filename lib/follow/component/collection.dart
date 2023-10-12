@@ -1,4 +1,4 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
+
 import 'package:entradex/follow/component/bottom_add.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -44,12 +44,7 @@ class _CollectionState extends State<Collection> {
             context: context,
             isScrollControlled: true,
             builder: (context) {
-              return SingleChildScrollView(
-                  child: Container(
-                      padding: EdgeInsets.only(
-                          bottom:
-                              MediaQuery.of(context).viewInsets.bottom + 28),
-                      child: BottomAdd()));
+              return BottomAdd();
             },
           );
         }

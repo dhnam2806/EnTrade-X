@@ -2,7 +2,7 @@ import 'package:entradex/follow/component/securities_list.dart';
 import 'package:entradex/widgets/search.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
+import 'package:persistent_bottom_nav_bar_v2/persistent-tab-view.dart';
 
 import '../../Menu/screen/search_screen.dart';
 import '../bloc/follow_bloc.dart';
@@ -20,7 +20,7 @@ class FollowHeader extends StatelessWidget {
       listener: (context, state) {
         // TODO: implement listener
         if (state is SearchStockNavigateState) {
-          PersistentNavBarNavigator.pushNewScreen(
+          pushNewScreen(
             context,
             screen: SearchScreen(),
             withNavBar: true, // OPTIONAL VALUE. True by default.

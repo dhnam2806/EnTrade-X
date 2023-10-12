@@ -6,7 +6,7 @@ import 'package:entradex/screens/message_screen.dart';
 import 'package:entradex/screens/own_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
+import 'package:persistent_bottom_nav_bar_v2/persistent-tab-view.dart';
 
 class BotNavbar extends StatefulWidget {
   const BotNavbar({super.key});

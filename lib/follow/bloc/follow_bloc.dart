@@ -22,7 +22,7 @@ class FollowBloc extends Bloc<FollowEvent, FollowState> {
     on<AddMoreEvent>(addMoreEvent);
     on<StockCollectionInitialEvent>(stockCollectionInitialEvent);
     on<AddStockEvent>(addStockEvent);
-    on<SelectStockEvent>(selectStockEvent);
+    on<SelectStockNavigateEvent>(selectStockEvent);
   }
 
   FutureOr<void> stockSelectedEvent(
@@ -85,16 +85,7 @@ class FollowBloc extends Bloc<FollowEvent, FollowState> {
     emit(AddStockState(value: collection));
   }
 
-  FutureOr<void> selectStockEvent(SelectStockEvent event, Emitter<FollowState> emit) {
-    List<Stock> stocks = StockData.data0;
-    List<Stock> result = [];
-
-    for (Stock stock in stocks) {
-      if (stock.name == event.value) {
-        result.add(stock);
-      }
-    }
-
-    emit(SelectStockState(value: result));
+  FutureOr<void> selectStockEvent(SelectStockNavigateEvent event, Emitter<FollowState> emit) {
+    emit(SelectStockNavigateState(stock: event.stock));
   }
 }

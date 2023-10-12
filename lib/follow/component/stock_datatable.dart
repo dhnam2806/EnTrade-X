@@ -2,7 +2,7 @@ import 'package:entradex/follow/component/collection.dart';
 import 'package:entradex/model/stock.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
+import 'package:persistent_bottom_nav_bar_v2/persistent-tab-view.dart';
 import '../bloc/follow_bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../stock_detail/screen/detail_screen.dart';
@@ -35,10 +35,10 @@ class _StockDataState extends State<StockData> {
     return BlocConsumer<FollowBloc, FollowState>(
       bloc: followBloc,
       listener: (context, state) {
-        if (state is SelectStockState) {
-          PersistentNavBarNavigator.pushNewScreen(
+        if (state is SelectStockNavigateState) {
+          pushNewScreen(
             context,
-            screen: DetailScreen(),
+            screen: DetailScreen(stock: state.stock,),
             withNavBar: true,
             pageTransitionAnimation: PageTransitionAnimation.cupertino,
           );
@@ -110,15 +110,12 @@ class _StockDataState extends State<StockData> {
           }
 
           List<DataCell> getCells(List<dynamic> cells, double changePercent) {
-            return cells.map((data) {
-              return DataCell(GestureDetector(
-                onTap: () {
-                  followBloc.add(SelectStockEvent(value: data.toString()));
-                },
-                child: Padding(
+            return cells.map((idx) {
+              return DataCell(
+                Padding(
                   padding: const EdgeInsets.only(right: 8, top: 4, bottom: 4),
                   child: Text(
-                    data.toString(),
+                    idx.toString(),
                     style: TextStyle(
                         overflow: TextOverflow.ellipsis,
                         fontSize: 14.sp,
@@ -128,7 +125,7 @@ class _StockDataState extends State<StockData> {
                             : (changePercent < 0 ? Colors.red : Colors.green)),
                   ),
                 ),
-              ));
+              );
             }).toList();
           }
 
@@ -140,7 +137,12 @@ class _StockDataState extends State<StockData> {
                 stock.changePercent,
                 stock.total
               ];
-              return DataRow(cells: getCells(cells, stock.changePercent));
+              return DataRow(
+                cells: getCells(cells, stock.changePercent),
+                onSelectChanged: (isSelected) {
+                  followBloc.add(SelectStockNavigateEvent(stock: stock));
+                },
+              );
             }).toList();
           }
 
@@ -245,6 +247,7 @@ class _StockDataState extends State<StockData> {
                   ],
                 ),
                 DataTable(
+                  showCheckboxColumn: false,
                   horizontalMargin: 0,
                   sortAscending: isAscending,
                   sortColumnIndex: sortColumnIndex,

@@ -4,7 +4,7 @@ import 'package:entradex/Menu/screen/setting_screen.dart';
 import 'package:entradex/widgets/menu_select.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
+import 'package:persistent_bottom_nav_bar_v2/persistent-tab-view.dart';
 
 class MenuScreen extends StatefulWidget {
   const MenuScreen({super.key});
@@ -35,7 +35,7 @@ class _MenuScreenState extends State<MenuScreen> {
                   MenuSelect(icon: Icons.wallet_travel_sharp, text: "Sản phẩm"),
                   GestureDetector(
                       onTap: () {
-                        PersistentNavBarNavigator.pushNewScreen(
+                        pushNewScreen(
                           context,
                           screen: SettingScreen(),
                           withNavBar: true, // OPTIONAL VALUE. True by default.

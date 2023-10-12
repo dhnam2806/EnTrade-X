@@ -33,8 +33,8 @@ class AddStockEvent extends FollowEvent {
   AddStockEvent({required this.value});
 }
 
-class SelectStockEvent extends FollowEvent {
-  final String value;
+class SelectStockNavigateEvent extends FollowEvent {
+  final Stock stock;
 
-  SelectStockEvent({required this.value});
+  SelectStockNavigateEvent({required this.stock});
 }

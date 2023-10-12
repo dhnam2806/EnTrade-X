@@ -2,7 +2,7 @@ import 'package:entradex/Menu/screen/search_screen.dart';
 import 'package:entradex/widgets/search.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
+import 'package:persistent_bottom_nav_bar_v2/persistent-tab-view.dart';
 
 class Profile extends StatelessWidget {
   const Profile({super.key});
@@ -28,7 +28,7 @@ class Profile extends StatelessWidget {
             children: [
               GestureDetector(
                   onTap: () {
-                    PersistentNavBarNavigator.pushNewScreen(
+                    pushNewScreen(
                       context,
                       screen: SearchScreen(),
                       withNavBar: true, // OPTIONAL VALUE. True by default.

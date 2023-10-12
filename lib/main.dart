@@ -1,6 +1,6 @@
 import 'package:entradex/bot_navbar.dart';
 import 'package:entradex/follow/bloc/follow_bloc.dart';
-import 'package:entradex/follow/component/datagrid.dart';
+import 'package:entradex/stock_detail/bloc/detail_bloc.dart';
 import 'package:entradex/stock_detail/screen/detail_screen.dart';
 import 'package:entradex/theme/bloc/theme_bloc.dart';
 import 'package:entradex/theme/theme.dart';
@@ -22,6 +22,7 @@ class MyApp extends StatelessWidget {
       providers: [
         BlocProvider(create: (context) => ThemeBloc()),
         BlocProvider(create: (context) => FollowBloc()),
+        BlocProvider(create: (context) => DetailBloc()),
       ],
       child: BlocBuilder<ThemeBloc, ThemeState>(
         builder: (context, state) {
@@ -42,8 +43,8 @@ class MyApp extends StatelessWidget {
                 theme: !success.isDarkTheme
                     ? NAppTheme.darkTheme
                     : NAppTheme.lightTheme,
-                // home: BotNavbar(),
-                home: DetailScreen(),
+                home: BotNavbar(),
+                // home: DetailScreen(),
               );
             },
           );

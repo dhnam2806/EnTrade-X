@@ -13,8 +13,8 @@ class BottomAdd extends StatelessWidget {
     final TextEditingController _controller = TextEditingController();
     return Container(
       color: Theme.of(context).colorScheme.background,
-      height: MediaQuery.of(context).size.height * 0.55,
-      padding: EdgeInsets.all(20),
+      // height: MediaQuery.of(context).size.height * 0.55,
+      padding: EdgeInsets.all(16),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         mainAxisSize: MainAxisSize.min,
