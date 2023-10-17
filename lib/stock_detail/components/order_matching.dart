@@ -34,7 +34,7 @@ class _OrderMatchingState extends State<OrderMatching> {
               style: TextStyle(
                 fontSize: 18.sp,
                 fontWeight: FontWeight.w500,
-                color: Colors.white,
+                color: Theme.of(context).colorScheme.onSecondary,
               ),
             ),
           ),
@@ -70,7 +70,7 @@ class _OrderMatchingState extends State<OrderMatching> {
 
   List<DataCell> getCells(List<dynamic> cells, double changePercent) {
     return cells.map((data) {
-      Color textColor = Colors.white;
+      Color textColor = Theme.of(context).colorScheme.onSecondary;
       if (data is double) {
         textColor = changePercent == 0
             ? Colors.yellow

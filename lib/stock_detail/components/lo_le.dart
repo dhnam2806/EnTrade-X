@@ -389,7 +389,7 @@ class _LoLeState extends State<LoLe> {
                           TextSpan(
                             text: '835',
                             style: TextStyle(
-                              color: Colors.white,
+                              color: Theme.of(context).colorScheme.onSecondary,
                               fontSize: 15.sp,
                               fontWeight: FontWeight.w500,
                             ),

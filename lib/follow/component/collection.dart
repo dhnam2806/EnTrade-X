@@ -1,4 +1,3 @@
-
 import 'package:entradex/follow/component/bottom_add.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -55,6 +54,9 @@ class _CollectionState extends State<Collection> {
         if (state is AddStockState) {
           final success = state as AddStockState;
           final data = success.value;
+          bool isShow = true;
+          data.length >= 5 ? isShow = false : isShow = true;
+
           return Row(
             children: [
               ListView.builder(
@@ -66,6 +68,7 @@ class _CollectionState extends State<Collection> {
                 itemBuilder: (context, index) {
                   return Container(
                     width: 32.w,
+                    margin: EdgeInsets.only(right: 4.w),
                     decoration: BoxDecoration(
                       color: Theme.of(context).colorScheme.background,
                       borderRadius: BorderRadius.circular(4),
@@ -85,28 +88,31 @@ class _CollectionState extends State<Collection> {
               SizedBox(
                 width: 8.w,
               ),
-              GestureDetector(
-                onTap: () {
-                  BlocProvider.of<FollowBloc>(context).add(AddMoreEvent());
-                },
-                child: Container(
-                  width: 32.w,
-                  padding: EdgeInsets.all(8),
-                  decoration: BoxDecoration(
-                    color: Theme.of(context).colorScheme.background,
-                    borderRadius: BorderRadius.circular(4),
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.grey.withOpacity(0.2),
-                        spreadRadius: 0.4,
-                        blurRadius: 1,
-                        offset: Offset(0, 2),
+              isShow
+                  ? GestureDetector(
+                      onTap: () {
+                        BlocProvider.of<FollowBloc>(context)
+                            .add(AddMoreEvent());
+                      },
+                      child: Container(
+                        width: 32.w,
+                        padding: EdgeInsets.all(8),
+                        decoration: BoxDecoration(
+                          color: Theme.of(context).colorScheme.background,
+                          borderRadius: BorderRadius.circular(4),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.grey.withOpacity(0.2),
+                              spreadRadius: 0.4,
+                              blurRadius: 1,
+                              offset: Offset(0, 2),
+                            ),
+                          ],
+                        ),
+                        child: Center(child: Text("+")),
                       ),
-                    ],
-                  ),
-                  child: Center(child: Text("+")),
-                ),
-              ),
+                    )
+                  : Container(),
             ],
           );
         }

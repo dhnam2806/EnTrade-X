@@ -1,8 +1,12 @@
+import 'package:entradex/const/colors.dart';
+import 'package:entradex/follow/bloc/follow_bloc.dart';
 import 'package:entradex/widgets/search.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:persistent_bottom_nav_bar_v2/persistent-tab-view.dart';
 
+import '../../Menu/screen/search_screen.dart';
 import '../bloc/detail_bloc.dart';
 
 class DetailHeader extends StatefulWidget {
@@ -20,7 +24,14 @@ class _DetailHeaderState extends State<DetailHeader> {
     return BlocConsumer<DetailBloc, DetailState>(
       bloc: BlocProvider.of<DetailBloc>(context),
       listener: (context, state) {
-        // TODO: implement listener
+        if (state is SearchStockNavigateState) {
+          pushNewScreen(
+            context,
+            screen: SearchScreen(),
+            withNavBar: true,
+            pageTransitionAnimation: PageTransitionAnimation.cupertino,
+          );
+        }
       },
       builder: (context, state) {
         if (state is DetailLoadingState) {
@@ -51,7 +62,12 @@ class _DetailHeaderState extends State<DetailHeader> {
                             color: Theme.of(context).colorScheme.primary),
                       ),
                       SizedBox(width: 4.w),
-                      SearchWidget(),
+                      GestureDetector(
+                          onTap: () => {
+                                BlocProvider.of<FollowBloc>(context)
+                                    .add(SearchStockNavigateEvent())
+                              },
+                          child: SearchWidget()),
                       SizedBox(width: 4.w),
                       Container(
                         padding: EdgeInsets.all(6),
@@ -87,7 +103,8 @@ class _DetailHeaderState extends State<DetailHeader> {
                               style: TextStyle(
                                 fontSize: 20.sp,
                                 fontWeight: FontWeight.bold,
-                                color: Colors.white,
+                                color:
+                                    Theme.of(context).colorScheme.onSecondary,
                               ),
                             ),
                             SizedBox(width: 6.w),
@@ -102,8 +119,16 @@ class _DetailHeaderState extends State<DetailHeader> {
                             Container(
                               padding: EdgeInsets.all(6),
                               decoration: BoxDecoration(
-                                color: Colors.grey[800],
+                                color: Theme.of(context).colorScheme.background,
                                 borderRadius: BorderRadius.circular(50),
+                                boxShadow: [
+                                  BoxShadow(
+                                    color: Colors.grey.withOpacity(0.2),
+                                    spreadRadius: 0.4,
+                                    blurRadius: 2,
+                                    offset: Offset(0, 2),
+                                  ),
+                                ],
                               ),
                               child: Icon(Icons.bar_chart_rounded,
                                   color: Theme.of(context).colorScheme.surface,
@@ -113,8 +138,16 @@ class _DetailHeaderState extends State<DetailHeader> {
                             Container(
                               padding: EdgeInsets.all(6),
                               decoration: BoxDecoration(
-                                color: Colors.grey[800],
+                                color: Theme.of(context).colorScheme.background,
                                 borderRadius: BorderRadius.circular(50),
+                                boxShadow: [
+                                  BoxShadow(
+                                    color: Colors.grey.withOpacity(0.2),
+                                    spreadRadius: 0.4,
+                                    blurRadius: 2,
+                                    offset: Offset(0, 2),
+                                  ),
+                                ],
                               ),
                               child: Icon(Icons.add,
                                   color: Theme.of(context).colorScheme.primary,
@@ -144,7 +177,7 @@ class _DetailHeaderState extends State<DetailHeader> {
                               style: TextStyle(
                                 fontSize: 20.sp,
                                 fontWeight: FontWeight.bold,
-                                color:  state.stock.changePercent == 0
+                                color: state.stock.changePercent == 0
                                     ? Colors.yellow
                                     : (state.stock.changePercent < 0
                                         ? Colors.red
@@ -160,8 +193,8 @@ class _DetailHeaderState extends State<DetailHeader> {
                                 color: state.stock.changePercent == 0
                                     ? Colors.yellow
                                     : (state.stock.changePercent < 0
-                                        ? Colors.red
-                                        : Colors.green),
+                                        ? AppColors.red
+                                        : AppColors.green),
                               ),
                             )
                           ],
@@ -175,7 +208,8 @@ class _DetailHeaderState extends State<DetailHeader> {
                                 text: success.stock.total.toString(),
                                 style: TextStyle(
                                   fontSize: 14.sp,
-                                  color: Colors.white,
+                                  color:
+                                      Theme.of(context).colorScheme.onSecondary,
                                 ),
                               ),
                               TextSpan(
@@ -194,7 +228,8 @@ class _DetailHeaderState extends State<DetailHeader> {
                                 style: TextStyle(
                                   fontSize: 14.sp,
                                   // color: Theme.of(context).colorScheme.surface,
-                                  color: Colors.white,
+                                  color:
+                                      Theme.of(context).colorScheme.onSecondary,
                                 ),
                               ),
                               TextSpan(

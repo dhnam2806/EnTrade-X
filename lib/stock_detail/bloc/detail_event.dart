@@ -26,3 +26,5 @@ class PriceDecreaseEvent extends DetailEvent {
 
   PriceDecreaseEvent({required this.priceDecrease});
 }
+
+

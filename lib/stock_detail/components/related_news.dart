@@ -1,3 +1,4 @@
+import 'package:entradex/const/colors.dart';
 import 'package:entradex/follow/component/news_info.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -73,7 +74,7 @@ class _RelatedNewsState extends State<RelatedNews> {
                                     fontSize: 16.sp, color: Colors.grey[400])),
                             Text("-2.86%",
                                 style: TextStyle(
-                                    fontSize: 16.sp, color: Colors.red)),
+                                    fontSize: 16.sp, color: AppColors.red)),
                           ],
                         ),
                         Column(
@@ -83,7 +84,7 @@ class _RelatedNewsState extends State<RelatedNews> {
                                     fontSize: 16.sp, color: Colors.grey[400])),
                             Text("39.10%",
                                 style: TextStyle(
-                                    fontSize: 16.sp, color: Colors.green)),
+                                    fontSize: 16.sp, color: AppColors.green)),
                           ],
                         ),
                         Column(
@@ -93,7 +94,10 @@ class _RelatedNewsState extends State<RelatedNews> {
                                     fontSize: 16.sp, color: Colors.grey[400])),
                             Text("116,329.15 tỷ",
                                 style: TextStyle(
-                                    fontSize: 16.sp, color: Colors.white)),
+                                  fontSize: 16.sp,
+                                  color:
+                                      Theme.of(context).colorScheme.onSecondary,
+                                )),
                           ],
                         ),
                         Column(
@@ -103,7 +107,10 @@ class _RelatedNewsState extends State<RelatedNews> {
                                     fontSize: 16.sp, color: Colors.grey[400])),
                             Text("20.0x",
                                 style: TextStyle(
-                                    fontSize: 16.sp, color: Colors.white)),
+                                  fontSize: 16.sp,
+                                  color:
+                                      Theme.of(context).colorScheme.onSecondary,
+                                )),
                           ],
                         ),
                         Column(
@@ -113,7 +120,10 @@ class _RelatedNewsState extends State<RelatedNews> {
                                     fontSize: 16.sp, color: Colors.grey[400])),
                             Text("2.41x",
                                 style: TextStyle(
-                                    fontSize: 16.sp, color: Colors.white)),
+                                  fontSize: 16.sp,
+                                  color:
+                                      Theme.of(context).colorScheme.onSecondary,
+                                )),
                           ],
                         ),
                       ],

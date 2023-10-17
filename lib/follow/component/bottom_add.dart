@@ -70,9 +70,13 @@ class BottomAdd extends StatelessWidget {
                   ),
                 ),
                 onPressed: () {
-                  BlocProvider.of<FollowBloc>(context)
-                      .add(AddStockEvent(value: nameColection!.trim()));
-                  Navigator.pop(context);
+                  if (nameColection == null || nameColection!.isEmpty) {
+                    return;
+                  } else {
+                    BlocProvider.of<FollowBloc>(context)
+                        .add(AddStockEvent(value: nameColection!.trim()));
+                    Navigator.pop(context);
+                  }
                 },
                 child:
                     Text('Tạo danh mục', style: TextStyle(color: Colors.white)),

@@ -37,8 +37,9 @@ dependencies:
   bloc:
   flutter_bloc:
   persistent_bottom_nav_bar_v2: ^4.2.8
+  intl: ^0.17.0
+  shared_preferences: ^2.2.2
   flutter_screenutil:
-  syncfusion_flutter_datagrid:
 
 dev_dependencies:
   flutter_test:

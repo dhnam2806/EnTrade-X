@@ -58,7 +58,7 @@ class PriceColorRangeRed extends StatelessWidget {
                 Text(
                   whiteNum,
                   style: TextStyle(
-                    color: Colors.white,
+                    color: Theme.of(context).colorScheme.onSecondary,
                     fontSize: 14.sp,
                     fontWeight: FontWeight.w500,
                   ),

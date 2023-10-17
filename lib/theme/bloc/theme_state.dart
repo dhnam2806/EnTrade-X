@@ -4,6 +4,7 @@ part of 'theme_bloc.dart';
 abstract class ThemeState {}
 
 class ThemeInitial extends ThemeState {
-  final bool isDarkTheme;
-  ThemeInitial({this.isDarkTheme = false});
+  bool isDarkTheme;
+  ThemeInitial({required this.isDarkTheme});
 }
+

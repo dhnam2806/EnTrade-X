@@ -1,7 +1,9 @@
+import 'package:entradex/const/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../bloc/detail_bloc.dart';
+import 'package:intl/intl.dart';
 
 class PurchaseOrder extends StatefulWidget {
   const PurchaseOrder({super.key});
@@ -13,13 +15,15 @@ class PurchaseOrder extends StatefulWidget {
 class _PurchaseOrderState extends State<PurchaseOrder> {
   final TextEditingController _priceController = TextEditingController();
   final TextEditingController _quantityController = TextEditingController();
+  var currencyFormat = NumberFormat.currency(locale: 'vi_VN', symbol: '₫');
   String selectedButton = "LO";
-  int money = 12000000;
-  // final mon = new NumberFormat("#,##0.00", "en_US");
+  bool enableText = false;
 
   @override
   Widget build(BuildContext context) {
     final detailBloc = BlocProvider.of<DetailBloc>(context);
+    final int money = 12000000;
+    String formattedPrice = currencyFormat.format(money);
 
     return BlocConsumer<DetailBloc, DetailState>(
       bloc: detailBloc,
@@ -60,10 +64,12 @@ class _PurchaseOrderState extends State<PurchaseOrder> {
                               ),
                               children: [
                                 TextSpan(
-                                  text: money.toString() + " VND",
+                                  text: formattedPrice,
                                   style: TextStyle(
                                     fontSize: 15.sp,
-                                    color: Colors.white,
+                                    color: Theme.of(context)
+                                        .colorScheme
+                                        .onSecondary,
                                   ),
                                 )
                               ])),
@@ -75,14 +81,23 @@ class _PurchaseOrderState extends State<PurchaseOrder> {
                           padding:
                               EdgeInsets.symmetric(horizontal: 16, vertical: 4),
                           decoration: BoxDecoration(
-                            color: Colors.black87,
+                            color: Theme.of(context).colorScheme.background,
                             borderRadius: BorderRadius.circular(50),
+                            boxShadow: [
+                              BoxShadow(
+                                color: Color.fromARGB(255, 49, 49, 49)
+                                    .withOpacity(0.2),
+                                spreadRadius: 0.4,
+                                blurRadius: 1,
+                                offset: Offset(0, 2),
+                              ),
+                            ],
                           ),
                           child: Text(
                             "Lệnh điều kiện",
                             style: TextStyle(
                               fontSize: 15.sp,
-                              color: Colors.red,
+                              color: AppColors.redText,
                             ),
                           ),
                         ),
@@ -90,7 +105,7 @@ class _PurchaseOrderState extends State<PurchaseOrder> {
                         Icon(
                           Icons.settings,
                           size: 24.sp,
-                          color: Colors.red,
+                          color: AppColors.redText,
                         )
                       ],
                     ),
@@ -103,6 +118,7 @@ class _PurchaseOrderState extends State<PurchaseOrder> {
                       onTap: () {
                         setState(() {
                           selectedButton = "LO";
+                          enableText = true;
                         });
                       },
                       child: Container(
@@ -110,14 +126,26 @@ class _PurchaseOrderState extends State<PurchaseOrder> {
                         decoration: BoxDecoration(
                           color: selectedButton == "LO"
                               ? Colors.red
-                              : Colors.black54,
+                              : Theme.of(context).colorScheme.background,
                           borderRadius: BorderRadius.circular(4),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Color.fromARGB(255, 49, 49, 49)
+                                  .withOpacity(0.2),
+                              spreadRadius: 0.4,
+                              blurRadius: 1,
+                              offset: Offset(0, 2),
+                            ),
+                          ],
                         ),
                         child: Center(
                             child: Text(
                           "LO",
                           style: TextStyle(
                             fontSize: 16.sp,
+                            color: selectedButton == "LO"
+                                ? Colors.white
+                                : Theme.of(context).colorScheme.onSecondary,
                           ),
                         )),
                       ),
@@ -128,6 +156,7 @@ class _PurchaseOrderState extends State<PurchaseOrder> {
                         setState(() {
                           selectedButton = "MP";
                           _priceController.text = "";
+                          enableText = false;
                         });
                       },
                       child: Container(
@@ -135,14 +164,26 @@ class _PurchaseOrderState extends State<PurchaseOrder> {
                         decoration: BoxDecoration(
                           color: selectedButton == "MP"
                               ? Colors.red
-                              : Colors.black54,
+                              : Theme.of(context).colorScheme.background,
                           borderRadius: BorderRadius.circular(4),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Color.fromARGB(255, 49, 49, 49)
+                                  .withOpacity(0.2),
+                              spreadRadius: 0.4,
+                              blurRadius: 1,
+                              offset: Offset(0, 2),
+                            ),
+                          ],
                         ),
                         child: Center(
                             child: Text(
                           "MP",
                           style: TextStyle(
                             fontSize: 16.sp,
+                            color: selectedButton == "MP"
+                                ? Colors.white
+                                : Theme.of(context).colorScheme.onSecondary,
                           ),
                         )),
                       ),
@@ -160,14 +201,26 @@ class _PurchaseOrderState extends State<PurchaseOrder> {
                         decoration: BoxDecoration(
                           color: selectedButton == "ATC"
                               ? Colors.red
-                              : Colors.black54,
+                              : Theme.of(context).colorScheme.background,
                           borderRadius: BorderRadius.circular(4),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Color.fromARGB(255, 49, 49, 49)
+                                  .withOpacity(0.2),
+                              spreadRadius: 0.4,
+                              blurRadius: 2,
+                              offset: Offset(0, 2),
+                            ),
+                          ],
                         ),
                         child: Center(
                             child: Text(
                           "ATC",
                           style: TextStyle(
                             fontSize: 16.sp,
+                            color: selectedButton == "ATC"
+                                ? Colors.white
+                                : Theme.of(context).colorScheme.onSecondary,
                           ),
                         )),
                       ),
@@ -207,6 +260,7 @@ class _PurchaseOrderState extends State<PurchaseOrder> {
                           Container(
                             width: 80.w,
                             child: TextField(
+                              enabled: enableText,
                               controller: _priceController,
                               keyboardType: TextInputType.number,
                               textAlign: TextAlign.center,
@@ -219,7 +273,8 @@ class _PurchaseOrderState extends State<PurchaseOrder> {
                                 ),
                               ),
                               style: TextStyle(
-                                color: Colors.white,
+                                color:
+                                    Theme.of(context).colorScheme.onSecondary,
                                 fontSize: 14.sp,
                               ),
                             ),
@@ -307,7 +362,8 @@ class _PurchaseOrderState extends State<PurchaseOrder> {
                                 ),
                               ),
                               style: TextStyle(
-                                color: Colors.white,
+                                color:
+                                    Theme.of(context).colorScheme.onSecondary,
                                 fontSize: 14.sp,
                               ),
                             ),
@@ -339,7 +395,7 @@ class _PurchaseOrderState extends State<PurchaseOrder> {
                       padding: EdgeInsets.symmetric(vertical: 6.w),
                       width: MediaQuery.of(context).size.width / 2 - 16.w,
                       decoration: BoxDecoration(
-                        color: Colors.green,
+                        color: AppColors.green,
                         borderRadius: BorderRadius.circular(4),
                       ),
                       child: Center(
@@ -366,7 +422,7 @@ class _PurchaseOrderState extends State<PurchaseOrder> {
                       padding: EdgeInsets.symmetric(vertical: 6.w),
                       width: MediaQuery.of(context).size.width / 2 - 16.w,
                       decoration: BoxDecoration(
-                        color: Colors.red,
+                        color: AppColors.red,
                         borderRadius: BorderRadius.circular(4),
                       ),
                       child: Center(
@@ -380,7 +436,7 @@ class _PurchaseOrderState extends State<PurchaseOrder> {
                             ),
                           ),
                           Text(
-                            "(-)",
+                            "(0)",
                             style: TextStyle(
                               fontSize: 18.sp,
                               color: Colors.white,

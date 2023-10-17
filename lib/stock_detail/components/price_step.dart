@@ -1,3 +1,4 @@
+import 'package:entradex/const/colors.dart';
 import 'package:entradex/stock_detail/components/price_color_range_green.dart';
 import 'package:entradex/stock_detail/components/price_color_range_red.dart';
 import 'package:flutter/material.dart';
@@ -108,7 +109,7 @@ class _PriceStepState extends State<PriceStep> {
                       TextSpan(
                         text: '7.6K',
                         style: TextStyle(
-                          color: Colors.white,
+                          color: Theme.of(context).colorScheme.onSecondary,
                           fontSize: 15.sp,
                           fontWeight: FontWeight.w500,
                         ),
@@ -127,7 +128,7 @@ class _PriceStepState extends State<PriceStep> {
                       TextSpan(
                         text: '56.8K',
                         style: TextStyle(
-                          color: Colors.white,
+                          color: Theme.of(context).colorScheme.onSecondary,
                           fontSize: 15.sp,
                           fontWeight: FontWeight.w500,
                         ),
@@ -183,7 +184,7 @@ class _PriceStepState extends State<PriceStep> {
                           Text(
                             "85.80",
                             style: TextStyle(
-                              color: Colors.blue,
+                              color: AppColors.blue,
                               fontSize: 16.sp,
                               fontWeight: FontWeight.w500,
                             ),
@@ -194,7 +195,7 @@ class _PriceStepState extends State<PriceStep> {
                           Text(
                             "91.30",
                             style: TextStyle(
-                              color: Colors.red,
+                              color: AppColors.red,
                               fontSize: 16.sp,
                               fontWeight: FontWeight.w500,
                             ),
@@ -236,7 +237,7 @@ class _PriceStepState extends State<PriceStep> {
                           Text(
                             "92.20",
                             style: TextStyle(
-                              color: Colors.yellow[700],
+                              color: AppColors.yellow,
                               fontSize: 16.sp,
                               fontWeight: FontWeight.w500,
                             ),
@@ -247,7 +248,7 @@ class _PriceStepState extends State<PriceStep> {
                           Text(
                             "91.31",
                             style: TextStyle(
-                              color: Colors.red,
+                              color: AppColors.red,
                               fontSize: 16.sp,
                               fontWeight: FontWeight.w500,
                             ),
@@ -289,7 +290,7 @@ class _PriceStepState extends State<PriceStep> {
                           Text(
                             "98.60",
                             style: TextStyle(
-                              color: Colors.purple[400],
+                              color: AppColors.purple,
                               fontSize: 16.sp,
                               fontWeight: FontWeight.w500,
                             ),
@@ -300,7 +301,7 @@ class _PriceStepState extends State<PriceStep> {
                           Text(
                             "91.60",
                             style: TextStyle(
-                              color: Colors.red,
+                              color: AppColors.red,
                               fontSize: 16.sp,
                               fontWeight: FontWeight.w500,
                             ),
@@ -332,7 +333,7 @@ class _PriceStepState extends State<PriceStep> {
                           TextSpan(
                             text: '118K',
                             style: TextStyle(
-                              color: Colors.white,
+                              color: Theme.of(context).colorScheme.onSecondary,
                               fontSize: 15.sp,
                               fontWeight: FontWeight.w500,
                             ),
@@ -353,7 +354,7 @@ class _PriceStepState extends State<PriceStep> {
                           TextSpan(
                             text: '0',
                             style: TextStyle(
-                              color: Colors.white,
+                              color: Theme.of(context).colorScheme.onSecondary,
                               fontSize: 15.sp,
                               fontWeight: FontWeight.w500,
                             ),
@@ -373,7 +374,9 @@ class _PriceStepState extends State<PriceStep> {
                   children: [
                     TextSpan(
                       text: '0',
-                      style: TextStyle(color: Colors.white),
+                      style: TextStyle(
+                        color: Theme.of(context).colorScheme.onSecondary,
+                      ),
                     ),
                   ],
                 )),

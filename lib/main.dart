@@ -1,7 +1,6 @@
 import 'package:entradex/bot_navbar.dart';
 import 'package:entradex/follow/bloc/follow_bloc.dart';
 import 'package:entradex/stock_detail/bloc/detail_bloc.dart';
-import 'package:entradex/stock_detail/screen/detail_screen.dart';
 import 'package:entradex/theme/bloc/theme_bloc.dart';
 import 'package:entradex/theme/theme.dart';
 import 'package:flutter/material.dart';
@@ -26,11 +25,11 @@ class MyApp extends StatelessWidget {
       ],
       child: BlocBuilder<ThemeBloc, ThemeState>(
         builder: (context, state) {
-          final success = state as ThemeInitial;
           return ScreenUtilInit(
             minTextAdapt: true,
             splitScreenMode: true,
             builder: (BuildContext context, Widget? child) {
+              final success = state as ThemeInitial;
               return MaterialApp(
                 builder: (context, child) => MediaQuery(
                   data: MediaQuery.of(context).copyWith(
@@ -40,11 +39,10 @@ class MyApp extends StatelessWidget {
                 ),
                 debugShowCheckedModeBanner: false,
                 title: 'EnTrade X',
-                theme: !success.isDarkTheme
+                theme: success.isDarkTheme
                     ? NAppTheme.darkTheme
                     : NAppTheme.lightTheme,
                 home: BotNavbar(),
-                // home: DetailScreen(),
               );
             },
           );

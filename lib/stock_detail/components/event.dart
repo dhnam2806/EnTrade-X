@@ -63,17 +63,22 @@ class _EventState extends State<Event> {
                       style: TextStyle(
                         fontSize: 13.sp,
                         fontWeight: FontWeight.w400,
-                        color: Colors.white,
+                        color: Theme.of(context).colorScheme.onSecondary,
                       ),
                     ),
                     RichText(
                       text: TextSpan(
                           text: "Thực hiện: ",
-                          style: TextStyle(color: Colors.grey),
+                          style: TextStyle(
+                            color: Theme.of(context).colorScheme.onSecondary,
+                          ),
                           children: [
                             TextSpan(
                               text: "12/09/2023",
-                              style: TextStyle(color: Colors.white),
+                              style: TextStyle(
+                                color:
+                                    Theme.of(context).colorScheme.onSecondary,
+                              ),
                             )
                           ]),
                     ),
@@ -130,17 +135,22 @@ class _EventState extends State<Event> {
                       style: TextStyle(
                         fontSize: 13.sp,
                         fontWeight: FontWeight.w400,
-                        color: Colors.white,
+                        color: Theme.of(context).colorScheme.onSecondary,
                       ),
                     ),
                     RichText(
                       text: TextSpan(
                           text: "Thực hiện: ",
-                          style: TextStyle(color: Colors.grey),
+                          style: TextStyle(
+                            color: Theme.of(context).colorScheme.onSecondary,
+                          ),
                           children: [
                             TextSpan(
                               text: "13/09/2023",
-                              style: TextStyle(color: Colors.white),
+                              style: TextStyle(
+                                color:
+                                    Theme.of(context).colorScheme.onSecondary,
+                              ),
                             )
                           ]),
                     ),
@@ -197,7 +207,7 @@ class _EventState extends State<Event> {
                       style: TextStyle(
                         fontSize: 13.sp,
                         fontWeight: FontWeight.w400,
-                        color: Colors.white,
+                        color: Theme.of(context).colorScheme.onSecondary,
                       ),
                     ),
                     // RichText(
