@@ -1,4 +1,5 @@
 import 'package:entradex/const/colors.dart';
+import 'package:entradex/const/text.dart';
 import 'package:entradex/follow/bloc/follow_bloc.dart';
 import 'package:entradex/widgets/search.dart';
 import 'package:flutter/material.dart';
@@ -101,7 +102,7 @@ class _DetailHeaderState extends State<DetailHeader> {
                             Text(
                               success.stock.name.toString(),
                               style: TextStyle(
-                                fontSize: 20.sp,
+                                fontSize: TextStyles.headerTextSize20,
                                 fontWeight: FontWeight.bold,
                                 color:
                                     Theme.of(context).colorScheme.onSecondary,
@@ -111,7 +112,7 @@ class _DetailHeaderState extends State<DetailHeader> {
                             Text(
                               'HOSE',
                               style: TextStyle(
-                                fontSize: 14.sp,
+                                fontSize: TextStyles.headerTextSize14,
                                 color: Theme.of(context).colorScheme.surface,
                               ),
                             ),
@@ -159,7 +160,7 @@ class _DetailHeaderState extends State<DetailHeader> {
                         Text(
                           'CTCP FPT',
                           style: TextStyle(
-                            fontSize: 16,
+                            fontSize: TextStyles.headerTextSize14,
                             color: Theme.of(context).colorScheme.surface,
                           ),
                         ),
@@ -178,10 +179,10 @@ class _DetailHeaderState extends State<DetailHeader> {
                                 fontSize: 20.sp,
                                 fontWeight: FontWeight.bold,
                                 color: state.stock.changePercent == 0
-                                    ? Colors.yellow
+                                    ? AppColors.yellow
                                     : (state.stock.changePercent < 0
-                                        ? Colors.red
-                                        : Colors.green),
+                                        ? AppColors.red
+                                        : AppColors.green),
                               ),
                             ),
                             SizedBox(width: 4.w),
@@ -191,7 +192,7 @@ class _DetailHeaderState extends State<DetailHeader> {
                                 fontSize: 14.sp,
                                 fontWeight: FontWeight.bold,
                                 color: state.stock.changePercent == 0
-                                    ? Colors.yellow
+                                    ? AppColors.yellow
                                     : (state.stock.changePercent < 0
                                         ? AppColors.red
                                         : AppColors.green),

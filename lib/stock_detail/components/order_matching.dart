@@ -22,32 +22,35 @@ class _OrderMatchingState extends State<OrderMatching> {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(top: 16.0),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Padding(
-            padding: const EdgeInsets.only(left: 12.0),
-            child: Text(
-              'Khớp lệnh theo thời gian',
-              style: TextStyle(
-                fontSize: 18.sp,
-                fontWeight: FontWeight.w500,
-                color: Theme.of(context).colorScheme.onSecondary,
+    return SizedBox(
+      height: 250.h,
+      child: Padding(
+        padding: const EdgeInsets.only(top: 16.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Padding(
+              padding: const EdgeInsets.only(left: 12.0),
+              child: Text(
+                'Khớp lệnh theo thời gian',
+                style: TextStyle(
+                  fontSize: 18.sp,
+                  fontWeight: FontWeight.w500,
+                  color: Theme.of(context).colorScheme.onSecondary,
+                ),
               ),
             ),
-          ),
-          Center(
-            child: DataTable(
-              horizontalMargin: 0,
-              columns: getColumn(column),
-              rows: getRow(data),
-              columnSpacing: 44.w,
-              dataRowHeight: 30.h,
+            Center(
+              child: DataTable(
+                horizontalMargin: 0,
+                columns: getColumn(column),
+                rows: getRow(data),
+                columnSpacing: 44.w,
+                dataRowHeight: 30.h,
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

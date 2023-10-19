@@ -27,5 +27,11 @@ class PriceCounterState extends DetailState {
   PriceCounterState({required this.priceCounter});
 }
 
+class PricePressState extends DetailState {
+  final double pricePress;
+
+  PricePressState({required this.pricePress});
+}
+
 
 

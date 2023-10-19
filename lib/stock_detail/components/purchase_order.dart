@@ -13,17 +13,17 @@ class PurchaseOrder extends StatefulWidget {
 }
 
 class _PurchaseOrderState extends State<PurchaseOrder> {
-  final TextEditingController _priceController = TextEditingController();
-  final TextEditingController _quantityController = TextEditingController();
-  var currencyFormat = NumberFormat.currency(locale: 'vi_VN', symbol: '₫');
+  TextEditingController priceController = TextEditingController();
+  TextEditingController quantityController = TextEditingController();
+  final numberFormat = new NumberFormat("##,##0", "en_US");
   String selectedButton = "LO";
   bool enableText = false;
 
   @override
   Widget build(BuildContext context) {
     final detailBloc = BlocProvider.of<DetailBloc>(context);
-    final int money = 12000000;
-    String formattedPrice = currencyFormat.format(money);
+    final int money = 1200000000;
+    String formattedPrice = numberFormat.format(money);
 
     return BlocConsumer<DetailBloc, DetailState>(
       bloc: detailBloc,
@@ -54,25 +54,37 @@ class _PurchaseOrderState extends State<PurchaseOrder> {
                   children: [
                     Container(
                       width: MediaQuery.of(context).size.width / 2,
-                      child: RichText(
-                          overflow: TextOverflow.ellipsis,
-                          text: TextSpan(
-                              text: "Sức mua: ",
-                              style: TextStyle(
-                                fontSize: 15.sp,
-                                color: Colors.grey,
-                              ),
-                              children: [
-                                TextSpan(
-                                  text: formattedPrice,
-                                  style: TextStyle(
-                                    fontSize: 15.sp,
-                                    color: Theme.of(context)
-                                        .colorScheme
-                                        .onSecondary,
-                                  ),
-                                )
-                              ])),
+                      child: Row(
+                        children: [
+                          Text(
+                            "Sức mua: ",
+                            style: TextStyle(
+                              fontSize: 14.sp,
+                              color: Theme.of(context).colorScheme.surface,
+                            ),
+                          ),
+                          Text(
+                            formattedPrice,
+                            style: TextStyle(
+                              overflow: TextOverflow.clip,
+                              fontSize: 14.sp,
+                              color: Theme.of(context).colorScheme.onSecondary,
+                            ),
+                          ),
+                          SizedBox(width: 2.w),
+                          Container(
+                            decoration: BoxDecoration(
+                              color: Colors.red[800],
+                              borderRadius: BorderRadius.circular(4),
+                            ),
+                            child: Icon(
+                              Icons.add,
+                              color: Colors.white,
+                              size: 14.sp,
+                            ),
+                          )
+                        ],
+                      ),
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.end,
@@ -81,14 +93,14 @@ class _PurchaseOrderState extends State<PurchaseOrder> {
                           padding:
                               EdgeInsets.symmetric(horizontal: 16, vertical: 4),
                           decoration: BoxDecoration(
-                            color: Theme.of(context).colorScheme.background,
+                            color: Theme.of(context).colorScheme.onBackground,
                             borderRadius: BorderRadius.circular(50),
                             boxShadow: [
                               BoxShadow(
-                                color: Color.fromARGB(255, 49, 49, 49)
+                                color: Color.fromARGB(255, 45, 44, 44)
                                     .withOpacity(0.2),
                                 spreadRadius: 0.4,
-                                blurRadius: 1,
+                                blurRadius: 2,
                                 offset: Offset(0, 2),
                               ),
                             ],
@@ -126,7 +138,7 @@ class _PurchaseOrderState extends State<PurchaseOrder> {
                         decoration: BoxDecoration(
                           color: selectedButton == "LO"
                               ? Colors.red
-                              : Theme.of(context).colorScheme.background,
+                              : Theme.of(context).colorScheme.onBackground,
                           borderRadius: BorderRadius.circular(4),
                           boxShadow: [
                             BoxShadow(
@@ -155,7 +167,7 @@ class _PurchaseOrderState extends State<PurchaseOrder> {
                       onTap: () {
                         setState(() {
                           selectedButton = "MP";
-                          _priceController.text = "";
+                          priceController.text = "";
                           enableText = false;
                         });
                       },
@@ -164,7 +176,7 @@ class _PurchaseOrderState extends State<PurchaseOrder> {
                         decoration: BoxDecoration(
                           color: selectedButton == "MP"
                               ? Colors.red
-                              : Theme.of(context).colorScheme.background,
+                              : Theme.of(context).colorScheme.onBackground,
                           borderRadius: BorderRadius.circular(4),
                           boxShadow: [
                             BoxShadow(
@@ -193,7 +205,7 @@ class _PurchaseOrderState extends State<PurchaseOrder> {
                       onTap: () {
                         setState(() {
                           selectedButton = "ATC";
-                          _priceController.text = "";
+                          priceController.text = "";
                         });
                       },
                       child: Container(
@@ -201,7 +213,7 @@ class _PurchaseOrderState extends State<PurchaseOrder> {
                         decoration: BoxDecoration(
                           color: selectedButton == "ATC"
                               ? Colors.red
-                              : Theme.of(context).colorScheme.background,
+                              : Theme.of(context).colorScheme.onBackground,
                           borderRadius: BorderRadius.circular(4),
                           boxShadow: [
                             BoxShadow(
@@ -245,12 +257,12 @@ class _PurchaseOrderState extends State<PurchaseOrder> {
                           GestureDetector(
                               onTap: () {
                                 if (selectedButton == "LO") {
-                                  if (_priceController.text == "") {
-                                    _priceController.text =
+                                  if (priceController.text == "") {
+                                    priceController.text =
                                         success.stock.price.toString();
                                   } else {
-                                    _priceController.text =
-                                        (double.parse(_priceController.text) -
+                                    priceController.text =
+                                        (double.parse(priceController.text) -
                                                 0.5)
                                             .toString();
                                   }
@@ -261,7 +273,7 @@ class _PurchaseOrderState extends State<PurchaseOrder> {
                             width: 80.w,
                             child: TextField(
                               enabled: enableText,
-                              controller: _priceController,
+                              controller: priceController,
                               keyboardType: TextInputType.number,
                               textAlign: TextAlign.center,
                               decoration: InputDecoration(
@@ -282,12 +294,12 @@ class _PurchaseOrderState extends State<PurchaseOrder> {
                           GestureDetector(
                               onTap: () {
                                 if (selectedButton == "LO") {
-                                  if (_priceController.text == "") {
-                                    _priceController.text =
+                                  if (priceController.text == "") {
+                                    priceController.text =
                                         success.stock.price.toString();
                                   } else {
-                                    _priceController.text =
-                                        (double.parse(_priceController.text) +
+                                    priceController.text =
+                                        (double.parse(priceController.text) +
                                                 0.5)
                                             .toString();
                                   }
@@ -300,8 +312,7 @@ class _PurchaseOrderState extends State<PurchaseOrder> {
                     GestureDetector(
                       onTap: () {
                         if (selectedButton == "LO") {
-                          _priceController.text =
-                              success.stock.price.toString();
+                          priceController.text = success.stock.price.toString();
                         }
                       },
                       child: Container(
@@ -336,12 +347,18 @@ class _PurchaseOrderState extends State<PurchaseOrder> {
                           GestureDetector(
                               onTap: () {
                                 if (selectedButton == "LO") {
-                                  if (_quantityController.text == "") {
-                                    _quantityController.text = "100";
+                                  if (quantityController.text == "") {
+                                    quantityController.text = "0";
+                                  } else if (int.parse(
+                                          quantityController.text) >
+                                      100) {
+                                    quantityController.text =
+                                        (int.parse(quantityController.text) -
+                                                100)
+                                            .toString();
                                   } else {
-                                    _quantityController.text =
-                                        (int.parse(_quantityController.text) -
-                                                1)
+                                    quantityController.text =
+                                        (int.parse(quantityController.text) - 1)
                                             .toString();
                                   }
                                 }
@@ -350,7 +367,7 @@ class _PurchaseOrderState extends State<PurchaseOrder> {
                           Container(
                             width: 80.w,
                             child: TextField(
-                              controller: _quantityController,
+                              controller: quantityController,
                               keyboardType: TextInputType.number,
                               textAlign: TextAlign.center,
                               decoration: InputDecoration(
@@ -371,12 +388,12 @@ class _PurchaseOrderState extends State<PurchaseOrder> {
                           GestureDetector(
                               onTap: () {
                                 if (selectedButton == "LO") {
-                                  if (_quantityController.text == "") {
-                                    _quantityController.text = "100";
+                                  if (quantityController.text == "") {
+                                    quantityController.text = "100";
                                   } else {
-                                    _quantityController.text =
-                                        (int.parse(_quantityController.text) +
-                                                1)
+                                    quantityController.text =
+                                        (int.parse(quantityController.text) +
+                                                100)
                                             .toString();
                                   }
                                 }

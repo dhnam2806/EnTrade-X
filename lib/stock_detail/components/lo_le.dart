@@ -1,5 +1,5 @@
-import 'package:entradex/stock_detail/components/price_color_range_green.dart';
-import 'package:entradex/stock_detail/components/price_color_range_red.dart';
+import 'package:entradex/data/datak.dart';
+import 'package:entradex/stock_detail/components/chart_table.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -13,84 +13,16 @@ class LoLe extends StatefulWidget {
 class _LoLeState extends State<LoLe> {
   @override
   Widget build(BuildContext context) {
-    final size = MediaQuery.of(context).size;
-    return Padding(
-      padding: const EdgeInsets.only(top: 12.0),
+    return Container(
+      height: 240.h,
+      padding: const EdgeInsets.only(top: 8.0),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Row(
-            children: [
-              Column(
-                children: [
-                  PriceColorRangeGreen(
-                    whiteNum: '1',
-                    redNum: '92.70',
-                    greenRange: 0.05,
-                  ),
-                  PriceColorRangeGreen(
-                    whiteNum: '40',
-                    redNum: '92.60',
-                    greenRange: 0.8,
-                  ),
-                  PriceColorRangeGreen(
-                    whiteNum: '12',
-                    redNum: '92.50',
-                    greenRange: 0.2,
-                  ),
-                ],
-              ),
-              Column(
-                children: [
-                  PriceColorRangeRed(
-                    whiteNum: '10',
-                    redNum: '91.90',
-                    redRange: 0.12,
-                  ),
-                  PriceColorRangeRed(
-                    whiteNum: '10',
-                    redNum: '93.20',
-                    redRange: 0.12,
-                  ),
-                  PriceColorRangeRed(
-                    whiteNum: '60',
-                    redNum: '93.30',
-                    redRange: 0.7,
-                  ),
-                ],
-              ),
-            ],
-          ),
-          SizedBox(
-            height: 4.h,
-          ),
-          Container(
-            height: 4.h,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Container(
-                  width: size.width * 0.24 - 4.w,
-                  decoration: BoxDecoration(
-                    color: Colors.red,
-                    borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(50),
-                      bottomLeft: Radius.circular(50),
-                    ),
-                  ),
-                ),
-                Container(
-                  width: size.width - (size.width * 0.24) - 4.w,
-                  decoration: BoxDecoration(
-                    color: Colors.green,
-                    borderRadius: BorderRadius.only(
-                      topRight: Radius.circular(50),
-                      bottomRight: Radius.circular(50),
-                    ),
-                  ),
-                ),
-              ],
-            ),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 8.0),
+            child: ChartTable(
+                percentages: percentages, percentages2: percentages2),
           ),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 6.0, vertical: 8),
@@ -108,7 +40,7 @@ class _LoLeState extends State<LoLe> {
                       TextSpan(
                         text: '530',
                         style: TextStyle(
-                          color: Colors.white,
+                          color: Theme.of(context).colorScheme.onSecondary,
                           fontSize: 15.sp,
                           fontWeight: FontWeight.w500,
                         ),
@@ -127,7 +59,7 @@ class _LoLeState extends State<LoLe> {
                       TextSpan(
                         text: '860',
                         style: TextStyle(
-                          color: Colors.white,
+                          color: Theme.of(context).colorScheme.onSecondary,
                           fontSize: 15.sp,
                           fontWeight: FontWeight.w500,
                         ),

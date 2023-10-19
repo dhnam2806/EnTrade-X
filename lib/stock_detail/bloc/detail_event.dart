@@ -27,4 +27,10 @@ class PriceDecreaseEvent extends DetailEvent {
   PriceDecreaseEvent({required this.priceDecrease});
 }
 
+class PricePressEvent extends DetailEvent {
+  final double pricePress;
+
+  PricePressEvent({required this.pricePress});
+}
+
 

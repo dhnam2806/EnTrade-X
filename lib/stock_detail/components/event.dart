@@ -11,7 +11,8 @@ class Event extends StatefulWidget {
 class _EventState extends State<Event> {
   @override
   Widget build(BuildContext context) {
-    return Padding(
+    return Container(
+      height: 250.h,
       padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 16),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.end,
@@ -210,17 +211,6 @@ class _EventState extends State<Event> {
                         color: Theme.of(context).colorScheme.onSecondary,
                       ),
                     ),
-                    // RichText(
-                    //   text: TextSpan(
-                    //       text: "Thực hiện: ",
-                    //       style: TextStyle(color: Colors.grey),
-                    //       children: [
-                    //         TextSpan(
-                    //           text: "12/09/2023",
-                    //           style: TextStyle(color: Colors.white),
-                    //         )
-                    //       ]),
-                    // ),
                   ],
                 ),
               )

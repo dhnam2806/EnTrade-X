@@ -1,3 +1,4 @@
+import 'package:entradex/const/colors.dart';
 import 'package:entradex/follow/component/collection.dart';
 import 'package:entradex/model/stock.dart';
 import 'package:flutter/material.dart';
@@ -38,7 +39,9 @@ class _StockDataState extends State<StockData> {
         if (state is SelectStockNavigateState) {
           pushNewScreen(
             context,
-            screen: DetailScreen(stock: state.stock,),
+            screen: DetailScreen(
+              stock: state.stock,
+            ),
             withNavBar: true,
             pageTransitionAnimation: PageTransitionAnimation.cupertino,
           );
@@ -68,6 +71,7 @@ class _StockDataState extends State<StockData> {
           List<DataColumn> getColumn(List<String> column) {
             return column.map((String column) {
               return DataColumn(
+                numeric: column == "Tổng KL" ? true : false,
                 onSort: (columnIndex, ascending) {
                   if (sortCount == 2) {
                     resetDataTable();
@@ -111,18 +115,20 @@ class _StockDataState extends State<StockData> {
 
           List<DataCell> getCells(List<dynamic> cells, double changePercent) {
             return cells.map((idx) {
+              Color textColor = Theme.of(context).colorScheme.onSecondary;
+              if (idx is double || idx == cells[0]) {
+                textColor = changePercent == 0
+                    ? AppColors.yellow
+                    : (changePercent < 0 ? AppColors.red : AppColors.green);
+              }
               return DataCell(
-                Padding(
-                  padding: const EdgeInsets.only(right: 8, top: 4, bottom: 4),
-                  child: Text(
-                    idx.toString(),
-                    style: TextStyle(
-                        overflow: TextOverflow.ellipsis,
-                        fontSize: 14.sp,
-                        fontWeight: FontWeight.w500,
-                        color: changePercent == 0
-                            ? Colors.yellow
-                            : (changePercent < 0 ? Colors.red : Colors.green)),
+                Text(
+                  idx.toString(),
+                  style: TextStyle(
+                    overflow: TextOverflow.ellipsis,
+                    fontSize: 15.sp,
+                    fontWeight: FontWeight.w500,
+                    color: textColor,
                   ),
                 ),
               );
@@ -253,6 +259,8 @@ class _StockDataState extends State<StockData> {
                   sortColumnIndex: sortColumnIndex,
                   columns: getColumn(column),
                   rows: getRow(data),
+                  columnSpacing: 52.w,
+                  dataRowHeight: 44.h,
                 ),
               ],
             ),
