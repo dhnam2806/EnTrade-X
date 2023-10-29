@@ -1,9 +1,9 @@
 import 'package:entradex/follow/component/securities_list.dart';
+import 'package:entradex/theme/app_colors.dart';
 import 'package:entradex/widgets/search.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:persistent_bottom_nav_bar_v2/persistent-tab-view.dart';
-
 import '../../Menu/screen/search_screen.dart';
 import '../bloc/follow_bloc.dart';
 
@@ -14,6 +14,7 @@ class FollowHeader extends StatelessWidget {
   Widget build(BuildContext context) {
     final Size size = MediaQuery.of(context).size;
     final safePadding = MediaQuery.of(context).padding.top;
+    final textTheme = Theme.of(context).textTheme;
 
     return BlocListener<FollowBloc, FollowState>(
       bloc: BlocProvider.of<FollowBloc>(context),
@@ -32,10 +33,11 @@ class FollowHeader extends StatelessWidget {
         height: size.height * 0.2,
         padding: EdgeInsets.only(top: safePadding),
         decoration: BoxDecoration(
-            borderRadius: BorderRadius.only(
-                bottomLeft: Radius.circular(12),
-                bottomRight: Radius.circular(12)),
-            color: Theme.of(context).colorScheme.background.withOpacity(0.6)),
+          borderRadius: BorderRadius.only(
+              bottomLeft: Radius.circular(12),
+              bottomRight: Radius.circular(12)),
+          color: Theme.of(context).colorScheme.background.withOpacity(0.9),
+        ),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
@@ -62,7 +64,7 @@ class FollowHeader extends StatelessWidget {
                       ),
                     ],
                   ),
-                  child: Icon(Icons.lightbulb, color: Colors.yellow),
+                  child: Icon(Icons.lightbulb, color: AppColors.yellow),
                 )
               ],
             ),

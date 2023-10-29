@@ -1,3 +1,5 @@
+import 'package:entradex/theme/app_colors.dart';
+import 'package:entradex/theme/app_textstyle.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -11,6 +13,7 @@ class Event extends StatefulWidget {
 class _EventState extends State<Event> {
   @override
   Widget build(BuildContext context) {
+    final textTheme = Theme.of(context).textTheme;
     return Container(
       height: 250.h,
       padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 16),
@@ -31,16 +34,14 @@ class _EventState extends State<Event> {
                     children: [
                       Text(
                         "24",
-                        style: TextStyle(
-                          fontSize: 20.sp,
-                          color: Colors.purple[300],
+                        style: AppTextStyle.labelLarge_18.copyWith(
                           fontWeight: FontWeight.bold,
+                          color: Colors.purple[300],
                         ),
                       ),
                       Text(
                         "8/2023",
-                        style: TextStyle(
-                          fontSize: 14.sp,
+                        style: AppTextStyle.bodySmall_14.copyWith(
                           fontWeight: FontWeight.bold,
                           color: Colors.purple[300],
                         ),
@@ -52,35 +53,22 @@ class _EventState extends State<Event> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
-                      "Trả cổ tức bằng tiền mặt",
-                      style: TextStyle(
-                        fontSize: 18.sp,
-                        fontWeight: FontWeight.w500,
-                      ),
-                    ),
-                    Text(
-                      "Trả cổ tức đợt 1/2023 bằng tiền, 1,000 đồng/CP",
-                      style: TextStyle(
-                        fontSize: 13.sp,
-                        fontWeight: FontWeight.w400,
-                        color: Theme.of(context).colorScheme.onSecondary,
-                      ),
-                    ),
+                    Text("Trả cổ tức bằng tiền mặt",
+                        style: AppTextStyle.labelLarge_18),
+                    Text("Trả cổ tức đợt 1/2023 bằng tiền, 1,000 đồng/CP",
+                        style: AppTextStyle.bodySmall_13),
                     RichText(
                       text: TextSpan(
                           text: "Thực hiện: ",
-                          style: TextStyle(
-                            color: Theme.of(context).colorScheme.onSecondary,
+                          style: AppTextStyle.bodySmall_14.copyWith(
+                            color: Theme.of(context).colorScheme.surface,
                           ),
                           children: [
                             TextSpan(
-                              text: "12/09/2023",
-                              style: TextStyle(
-                                color:
-                                    Theme.of(context).colorScheme.onSecondary,
-                              ),
-                            )
+                                text: "12/09/2023",
+                                style: AppTextStyle.bodySmall_14.copyWith(
+                                  color: textTheme.bodyMedium!.color,
+                                ))
                           ]),
                     ),
                   ],
@@ -88,7 +76,7 @@ class _EventState extends State<Event> {
               )
             ],
           ),
-          SizedBox(height: 12.h),
+          SizedBox(height: 8.h),
           Row(
             children: [
               Container(
@@ -124,35 +112,22 @@ class _EventState extends State<Event> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
-                      "Trả cổ tức bằng tiền mặt",
-                      style: TextStyle(
-                        fontSize: 18.sp,
-                        fontWeight: FontWeight.w500,
-                      ),
-                    ),
-                    Text(
-                      "Trả cổ tức đợt 2/2023 bằng tiền, 1,000 đồng/CP",
-                      style: TextStyle(
-                        fontSize: 13.sp,
-                        fontWeight: FontWeight.w400,
-                        color: Theme.of(context).colorScheme.onSecondary,
-                      ),
-                    ),
+                    Text("Trả cổ tức bằng tiền mặt",
+                        style: AppTextStyle.labelLarge_18),
+                    Text("Trả cổ tức đợt 2/2023 bằng tiền, 1,000 đồng/CP",
+                        style: AppTextStyle.bodySmall_13),
                     RichText(
                       text: TextSpan(
                           text: "Thực hiện: ",
-                          style: TextStyle(
-                            color: Theme.of(context).colorScheme.onSecondary,
+                          style: AppTextStyle.bodySmall_14.copyWith(
+                            color: Theme.of(context).colorScheme.surface,
                           ),
                           children: [
                             TextSpan(
-                              text: "13/09/2023",
-                              style: TextStyle(
-                                color:
-                                    Theme.of(context).colorScheme.onSecondary,
-                              ),
-                            )
+                                text: "13/09/2023",
+                                style: AppTextStyle.bodySmall_14.copyWith(
+                                  color: textTheme.bodyMedium!.color,
+                                ))
                           ]),
                     ),
                   ],
@@ -160,7 +135,7 @@ class _EventState extends State<Event> {
               )
             ],
           ),
-          SizedBox(height: 12.h),
+          SizedBox(height: 8.h),
           Row(
             children: [
               Container(
@@ -196,21 +171,10 @@ class _EventState extends State<Event> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
-                      "Trả cổ tức bằng cổ phiếu",
-                      style: TextStyle(
-                        fontSize: 18.sp,
-                        fontWeight: FontWeight.w500,
-                      ),
-                    ),
-                    Text(
-                      "Trả cổ tức năm 2022 bằng cổ phiếu tỷ lệ 20:3",
-                      style: TextStyle(
-                        fontSize: 13.sp,
-                        fontWeight: FontWeight.w400,
-                        color: Theme.of(context).colorScheme.onSecondary,
-                      ),
-                    ),
+                    Text("Trả cổ tức bằng cổ phiếu",
+                        style: AppTextStyle.labelLarge_18),
+                    Text("Trả cổ tức năm 2022 bằng cổ phiếu, tỷ lệ 20:3",
+                        style: AppTextStyle.bodySmall_13),
                   ],
                 ),
               )

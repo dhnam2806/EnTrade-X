@@ -77,7 +77,7 @@ class _BotNavbarState extends State<BotNavbar> {
       screens: _buildScreens(),
       items: _navBarsItems(),
       confineInSafeArea: true,
-      backgroundColor:
+      backgroundColor: 
           Theme.of(context).colorScheme.background, // Default is Colors.white.
       handleAndroidBackButtonPress: true, // Default is true.
       resizeToAvoidBottomInset:

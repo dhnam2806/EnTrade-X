@@ -1,3 +1,5 @@
+import 'package:entradex/theme/app_colors.dart';
+import 'package:entradex/theme/app_textstyle.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -16,18 +18,19 @@ class NewsSelect extends StatelessWidget {
       width: 80.w,
       height: 24.h,
       decoration: BoxDecoration(
-        color:
-            isSelected ? Colors.red : Theme.of(context).colorScheme.background,
+        color: isSelected
+            ? AppColors.red
+            : Theme.of(context).colorScheme.onBackground,
         borderRadius: BorderRadius.circular(50),
       ),
       child: Center(
         child: Text(title,
-            style: TextStyle(
-                fontSize: 15.sp,
-                fontWeight: FontWeight.w500,
-                color: isSelected
-                    ? Colors.white
-                    : Theme.of(context).colorScheme.onSecondary)),
+            style: AppTextStyle.bodySmall_14.copyWith(
+              fontWeight: FontWeight.w400,
+              color: isSelected
+                  ? AppColors.white
+                  : Theme.of(context).textTheme.bodyMedium!.color,
+            )),
       ),
     );
   }

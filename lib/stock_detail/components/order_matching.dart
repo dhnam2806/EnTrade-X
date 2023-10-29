@@ -1,4 +1,6 @@
 import 'package:entradex/model/order_time.dart';
+import 'package:entradex/theme/app_colors.dart';
+import 'package:entradex/theme/app_textstyle.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -33,10 +35,9 @@ class _OrderMatchingState extends State<OrderMatching> {
               padding: const EdgeInsets.only(left: 12.0),
               child: Text(
                 'Khớp lệnh theo thời gian',
-                style: TextStyle(
-                  fontSize: 18.sp,
+                style: AppTextStyle.labelLarge_18.copyWith(
                   fontWeight: FontWeight.w500,
-                  color: Theme.of(context).colorScheme.onSecondary,
+                  color: Theme.of(context).textTheme.labelLarge!.color,
                 ),
               ),
             ),
@@ -60,11 +61,10 @@ class _OrderMatchingState extends State<OrderMatching> {
       return DataColumn(
         label: Text(
           column,
-          style: TextStyle(
+          style: AppTextStyle.bodySmall_14.copyWith(
             overflow: TextOverflow.ellipsis,
-            fontSize: 14.sp,
-            fontWeight: FontWeight.w400,
-            color: Colors.grey,
+            fontWeight: FontWeight.w500,
+            color: Theme.of(context).colorScheme.surface,
           ),
         ),
       );
@@ -73,19 +73,17 @@ class _OrderMatchingState extends State<OrderMatching> {
 
   List<DataCell> getCells(List<dynamic> cells, double changePercent) {
     return cells.map((data) {
-      Color textColor = Theme.of(context).colorScheme.onSecondary;
+      Color textColor = Theme.of(context).textTheme.bodyMedium!.color!;
       if (data is double) {
         textColor = changePercent == 0
-            ? Colors.yellow
-            : (changePercent < 0 ? Colors.red : Colors.green);
+            ? AppColors.yellow
+            : (changePercent < 0 ? AppColors.red : AppColors.green);
       }
 
       return DataCell(Center(
         child: Text(
           data.toString(),
-          style: TextStyle(
-            overflow: TextOverflow.ellipsis,
-            fontSize: 14.sp,
+          style: AppTextStyle.bodySmall_14.copyWith(
             fontWeight: FontWeight.w500,
             color: textColor,
           ),

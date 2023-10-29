@@ -1,3 +1,5 @@
+import 'package:entradex/theme/app_colors.dart';
+import 'package:entradex/theme/app_textstyle.dart';
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -5,10 +7,16 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final textTheme = Theme.of(context).textTheme;
     return Scaffold(
         backgroundColor: Theme.of(context).scaffoldBackgroundColor,
         body: Center(
-          child: Text('Home Screen'),
+          child: Text(
+            'Home Screen',
+            style: AppTextStyle.bodyLarge_16.copyWith(
+              color: AppColors.darkRed,
+            ),
+          ),
         ));
   }
 }

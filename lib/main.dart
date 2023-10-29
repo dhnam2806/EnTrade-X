@@ -1,6 +1,8 @@
 import 'package:entradex/bot_navbar.dart';
 import 'package:entradex/follow/bloc/follow_bloc.dart';
 import 'package:entradex/stock_detail/bloc/detail_bloc.dart';
+import 'package:entradex/stock_detail/bloc/prices_bloc.dart';
+import 'package:entradex/theme/app_theme.dart';
 import 'package:entradex/theme/bloc/theme_bloc.dart';
 import 'package:entradex/theme/theme.dart';
 import 'package:flutter/material.dart';
@@ -22,6 +24,7 @@ class MyApp extends StatelessWidget {
         BlocProvider(create: (context) => ThemeBloc()),
         BlocProvider(create: (context) => FollowBloc()),
         BlocProvider(create: (context) => DetailBloc()),
+        BlocProvider(create: (context) => PricesBloc()),
       ],
       child: BlocBuilder<ThemeBloc, ThemeState>(
         builder: (context, state) {
@@ -39,9 +42,13 @@ class MyApp extends StatelessWidget {
                 ),
                 debugShowCheckedModeBanner: false,
                 title: 'EnTrade X',
-                theme: success.isDarkTheme
-                    ? NAppTheme.darkTheme
-                    : NAppTheme.lightTheme,
+                // theme: success.isDarkTheme
+                //     ? NAppTheme.darkTheme
+                //     : NAppTheme.lightTheme,
+                themeMode:
+                    success.isDarkTheme ? ThemeMode.dark : ThemeMode.light,
+                darkTheme: darkThemeData,
+                theme: lightThemeData,
                 home: BotNavbar(),
               );
             },

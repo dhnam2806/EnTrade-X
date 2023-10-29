@@ -1,3 +1,5 @@
+import 'package:entradex/theme/app_colors.dart';
+import 'package:entradex/theme/app_textstyle.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -18,7 +20,7 @@ class SecuritiesItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        color: Theme.of(context).colorScheme.background,
+        color: Theme.of(context).colorScheme.onBackground.withOpacity(0.6),
         borderRadius: BorderRadius.circular(10),
       ),
       padding: EdgeInsets.symmetric(horizontal: 12.w),
@@ -28,24 +30,25 @@ class SecuritiesItem extends StatelessWidget {
           children: [
             Text(
               name.toUpperCase(),
-              style: TextStyle(fontSize: 14.sp),
+              style: AppTextStyle.bodySmall_14
+                  .copyWith(fontWeight: FontWeight.w500),
             ),
             SizedBox(width: 8.w),
-            Text(
-              price.toString(),
-              style: TextStyle(
-                fontSize: 16.sp,
-                fontWeight: FontWeight.w500,
-                color: changePercent > 0 ? Colors.green : Colors.red,
-              ),
-            ),
+            Text(price.toString(),
+                style: AppTextStyle.bodyLarge_16.copyWith(
+                  fontWeight: FontWeight.w500,
+                  color: changePercent > 0 ? AppColors.green : AppColors.green,
+                )),
           ],
         ),
         SizedBox(height: 4.h),
-        Text((changePercent > 0 ? "+" : "-") + "$change  ($changePercent%)",
-            style: TextStyle(
-              color: changePercent > 0 ? Colors.green : Colors.red,
-            )),
+        Text(
+          (changePercent > 0 ? "+" : "-") + "$change  ($changePercent%)",
+          style: AppTextStyle.bodySmall_14.copyWith(
+            fontWeight: FontWeight.w400,
+            color: changePercent > 0 ? AppColors.green : AppColors.red,
+          ),
+        ),
       ]),
     );
   }

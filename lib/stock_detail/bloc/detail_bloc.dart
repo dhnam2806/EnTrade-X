@@ -11,7 +11,6 @@ part 'detail_state.dart';
 class DetailBloc extends Bloc<DetailEvent, DetailState> {
   DetailBloc() : super(DetailInitial()) {
     on<DetailInitialEvent>(detailInitialEvent);
-    on<PricePressEvent>(pricePressEvent);
   }
 
   FutureOr<void> detailInitialEvent(
@@ -20,9 +19,4 @@ class DetailBloc extends Bloc<DetailEvent, DetailState> {
     emit(DetailLoadedState(stock: event.stock));
   }
 
-  FutureOr<void> pricePressEvent(
-      PricePressEvent event, Emitter<DetailState> emit) {
-    emit(PricePressState(pricePress: event.pricePress));
-    print("Price Press: ${event.pricePress}");
-  }
 }

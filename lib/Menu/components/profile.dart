@@ -1,4 +1,5 @@
 import 'package:entradex/Menu/screen/search_screen.dart';
+import 'package:entradex/theme/app_colors.dart';
 import 'package:entradex/widgets/search.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -19,7 +20,7 @@ class Profile extends StatelessWidget {
           borderRadius: BorderRadius.only(
               bottomLeft: Radius.circular(10),
               bottomRight: Radius.circular(10)),
-          color: Theme.of(context).colorScheme.background.withOpacity(0.9)),
+          color: Theme.of(context).colorScheme.background),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
@@ -44,16 +45,16 @@ class Profile extends StatelessWidget {
                   borderRadius: BorderRadius.circular(50),
                   boxShadow: [
                     BoxShadow(
-                      color: Colors.grey.withOpacity(0.2),
+                      color: AppColors.black.withOpacity(0.2),
                       spreadRadius: 0.4,
-                      blurRadius: 2,
+                      blurRadius: 1,
                       offset: Offset(0, 2),
                     ),
                   ],
                 ),
                 child: Icon(
                   Icons.lightbulb,
-                  color: Colors.yellow,
+                  color: AppColors.yellow,
                 ),
               )
             ],

@@ -1,5 +1,7 @@
 import 'package:entradex/data/datak.dart';
 import 'package:entradex/stock_detail/components/chart_table.dart';
+import 'package:entradex/theme/app_colors.dart';
+import 'package:entradex/theme/app_textstyle.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -32,17 +34,16 @@ class _LoLeState extends State<LoLe> {
                 RichText(
                   text: TextSpan(
                     text: 'Dư mua ',
-                    style: TextStyle(
-                      color: Colors.grey,
-                      fontSize: 15.sp,
+                    style: AppTextStyle.bodyMedium_15.copyWith(
+                      fontWeight: FontWeight.w400,
+                      color: Theme.of(context).colorScheme.surface,
                     ),
                     children: [
                       TextSpan(
                         text: '530',
-                        style: TextStyle(
-                          color: Theme.of(context).colorScheme.onSecondary,
-                          fontSize: 15.sp,
+                        style: AppTextStyle.bodyMedium_15.copyWith(
                           fontWeight: FontWeight.w500,
+                          color: Theme.of(context).textTheme.bodyMedium!.color,
                         ),
                       ),
                     ],
@@ -51,17 +52,16 @@ class _LoLeState extends State<LoLe> {
                 RichText(
                   text: TextSpan(
                     text: 'Dư bán ',
-                    style: TextStyle(
-                      color: Colors.grey,
-                      fontSize: 15.sp,
+                    style: AppTextStyle.bodyMedium_15.copyWith(
+                      fontWeight: FontWeight.w400,
+                      color: Theme.of(context).colorScheme.surface,
                     ),
                     children: [
                       TextSpan(
                         text: '860',
-                        style: TextStyle(
-                          color: Theme.of(context).colorScheme.onSecondary,
-                          fontSize: 15.sp,
+                        style: AppTextStyle.bodyMedium_15.copyWith(
                           fontWeight: FontWeight.w500,
+                          color: Theme.of(context).textTheme.bodyMedium!.color,
                         ),
                       ),
                     ],
@@ -89,9 +89,9 @@ class _LoLeState extends State<LoLe> {
                         children: [
                           Text(
                             "Sàn",
-                            style: TextStyle(
-                              color: Colors.grey,
-                              fontSize: 16.sp,
+                            style: AppTextStyle.bodyMedium_15.copyWith(
+                              fontWeight: FontWeight.w400,
+                              color: Theme.of(context).colorScheme.surface,
                             ),
                           ),
                           SizedBox(
@@ -99,9 +99,9 @@ class _LoLeState extends State<LoLe> {
                           ),
                           Text(
                             "Thấp",
-                            style: TextStyle(
-                              color: Colors.grey,
-                              fontSize: 16.sp,
+                            style: AppTextStyle.bodyMedium_15.copyWith(
+                              fontWeight: FontWeight.w400,
+                              color: Theme.of(context).colorScheme.surface,
                             ),
                           ),
                         ],
@@ -114,10 +114,9 @@ class _LoLeState extends State<LoLe> {
                         children: [
                           Text(
                             "86.10",
-                            style: TextStyle(
-                              color: Colors.blue,
-                              fontSize: 16.sp,
+                            style: AppTextStyle.bodyMedium_15.copyWith(
                               fontWeight: FontWeight.w500,
+                              color: AppColors.blue,
                             ),
                           ),
                           SizedBox(
@@ -125,10 +124,9 @@ class _LoLeState extends State<LoLe> {
                           ),
                           Text(
                             "92.34",
-                            style: TextStyle(
-                              color: Colors.red,
-                              fontSize: 16.sp,
+                            style: AppTextStyle.bodyMedium_15.copyWith(
                               fontWeight: FontWeight.w500,
+                              color: AppColors.red,
                             ),
                           ),
                         ],
@@ -142,9 +140,9 @@ class _LoLeState extends State<LoLe> {
                         children: [
                           Text(
                             "TC",
-                            style: TextStyle(
-                              color: Colors.grey,
-                              fontSize: 16.sp,
+                            style: AppTextStyle.bodyMedium_15.copyWith(
+                              fontWeight: FontWeight.w400,
+                              color: Theme.of(context).colorScheme.surface,
                             ),
                           ),
                           SizedBox(
@@ -152,9 +150,9 @@ class _LoLeState extends State<LoLe> {
                           ),
                           Text(
                             "TB",
-                            style: TextStyle(
-                              color: Colors.grey,
-                              fontSize: 16.sp,
+                            style: AppTextStyle.bodyMedium_15.copyWith(
+                              fontWeight: FontWeight.w400,
+                              color: Theme.of(context).colorScheme.surface,
                             ),
                           ),
                         ],
@@ -167,10 +165,9 @@ class _LoLeState extends State<LoLe> {
                         children: [
                           Text(
                             "92.50",
-                            style: TextStyle(
-                              color: Colors.yellow[700],
-                              fontSize: 16.sp,
+                            style: AppTextStyle.bodyMedium_15.copyWith(
                               fontWeight: FontWeight.w500,
+                              color: AppColors.yellow,
                             ),
                           ),
                           SizedBox(
@@ -178,10 +175,9 @@ class _LoLeState extends State<LoLe> {
                           ),
                           Text(
                             "91.31",
-                            style: TextStyle(
-                              color: Colors.green,
-                              fontSize: 16.sp,
+                            style: AppTextStyle.bodyMedium_15.copyWith(
                               fontWeight: FontWeight.w500,
+                              color: AppColors.green,
                             ),
                           ),
                         ],
@@ -195,9 +191,9 @@ class _LoLeState extends State<LoLe> {
                         children: [
                           Text(
                             "Trần",
-                            style: TextStyle(
-                              color: Colors.grey,
-                              fontSize: 16.sp,
+                            style: AppTextStyle.bodyMedium_15.copyWith(
+                              fontWeight: FontWeight.w400,
+                              color: Theme.of(context).colorScheme.surface,
                             ),
                           ),
                           SizedBox(
@@ -205,9 +201,9 @@ class _LoLeState extends State<LoLe> {
                           ),
                           Text(
                             "Cao",
-                            style: TextStyle(
-                              color: Colors.grey,
-                              fontSize: 16.sp,
+                            style: AppTextStyle.bodyMedium_15.copyWith(
+                              fontWeight: FontWeight.w400,
+                              color: Theme.of(context).colorScheme.surface,
                             ),
                           ),
                         ],
@@ -220,10 +216,9 @@ class _LoLeState extends State<LoLe> {
                         children: [
                           Text(
                             "98.90",
-                            style: TextStyle(
-                              color: Colors.purple[400],
-                              fontSize: 16.sp,
+                            style: AppTextStyle.bodyMedium_15.copyWith(
                               fontWeight: FontWeight.w500,
+                              color: AppColors.purple,
                             ),
                           ),
                           SizedBox(
@@ -231,10 +226,9 @@ class _LoLeState extends State<LoLe> {
                           ),
                           Text(
                             "93.50",
-                            style: TextStyle(
-                              color: Colors.green,
-                              fontSize: 16.sp,
+                            style: AppTextStyle.bodyMedium_15.copyWith(
                               fontWeight: FontWeight.w500,
+                              color: AppColors.green,
                             ),
                           ),
                         ],
@@ -254,34 +248,32 @@ class _LoLeState extends State<LoLe> {
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text('Giá khớp lô lẻ:',
-                        style: TextStyle(
-                          color: Colors.grey,
-                          fontSize: 15.sp,
-                        )),
+                    Text(
+                      'Giá khớp lô lẻ:',
+                      style: AppTextStyle.bodyMedium_15.copyWith(
+                        fontWeight: FontWeight.w400,
+                        color: Theme.of(context).colorScheme.surface,
+                      ),
+                    ),
                     SizedBox(
                       height: 4.h,
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Text(
-                          '92.50',
-                          style: TextStyle(
-                            color: Colors.green,
-                            fontSize: 20.sp,
-                            fontWeight: FontWeight.w500,
-                          ),
-                        ),
+                        Text('92.50',
+                            style: AppTextStyle.headlineSmall_20.copyWith(
+                              fontWeight: FontWeight.w500,
+                              color: AppColors.green,
+                            )),
                         SizedBox(
                           width: 8.w,
                         ),
                         Text(
                           '(0.10 0.11%)',
-                          style: TextStyle(
-                            color: Colors.green,
-                            fontSize: 14.sp,
-                            fontWeight: FontWeight.w500,
+                          style: AppTextStyle.bodyMedium_15.copyWith(
+                            fontWeight: FontWeight.w400,
+                            color: AppColors.green,
                           ),
                         ),
                       ],
@@ -294,17 +286,17 @@ class _LoLeState extends State<LoLe> {
                     RichText(
                       text: TextSpan(
                         text: 'KL khớp: ',
-                        style: TextStyle(
-                          color: Colors.grey,
-                          fontSize: 15.sp,
+                        style: AppTextStyle.bodyMedium_15.copyWith(
+                          fontWeight: FontWeight.w400,
+                          color: Theme.of(context).colorScheme.surface,
                         ),
                         children: [
                           TextSpan(
                             text: '5',
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 15.sp,
+                            style: AppTextStyle.bodyMedium_15.copyWith(
                               fontWeight: FontWeight.w500,
+                              color:
+                                  Theme.of(context).textTheme.bodyMedium!.color,
                             ),
                           ),
                         ],
@@ -313,17 +305,17 @@ class _LoLeState extends State<LoLe> {
                     RichText(
                       text: TextSpan(
                         text: 'Tổng KLGD: ',
-                        style: TextStyle(
-                          color: Colors.grey,
-                          fontSize: 15.sp,
+                        style: AppTextStyle.bodyMedium_15.copyWith(
+                          fontWeight: FontWeight.w400,
+                          color: Theme.of(context).colorScheme.surface,
                         ),
                         children: [
                           TextSpan(
                             text: '835',
-                            style: TextStyle(
-                              color: Theme.of(context).colorScheme.onSecondary,
-                              fontSize: 15.sp,
+                            style: AppTextStyle.bodyMedium_15.copyWith(
                               fontWeight: FontWeight.w500,
+                              color:
+                                  Theme.of(context).textTheme.bodyMedium!.color,
                             ),
                           ),
                         ],

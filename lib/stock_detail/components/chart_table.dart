@@ -1,5 +1,5 @@
-import 'package:entradex/const/colors.dart';
-import 'package:entradex/const/text.dart';
+import 'package:entradex/theme/app_colors.dart';
+import 'package:entradex/theme/app_textstyle.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../data/datak.dart';
@@ -16,6 +16,7 @@ class ChartTable extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final textTheme = Theme.of(context).textTheme;
     return Column(
       children: [
         Container(
@@ -46,7 +47,7 @@ class ChartTable extends StatelessWidget {
                           colors: [
                             Colors.transparent,
                             // Màu bên trái
-                            Colors.green.withOpacity(0.2),
+                            AppColors.green.withOpacity(0.2),
                             // Màu bên phải
                           ],
                           stops: [
@@ -63,21 +64,20 @@ class ChartTable extends StatelessWidget {
                         children: [
                           Text(
                             dataList1[index].price.toString(),
-                            style: TextStyle(
-                                fontSize: TextStyles.bodyTextSize15,
-                                color:
-                                    Theme.of(context).colorScheme.onSecondary,
-                                fontWeight: FontWeight.w500),
+                            style: AppTextStyle.bodyMedium_15.copyWith(
+                              fontWeight: FontWeight.w600,
+                              color: textTheme.bodyLarge!.color,
+                            ),
                           ),
                           GestureDetector(
                             child: Padding(
                               padding: const EdgeInsets.only(right: 16.0),
                               child: Text(
                                 dataList1[index].number.toString(),
-                                style: TextStyle(
-                                    fontSize: TextStyles.bodyTextSize15,
-                                    color: AppColors.green,
-                                    fontWeight: FontWeight.w500),
+                                style: AppTextStyle.bodyMedium_15.copyWith(
+                                  fontWeight: FontWeight.w600,
+                                  color: AppColors.green,
+                                ),
                               ),
                             ),
                           ),
@@ -98,7 +98,7 @@ class ChartTable extends StatelessWidget {
                           colors: [
                             Colors.transparent,
                             // Màu bên trái
-                            Colors.red.withOpacity(0.2),
+                            AppColors.red.withOpacity(0.2),
                             // Màu bên phải
                           ],
                           stops: [
@@ -118,10 +118,10 @@ class ChartTable extends StatelessWidget {
                               padding: const EdgeInsets.only(left: 16.0),
                               child: Text(
                                 dataList2[index].number.toString(),
-                                style: TextStyle(
-                                    fontSize: TextStyles.bodyTextSize15,
-                                    color: AppColors.green,
-                                    fontWeight: FontWeight.w500),
+                                style: AppTextStyle.bodyMedium_15.copyWith(
+                                  fontWeight: FontWeight.w600,
+                                  color: AppColors.red,
+                                ),
                               ),
                             ),
                           ),
@@ -129,11 +129,10 @@ class ChartTable extends StatelessWidget {
                             padding: const EdgeInsets.only(left: 8.0),
                             child: Text(
                               dataList2[index].price.toString(),
-                              style: TextStyle(
-                                  fontSize: TextStyles.bodyTextSize15,
-                                  color:
-                                      Theme.of(context).colorScheme.onSecondary,
-                                  fontWeight: FontWeight.w500),
+                              style: AppTextStyle.bodyMedium_15.copyWith(
+                                fontWeight: FontWeight.w600,
+                                color: textTheme.bodyLarge!.color,
+                              ),
                             ),
                           ),
                         ],
@@ -146,33 +145,33 @@ class ChartTable extends StatelessWidget {
           ),
         ),
         SizedBox(
-          height: 8.h,
+          height: 4.h,
         ),
         SizedBox(
           width: MediaQuery.of(context).size.width * 0.94,
           child: Row(
             children: [
               Expanded(
-                  flex: 2,
+                  flex: 1,
                   child: Container(
-                    height: 6,
+                    height: 4.h,
                     decoration: BoxDecoration(
                       borderRadius: const BorderRadius.only(
                           topLeft: Radius.circular(30),
                           bottomLeft: Radius.circular(30)),
-                      color: Colors.green.withOpacity(0.4),
+                      color: AppColors.green.withOpacity(0.6),
                     ),
                   )),
               Expanded(
                   flex: 3,
                   child: Container(
+                    height: 4.h,
                     decoration: BoxDecoration(
                       borderRadius: const BorderRadius.only(
                           topRight: Radius.circular(30),
                           bottomRight: Radius.circular(30)),
-                      color: Colors.red.withOpacity(0.4),
+                      color: AppColors.red.withOpacity(0.6),
                     ),
-                    height: 6,
                   )),
             ],
           ),

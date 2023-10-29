@@ -1,6 +1,6 @@
-import 'package:entradex/const/colors.dart';
-import 'package:entradex/const/text.dart';
+import 'package:entradex/theme/app_colors.dart';
 import 'package:entradex/follow/bloc/follow_bloc.dart';
+import 'package:entradex/theme/app_textstyle.dart';
 import 'package:entradex/widgets/search.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -50,8 +50,7 @@ class _DetailHeaderState extends State<DetailHeader> {
                 borderRadius: BorderRadius.only(
                     bottomLeft: Radius.circular(12),
                     bottomRight: Radius.circular(12)),
-                color:
-                    Theme.of(context).colorScheme.background.withOpacity(0.6)),
+                color: Theme.of(context).colorScheme.background),
             child: Column(
               children: [
                 Row(
@@ -73,11 +72,14 @@ class _DetailHeaderState extends State<DetailHeader> {
                       Container(
                         padding: EdgeInsets.all(6),
                         decoration: BoxDecoration(
-                          color: Theme.of(context).colorScheme.background,
+                          color: Theme.of(context).colorScheme.onBackground,
                           borderRadius: BorderRadius.circular(50),
                           boxShadow: [
                             BoxShadow(
-                              color: Colors.grey.withOpacity(0.2),
+                              color: Theme.of(context)
+                                  .colorScheme
+                                  .background
+                                  .withOpacity(0.2),
                               spreadRadius: 0.4,
                               blurRadius: 2,
                               offset: Offset(0, 2),
@@ -86,7 +88,7 @@ class _DetailHeaderState extends State<DetailHeader> {
                         ),
                         child: Icon(
                           Icons.lightbulb,
-                          color: Colors.yellow,
+                          color: AppColors.yellow,
                         ),
                       )
                     ]),
@@ -101,18 +103,18 @@ class _DetailHeaderState extends State<DetailHeader> {
                           children: [
                             Text(
                               success.stock.name.toString(),
-                              style: TextStyle(
-                                fontSize: TextStyles.headerTextSize20,
-                                fontWeight: FontWeight.bold,
-                                color:
-                                    Theme.of(context).colorScheme.onSecondary,
+                              style: AppTextStyle.labelLarge_18.copyWith(
+                                color: Theme.of(context)
+                                    .textTheme
+                                    .labelLarge!
+                                    .color,
                               ),
                             ),
                             SizedBox(width: 6.w),
                             Text(
                               'HOSE',
-                              style: TextStyle(
-                                fontSize: TextStyles.headerTextSize14,
+                              style: AppTextStyle.bodySmall_14.copyWith(
+                                fontWeight: FontWeight.w400,
                                 color: Theme.of(context).colorScheme.surface,
                               ),
                             ),
@@ -159,8 +161,8 @@ class _DetailHeaderState extends State<DetailHeader> {
                         SizedBox(height: 6.h),
                         Text(
                           'CTCP FPT',
-                          style: TextStyle(
-                            fontSize: TextStyles.headerTextSize14,
+                          style: AppTextStyle.bodySmall_14.copyWith(
+                            fontWeight: FontWeight.w400,
                             color: Theme.of(context).colorScheme.surface,
                           ),
                         ),
@@ -175,9 +177,8 @@ class _DetailHeaderState extends State<DetailHeader> {
                           children: [
                             Text(
                               state.stock.price.toString(),
-                              style: TextStyle(
-                                fontSize: 20.sp,
-                                fontWeight: FontWeight.bold,
+                              style: AppTextStyle.labelLarge_18.copyWith(
+                                fontWeight: FontWeight.w500,
                                 color: state.stock.changePercent == 0
                                     ? AppColors.yellow
                                     : (state.stock.changePercent < 0
@@ -188,9 +189,8 @@ class _DetailHeaderState extends State<DetailHeader> {
                             SizedBox(width: 4.w),
                             Text(
                               "(${state.stock.priceChange} ${state.stock.changePercent}%)",
-                              style: TextStyle(
-                                fontSize: 14.sp,
-                                fontWeight: FontWeight.bold,
+                              style: AppTextStyle.bodySmall_14.copyWith(
+                                fontWeight: FontWeight.w400,
                                 color: state.stock.changePercent == 0
                                     ? AppColors.yellow
                                     : (state.stock.changePercent < 0
@@ -207,16 +207,18 @@ class _DetailHeaderState extends State<DetailHeader> {
                                 text: TextSpan(children: [
                               TextSpan(
                                 text: success.stock.total.toString(),
-                                style: TextStyle(
-                                  fontSize: 14.sp,
-                                  color:
-                                      Theme.of(context).colorScheme.onSecondary,
+                                style: AppTextStyle.bodySmall_14.copyWith(
+                                  fontWeight: FontWeight.w400,
+                                  color: Theme.of(context)
+                                      .textTheme
+                                      .bodyMedium!
+                                      .color,
                                 ),
                               ),
                               TextSpan(
                                 text: ' CP',
-                                style: TextStyle(
-                                  fontSize: 14.sp,
+                                style: AppTextStyle.bodySmall_14.copyWith(
+                                  fontWeight: FontWeight.w400,
                                   color: Theme.of(context).colorScheme.surface,
                                 ),
                               ),
@@ -226,17 +228,18 @@ class _DetailHeaderState extends State<DetailHeader> {
                                 text: TextSpan(children: [
                               TextSpan(
                                 text: '184,400',
-                                style: TextStyle(
-                                  fontSize: 14.sp,
-                                  // color: Theme.of(context).colorScheme.surface,
-                                  color:
-                                      Theme.of(context).colorScheme.onSecondary,
+                                style: AppTextStyle.bodySmall_14.copyWith(
+                                  fontWeight: FontWeight.w400,
+                                  color: Theme.of(context)
+                                      .textTheme
+                                      .bodyMedium!
+                                      .color,
                                 ),
                               ),
                               TextSpan(
                                 text: ' Tỷ',
-                                style: TextStyle(
-                                  fontSize: 14.sp,
+                                style: AppTextStyle.bodySmall_14.copyWith(
+                                  fontWeight: FontWeight.w400,
                                   color: Theme.of(context).colorScheme.surface,
                                 ),
                               ),

@@ -1,9 +1,9 @@
-import 'package:entradex/const/colors.dart';
 import 'package:entradex/follow/component/news_info.dart';
+import 'package:entradex/theme/app_colors.dart';
+import 'package:entradex/theme/app_textstyle.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
 import '../../follow/bloc/follow_bloc.dart';
 
 class RelatedNews extends StatefulWidget {
@@ -40,7 +40,7 @@ class _RelatedNewsState extends State<RelatedNews> {
           final success = state as NewsLoadedState;
           final news = success.news;
           return Container(
-            color: Theme.of(context).colorScheme.background.withOpacity(0.6),
+            color: Theme.of(context).colorScheme.background,
             padding: EdgeInsets.symmetric(horizontal: 8, vertical: 12),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -52,14 +52,18 @@ class _RelatedNewsState extends State<RelatedNews> {
                       children: [
                         Text(
                           "Senses",
-                          style: TextStyle(
-                              fontSize: 18.sp, fontWeight: FontWeight.w500),
+                          style: AppTextStyle.labelMedium_16.copyWith(
+                            fontWeight: FontWeight.w500,
+                            color:
+                                Theme.of(context).textTheme.labelMedium!.color,
+                          ),
                         ),
                         Text(
                           "Xem thêm",
-                          style: TextStyle(
-                              fontSize: 16.sp,
-                              color: Theme.of(context).colorScheme.primary),
+                          style: AppTextStyle.bodySmall_14.copyWith(
+                            fontWeight: FontWeight.w400,
+                            color: Theme.of(context).colorScheme.primary,
+                          ),
                         ),
                       ],
                     ),
@@ -70,59 +74,79 @@ class _RelatedNewsState extends State<RelatedNews> {
                         Column(
                           children: [
                             Text("5 ngày",
-                                style: TextStyle(
-                                    fontSize: 16.sp, color: Colors.grey[400])),
+                                style: AppTextStyle.labelMedium_16.copyWith(
+                                  fontWeight: FontWeight.w400,
+                                  color: Theme.of(context).colorScheme.surface,
+                                )),
                             Text("-2.86%",
-                                style: TextStyle(
-                                    fontSize: 16.sp, color: AppColors.red)),
+                                style: AppTextStyle.labelMedium_16.copyWith(
+                                  fontWeight: FontWeight.w400,
+                                  color: AppColors.red,
+                                )),
                           ],
                         ),
                         Column(
                           children: [
                             Text("1 năm",
-                                style: TextStyle(
-                                    fontSize: 16.sp, color: Colors.grey[400])),
+                                style: AppTextStyle.labelMedium_16.copyWith(
+                                  fontWeight: FontWeight.w400,
+                                  color: Theme.of(context).colorScheme.surface,
+                                )),
                             Text("39.10%",
-                                style: TextStyle(
-                                    fontSize: 16.sp, color: AppColors.green)),
+                                style: AppTextStyle.labelMedium_16.copyWith(
+                                  fontWeight: FontWeight.w400,
+                                  color: AppColors.green,
+                                )),
                           ],
                         ),
                         Column(
                           children: [
                             Text("Vốn hóa",
-                                style: TextStyle(
-                                    fontSize: 16.sp, color: Colors.grey[400])),
+                                style: AppTextStyle.labelMedium_16.copyWith(
+                                  fontWeight: FontWeight.w400,
+                                  color: Theme.of(context).colorScheme.surface,
+                                )),
                             Text("116,329.15 tỷ",
-                                style: TextStyle(
-                                  fontSize: 16.sp,
-                                  color:
-                                      Theme.of(context).colorScheme.onSecondary,
+                                style: AppTextStyle.labelMedium_16.copyWith(
+                                  fontWeight: FontWeight.w400,
+                                  color: Theme.of(context)
+                                      .textTheme
+                                      .labelMedium!
+                                      .color,
                                 )),
                           ],
                         ),
                         Column(
                           children: [
                             Text("P/E",
-                                style: TextStyle(
-                                    fontSize: 16.sp, color: Colors.grey[400])),
+                                style: AppTextStyle.labelMedium_16.copyWith(
+                                  fontWeight: FontWeight.w400,
+                                  color: Theme.of(context).colorScheme.surface,
+                                )),
                             Text("20.0x",
-                                style: TextStyle(
-                                  fontSize: 16.sp,
-                                  color:
-                                      Theme.of(context).colorScheme.onSecondary,
+                                style: AppTextStyle.labelMedium_16.copyWith(
+                                  fontWeight: FontWeight.w400,
+                                  color: Theme.of(context)
+                                      .textTheme
+                                      .labelMedium!
+                                      .color,
                                 )),
                           ],
                         ),
                         Column(
                           children: [
                             Text("P/S",
-                                style: TextStyle(
-                                    fontSize: 16.sp, color: Colors.grey[400])),
+                                style: AppTextStyle.labelMedium_16.copyWith(
+                                  fontWeight: FontWeight.w400,
+                                  color: Theme.of(context).colorScheme.surface,
+                                )),
                             Text("2.41x",
-                                style: TextStyle(
-                                  fontSize: 16.sp,
-                                  color:
-                                      Theme.of(context).colorScheme.onSecondary,
+                                style: AppTextStyle.labelMedium_16.copyWith(
+                                  fontWeight: FontWeight.w400,
+                                  color: Theme.of(context)
+                                      .textTheme
+                                      .labelMedium!
+                                      .color,
                                 )),
                           ],
                         ),
@@ -140,14 +164,17 @@ class _RelatedNewsState extends State<RelatedNews> {
                   children: [
                     Text(
                       "Tin liên quan",
-                      style: TextStyle(
-                          fontSize: 18.sp, fontWeight: FontWeight.w500),
+                      style: AppTextStyle.labelLarge_18.copyWith(
+                        fontWeight: FontWeight.w500,
+                        color: Theme.of(context).textTheme.labelMedium!.color,
+                      ),
                     ),
                     Text(
                       "Xem thêm",
-                      style: TextStyle(
-                          fontSize: 16.sp,
-                          color: Theme.of(context).colorScheme.primary),
+                      style: AppTextStyle.labelMedium_16.copyWith(
+                        fontWeight: FontWeight.w400,
+                        color: Theme.of(context).colorScheme.primary,
+                      ),
                     ),
                   ],
                 ),
@@ -166,14 +193,13 @@ class _RelatedNewsState extends State<RelatedNews> {
                             Expanded(
                               child: Column(
                                 children: [
-                                  Text(
-                                    news[index].title,
-                                    maxLines: 2,
-                                    overflow: TextOverflow.ellipsis,
-                                    style: TextStyle(
-                                      fontSize: 16.sp,
-                                    ),
-                                  ),
+                                  Text(news[index].title,
+                                      maxLines: 2,
+                                      overflow: TextOverflow.ellipsis,
+                                      style:
+                                          AppTextStyle.titleMedium_16.copyWith(
+                                        fontWeight: FontWeight.w400,
+                                      )),
                                   Row(
                                     children: [
                                       NewsInfo(
@@ -194,9 +220,11 @@ class _RelatedNewsState extends State<RelatedNews> {
                                         width: 8.w,
                                       ),
                                       Text(news[index].time,
-                                          style: TextStyle(
-                                              fontSize: 12.sp,
-                                              color: Colors.grey[400]))
+                                          style: AppTextStyle.labelSmall_12
+                                              .copyWith(
+                                            fontWeight: FontWeight.w400,
+                                            color: AppColors.secondary,
+                                          ))
                                     ],
                                   )
                                 ],

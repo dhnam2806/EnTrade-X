@@ -1,3 +1,5 @@
+import 'package:entradex/theme/app_colors.dart';
+import 'package:entradex/theme/app_textstyle.dart';
 import 'package:flutter/material.dart';
 
 class SearchWidget extends StatelessWidget {
@@ -9,7 +11,7 @@ class SearchWidget extends StatelessWidget {
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 6, vertical: 8),
       decoration: BoxDecoration(
-        color: Theme.of(context).colorScheme.background,
+        color: Theme.of(context).colorScheme.onBackground,
         borderRadius: BorderRadius.circular(50),
         boxShadow: [
           BoxShadow(
@@ -25,11 +27,10 @@ class SearchWidget extends StatelessWidget {
         Container(
           width: size.width * 0.58,
           child: Text(
-            'Tìm mã để đặt lệnh',
-            style: TextStyle(
-              fontSize: 18,
-              color: Colors.grey,
-            ),
+            ' Tìm mã để đặt lệnh',
+            style: AppTextStyle.labelMedium_16.copyWith(
+                fontWeight: FontWeight.w400,
+                color: Theme.of(context).colorScheme.surface),
           ),
         ),
         Icon(Icons.search, color: Theme.of(context).colorScheme.surface),

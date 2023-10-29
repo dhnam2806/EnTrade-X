@@ -1,6 +1,7 @@
-import 'package:entradex/const/colors.dart';
 import 'package:entradex/follow/component/collection.dart';
 import 'package:entradex/model/stock.dart';
+import 'package:entradex/theme/app_colors.dart';
+import 'package:entradex/theme/app_textstyle.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:persistent_bottom_nav_bar_v2/persistent-tab-view.dart';
@@ -115,22 +116,18 @@ class _StockDataState extends State<StockData> {
 
           List<DataCell> getCells(List<dynamic> cells, double changePercent) {
             return cells.map((idx) {
-              Color textColor = Theme.of(context).colorScheme.onSecondary;
+              Color textColor = Theme.of(context).textTheme.bodyMedium!.color!;
               if (idx is double || idx == cells[0]) {
                 textColor = changePercent == 0
                     ? AppColors.yellow
                     : (changePercent < 0 ? AppColors.red : AppColors.green);
               }
               return DataCell(
-                Text(
-                  idx.toString(),
-                  style: TextStyle(
-                    overflow: TextOverflow.ellipsis,
-                    fontSize: 15.sp,
-                    fontWeight: FontWeight.w500,
-                    color: textColor,
-                  ),
-                ),
+                Text(idx.toString(),
+                    style: AppTextStyle.bodyMedium_15.copyWith(
+                      fontWeight: FontWeight.w500,
+                      color: textColor,
+                    )),
               );
             }).toList();
           }
@@ -153,7 +150,7 @@ class _StockDataState extends State<StockData> {
           }
 
           return Container(
-            color: Theme.of(context).colorScheme.background.withOpacity(0.8),
+            color: Theme.of(context).colorScheme.background.withOpacity(0.9),
             padding: EdgeInsets.symmetric(horizontal: 8, vertical: 8),
             child: Column(
               children: [
@@ -176,7 +173,8 @@ class _StockDataState extends State<StockData> {
                               padding: EdgeInsets.zero,
                               value: "VN30",
                               child: RadioListTile(
-                                activeColor: Colors.red,
+                                activeColor:
+                                    Theme.of(context).colorScheme.primary,
                                 value: "VN30",
                                 groupValue: select,
                                 onChanged: (value) {
@@ -213,7 +211,8 @@ class _StockDataState extends State<StockData> {
                               padding: EdgeInsets.zero,
                               value: "HOSE",
                               child: RadioListTile(
-                                activeColor: Colors.red,
+                                activeColor:
+                                    Theme.of(context).colorScheme.primary,
                                 value: "HOSE",
                                 groupValue: select,
                                 onChanged: (value) {
@@ -234,7 +233,7 @@ class _StockDataState extends State<StockData> {
                           padding:
                               EdgeInsets.symmetric(horizontal: 8, vertical: 4),
                           decoration: BoxDecoration(
-                            color: Colors.red,
+                            color: Theme.of(context).colorScheme.primary,
                             borderRadius: BorderRadius.circular(4),
                           ),
                           child: Row(

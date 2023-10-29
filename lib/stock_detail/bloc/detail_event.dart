@@ -9,28 +9,8 @@ class DetailInitialEvent extends DetailEvent {
   DetailInitialEvent({required this.stock});
 }
 
-class PriceMatchingEvent extends DetailEvent {
-  final double priceMatching;
 
-  PriceMatchingEvent({required this.priceMatching});
-}
 
-class PriceIncreaseEvent extends DetailEvent {
-  final double priceIncrease;
 
-  PriceIncreaseEvent({required this.priceIncrease});
-}
-
-class PriceDecreaseEvent extends DetailEvent {
-  final double priceDecrease;
-
-  PriceDecreaseEvent({required this.priceDecrease});
-}
-
-class PricePressEvent extends DetailEvent {
-  final double pricePress;
-
-  PricePressEvent({required this.pricePress});
-}
 
 

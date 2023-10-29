@@ -1,5 +1,6 @@
 import 'package:entradex/follow/component/news_info.dart';
 import 'package:entradex/follow/component/news_select.dart';
+import 'package:entradex/theme/app_textstyle.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -41,15 +42,17 @@ class _NewsListState extends State<NewsList> {
           final success = state as NewsLoadedState;
           final news = success.news;
           return Container(
-            color: Theme.of(context).colorScheme.background.withOpacity(0.6),
+            color: Theme.of(context).colorScheme.background.withOpacity(0.9),
             padding: EdgeInsets.symmetric(horizontal: 8, vertical: 12),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
                   "Tin danh mục",
-                  style:
-                      TextStyle(fontSize: 20.sp, fontWeight: FontWeight.w500),
+                  style: AppTextStyle.labelLarge_18.copyWith(
+                    fontWeight: FontWeight.w500,
+                    color: Theme.of(context).textTheme.labelLarge!.color,
+                  ),
                 ),
                 Row(
                   children: [

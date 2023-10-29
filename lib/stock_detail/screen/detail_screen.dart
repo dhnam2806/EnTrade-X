@@ -8,6 +8,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../widgets/search.dart';
 import '../bloc/detail_bloc.dart';
+import '../components/order.dart';
 
 class DetailScreen extends StatefulWidget {
   final Stock stock;
@@ -38,13 +39,13 @@ class _DetailScreenState extends State<DetailScreen> {
               DetailHeader(),
               SizedBox(height: 8.h),
               ListPageView(),
-              // ListPage(),
               SizedBox(height: 8.h),
               RelatedNews(),
               SizedBox(height: 180.h),
             ]),
           ),
           PurchaseOrder(),
+          // Order(),
         ],
       )),
     );

@@ -1,9 +1,10 @@
-import 'package:entradex/const/colors.dart';
+import 'package:entradex/theme/app_textstyle.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../bloc/detail_bloc.dart';
 import 'package:intl/intl.dart';
+import 'package:entradex/theme/app_colors.dart';
 
 class PurchaseOrder extends StatefulWidget {
   const PurchaseOrder({super.key});
@@ -30,8 +31,6 @@ class _PurchaseOrderState extends State<PurchaseOrder> {
       listener: (context, state) {
         // TODO: implement listener
       },
-      listenWhen: (previous, current) => current is DetailActionState,
-      buildWhen: (previous, current) => current is! DetailActionState,
       builder: (context, state) {
         if (state is DetailLoadingState) {
           return Center(
@@ -46,6 +45,14 @@ class _PurchaseOrderState extends State<PurchaseOrder> {
             height: 180.h,
             decoration: BoxDecoration(
               color: Theme.of(context).colorScheme.background,
+              boxShadow: [
+                BoxShadow(
+                  color: AppColors.gray.withOpacity(0.6),
+                  spreadRadius: 0.4,
+                  blurRadius: 2,
+                  offset: Offset(0, 2),
+                ),
+              ],
             ),
             child: Column(
               children: [
@@ -56,25 +63,22 @@ class _PurchaseOrderState extends State<PurchaseOrder> {
                       width: MediaQuery.of(context).size.width / 2,
                       child: Row(
                         children: [
-                          Text(
-                            "Sức mua: ",
-                            style: TextStyle(
-                              fontSize: 14.sp,
-                              color: Theme.of(context).colorScheme.surface,
-                            ),
-                          ),
+                          Text("Sức mua: ",
+                              style: AppTextStyle.bodySmall_14.copyWith(
+                                color: AppColors.secondary,
+                              )),
                           Text(
                             formattedPrice,
-                            style: TextStyle(
-                              overflow: TextOverflow.clip,
-                              fontSize: 14.sp,
-                              color: Theme.of(context).colorScheme.onSecondary,
+                            style: AppTextStyle.bodySmall_14.copyWith(
+                              fontWeight: FontWeight.w400,
+                              color:
+                                  Theme.of(context).textTheme.bodySmall!.color,
                             ),
                           ),
                           SizedBox(width: 2.w),
                           Container(
                             decoration: BoxDecoration(
-                              color: Colors.red[800],
+                              color: Theme.of(context).colorScheme.primary,
                               borderRadius: BorderRadius.circular(4),
                             ),
                             child: Icon(
@@ -82,7 +86,7 @@ class _PurchaseOrderState extends State<PurchaseOrder> {
                               color: Colors.white,
                               size: 14.sp,
                             ),
-                          )
+                          ),
                         ],
                       ),
                     ),
@@ -105,19 +109,17 @@ class _PurchaseOrderState extends State<PurchaseOrder> {
                               ),
                             ],
                           ),
-                          child: Text(
-                            "Lệnh điều kiện",
-                            style: TextStyle(
-                              fontSize: 15.sp,
-                              color: AppColors.redText,
-                            ),
-                          ),
+                          child: Text("Lệnh điều kiện",
+                              style: AppTextStyle.bodyMedium_15.copyWith(
+                                fontWeight: FontWeight.w400,
+                                color: Theme.of(context).colorScheme.primary,
+                              )),
                         ),
                         SizedBox(width: 4.w),
                         Icon(
                           Icons.settings,
                           size: 24.sp,
-                          color: AppColors.redText,
+                          color: Theme.of(context).colorScheme.primary,
                         )
                       ],
                     ),
@@ -137,7 +139,7 @@ class _PurchaseOrderState extends State<PurchaseOrder> {
                         padding: EdgeInsets.all(6),
                         decoration: BoxDecoration(
                           color: selectedButton == "LO"
-                              ? Colors.red
+                              ? Theme.of(context).colorScheme.primary
                               : Theme.of(context).colorScheme.onBackground,
                           borderRadius: BorderRadius.circular(4),
                           boxShadow: [
@@ -153,11 +155,14 @@ class _PurchaseOrderState extends State<PurchaseOrder> {
                         child: Center(
                             child: Text(
                           "LO",
-                          style: TextStyle(
-                            fontSize: 16.sp,
+                          style: AppTextStyle.labelMedium_16.copyWith(
+                            fontWeight: FontWeight.w400,
                             color: selectedButton == "LO"
                                 ? Colors.white
-                                : Theme.of(context).colorScheme.onSecondary,
+                                : Theme.of(context)
+                                    .textTheme
+                                    .labelMedium!
+                                    .color,
                           ),
                         )),
                       ),
@@ -175,7 +180,7 @@ class _PurchaseOrderState extends State<PurchaseOrder> {
                         padding: EdgeInsets.all(6),
                         decoration: BoxDecoration(
                           color: selectedButton == "MP"
-                              ? Colors.red
+                              ? Theme.of(context).colorScheme.primary
                               : Theme.of(context).colorScheme.onBackground,
                           borderRadius: BorderRadius.circular(4),
                           boxShadow: [
@@ -191,11 +196,14 @@ class _PurchaseOrderState extends State<PurchaseOrder> {
                         child: Center(
                             child: Text(
                           "MP",
-                          style: TextStyle(
-                            fontSize: 16.sp,
+                          style: AppTextStyle.labelMedium_16.copyWith(
+                            fontWeight: FontWeight.w400,
                             color: selectedButton == "MP"
                                 ? Colors.white
-                                : Theme.of(context).colorScheme.onSecondary,
+                                : Theme.of(context)
+                                    .textTheme
+                                    .labelMedium!
+                                    .color,
                           ),
                         )),
                       ),
@@ -212,7 +220,7 @@ class _PurchaseOrderState extends State<PurchaseOrder> {
                         padding: EdgeInsets.all(6),
                         decoration: BoxDecoration(
                           color: selectedButton == "ATC"
-                              ? Colors.red
+                              ? Theme.of(context).colorScheme.primary
                               : Theme.of(context).colorScheme.onBackground,
                           borderRadius: BorderRadius.circular(4),
                           boxShadow: [
@@ -228,11 +236,14 @@ class _PurchaseOrderState extends State<PurchaseOrder> {
                         child: Center(
                             child: Text(
                           "ATC",
-                          style: TextStyle(
-                            fontSize: 16.sp,
+                          style: AppTextStyle.labelMedium_16.copyWith(
+                            fontWeight: FontWeight.w400,
                             color: selectedButton == "ATC"
                                 ? Colors.white
-                                : Theme.of(context).colorScheme.onSecondary,
+                                : Theme.of(context)
+                                    .textTheme
+                                    .labelMedium!
+                                    .color,
                           ),
                         )),
                       ),
@@ -268,7 +279,10 @@ class _PurchaseOrderState extends State<PurchaseOrder> {
                                   }
                                 }
                               },
-                              child: Icon(Icons.remove)),
+                              child: Icon(
+                                Icons.remove,
+                                color: Theme.of(context).colorScheme.secondary,
+                              )),
                           Container(
                             width: 80.w,
                             child: TextField(
@@ -305,7 +319,10 @@ class _PurchaseOrderState extends State<PurchaseOrder> {
                                   }
                                 }
                               },
-                              child: Icon(Icons.add)),
+                              child: Icon(
+                                Icons.add,
+                                color: Theme.of(context).colorScheme.secondary,
+                              )),
                         ],
                       ),
                     ),
@@ -319,18 +336,17 @@ class _PurchaseOrderState extends State<PurchaseOrder> {
                         padding: EdgeInsets.all(8),
                         decoration: BoxDecoration(
                           color: selectedButton == "LO"
-                              ? Colors.red
+                              ? Theme.of(context).colorScheme.primary
                               : Color.fromARGB(255, 157, 41, 33),
                           borderRadius: BorderRadius.circular(4),
                         ),
-                        child: Text(
-                          "Giá khớp",
-                          style: TextStyle(
-                              fontSize: 14.sp,
+                        child: Text("Giá khớp",
+                            style: AppTextStyle.labelSmall_14.copyWith(
+                              fontWeight: FontWeight.w400,
                               color: selectedButton == "LO"
                                   ? Colors.white
-                                  : Colors.grey[400]),
-                        ),
+                                  : Theme.of(context).colorScheme.surface,
+                            )),
                       ),
                     ),
                     Container(
@@ -363,27 +379,28 @@ class _PurchaseOrderState extends State<PurchaseOrder> {
                                   }
                                 }
                               },
-                              child: Icon(Icons.remove)),
+                              child: Icon(
+                                Icons.remove,
+                                color: Theme.of(context).colorScheme.secondary,
+                              )),
                           Container(
                             width: 80.w,
                             child: TextField(
-                              controller: quantityController,
-                              keyboardType: TextInputType.number,
-                              textAlign: TextAlign.center,
-                              decoration: InputDecoration(
-                                border: InputBorder.none,
-                                hintText: "Khối lượng",
-                                hintStyle: TextStyle(
-                                  color: Colors.grey[400],
-                                  fontSize: 14.sp,
+                                controller: quantityController,
+                                keyboardType: TextInputType.number,
+                                textAlign: TextAlign.center,
+                                decoration: InputDecoration(
+                                  border: InputBorder.none,
+                                  hintText: "Khối lượng",
+                                  hintStyle: TextStyle(
+                                    color: Colors.grey[400],
+                                    fontSize: 14.sp,
+                                  ),
                                 ),
-                              ),
-                              style: TextStyle(
-                                color:
-                                    Theme.of(context).colorScheme.onSecondary,
-                                fontSize: 14.sp,
-                              ),
-                            ),
+                                style: AppTextStyle.labelSmall_14.copyWith(
+                                  fontWeight: FontWeight.w400,
+                                  color: Theme.of(context).colorScheme.surface,
+                                )),
                           ),
                           GestureDetector(
                               onTap: () {
@@ -398,7 +415,10 @@ class _PurchaseOrderState extends State<PurchaseOrder> {
                                   }
                                 }
                               },
-                              child: Icon(Icons.add)),
+                              child: Icon(
+                                Icons.add,
+                                color: Theme.of(context).colorScheme.secondary,
+                              )),
                         ],
                       ),
                     ),
@@ -420,15 +440,15 @@ class _PurchaseOrderState extends State<PurchaseOrder> {
                         children: [
                           Text(
                             "MUA",
-                            style: TextStyle(
-                              fontSize: 18.sp,
+                            style: AppTextStyle.labelLarge_18.copyWith(
+                              fontWeight: FontWeight.w400,
                               color: Colors.white,
                             ),
                           ),
                           Text(
                             (money / (92.20 * 1000)).toStringAsFixed(0),
-                            style: TextStyle(
-                              fontSize: 18.sp,
+                            style: AppTextStyle.labelLarge_18.copyWith(
+                              fontWeight: FontWeight.w400,
                               color: Colors.white,
                             ),
                           ),
@@ -447,15 +467,15 @@ class _PurchaseOrderState extends State<PurchaseOrder> {
                         children: [
                           Text(
                             "BÁN",
-                            style: TextStyle(
-                              fontSize: 18.sp,
+                            style: AppTextStyle.labelLarge_18.copyWith(
+                              fontWeight: FontWeight.w400,
                               color: Colors.white,
                             ),
                           ),
                           Text(
                             "(0)",
-                            style: TextStyle(
-                              fontSize: 18.sp,
+                            style: AppTextStyle.labelLarge_18.copyWith(
+                              fontWeight: FontWeight.w400,
                               color: Colors.white,
                             ),
                           ),

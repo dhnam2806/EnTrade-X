@@ -1,3 +1,4 @@
+import 'package:entradex/theme/app_colors.dart';
 import 'package:flutter/material.dart';
 
 class NAppTheme {
@@ -6,7 +7,7 @@ class NAppTheme {
     primaryColor: Color.fromARGB(255, 245, 240, 240),
     scaffoldBackgroundColor: Color.fromARGB(255, 239, 232, 232),
     colorScheme: ColorScheme(
-      primary: Color.fromARGB(255, 167, 38, 38),
+      primary: AppColors.primary_01,
       secondary: Color.fromARGB(255, 255, 255, 255),
       surface: Colors.grey,
       background: Color.fromARGB(255, 245, 242, 242),
