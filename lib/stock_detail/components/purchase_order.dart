@@ -1,4 +1,5 @@
 import 'package:entradex/theme/app_textstyle.dart';
+import 'package:entradex/widgets/textfield.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -17,20 +18,43 @@ class _PurchaseOrderState extends State<PurchaseOrder> {
   TextEditingController priceController = TextEditingController();
   TextEditingController quantityController = TextEditingController();
   final numberFormat = new NumberFormat("##,##0", "en_US");
+  final double money = 1200000000;
   String selectedButton = "LO";
-  bool enableText = false;
+  bool enableText = true;
+  String textToDisplay = '';
+
+  void calculateAndSetText() {
+    double price = priceController.text == ''
+        ? 92200
+        : double.parse(priceController.text) * 1000;
+    String priceText = (money / price).toStringAsFixed(0);
+    setState(() {
+      textToDisplay = priceText;
+    });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    calculateAndSetText();
+    priceController.addListener(calculateAndSetText);
+  }
+
+  @override
+  void dispose() {
+    priceController.dispose();
+    quantityController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
     final detailBloc = BlocProvider.of<DetailBloc>(context);
-    final int money = 1200000000;
     String formattedPrice = numberFormat.format(money);
 
     return BlocConsumer<DetailBloc, DetailState>(
       bloc: detailBloc,
-      listener: (context, state) {
-        // TODO: implement listener
-      },
+      listener: (context, state) {},
       builder: (context, state) {
         if (state is DetailLoadingState) {
           return Center(
@@ -214,6 +238,7 @@ class _PurchaseOrderState extends State<PurchaseOrder> {
                         setState(() {
                           selectedButton = "ATC";
                           priceController.text = "";
+                          enableText = false;
                         });
                       },
                       child: Container(
@@ -262,68 +287,34 @@ class _PurchaseOrderState extends State<PurchaseOrder> {
                           ),
                         ),
                       ),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          GestureDetector(
-                              onTap: () {
-                                if (selectedButton == "LO") {
-                                  if (priceController.text == "") {
-                                    priceController.text =
-                                        success.stock.price.toString();
-                                  } else {
-                                    priceController.text =
-                                        (double.parse(priceController.text) -
-                                                0.5)
-                                            .toString();
-                                  }
-                                }
-                              },
-                              child: Icon(
-                                Icons.remove,
-                                color: Theme.of(context).colorScheme.secondary,
-                              )),
-                          Container(
-                            width: 80.w,
-                            child: TextField(
-                              enabled: enableText,
-                              controller: priceController,
-                              keyboardType: TextInputType.number,
-                              textAlign: TextAlign.center,
-                              decoration: InputDecoration(
-                                border: InputBorder.none,
-                                hintText: "Giá đặt",
-                                hintStyle: TextStyle(
-                                  color: Colors.grey[400],
-                                  fontSize: 14.sp,
-                                ),
-                              ),
-                              style: TextStyle(
-                                color:
-                                    Theme.of(context).colorScheme.onSecondary,
-                                fontSize: 14.sp,
-                              ),
-                            ),
-                          ),
-                          GestureDetector(
-                              onTap: () {
-                                if (selectedButton == "LO") {
-                                  if (priceController.text == "") {
-                                    priceController.text =
-                                        success.stock.price.toString();
-                                  } else {
-                                    priceController.text =
-                                        (double.parse(priceController.text) +
-                                                0.5)
-                                            .toString();
-                                  }
-                                }
-                              },
-                              child: Icon(
-                                Icons.add,
-                                color: Theme.of(context).colorScheme.secondary,
-                              )),
-                        ],
+                      child: TextFieldCustom(
+                        controller: priceController,
+                        enabled: enableText,
+                        title: "Giá đặt",
+                        onTapRemove: () {
+                          if (selectedButton == "LO") {
+                            if (priceController.text == "") {
+                              priceController.text =
+                                  success.stock.price.toString();
+                            } else {
+                              priceController.text =
+                                  (double.parse(priceController.text) - 0.5)
+                                      .toString();
+                            }
+                          }
+                        },
+                        onTapAdd: () {
+                          if (selectedButton == "LO") {
+                            if (priceController.text == "") {
+                              priceController.text =
+                                  success.stock.price.toString();
+                            } else {
+                              priceController.text =
+                                  (double.parse(priceController.text) + 0.5)
+                                      .toString();
+                            }
+                          }
+                        },
                       ),
                     ),
                     GestureDetector(
@@ -337,15 +328,16 @@ class _PurchaseOrderState extends State<PurchaseOrder> {
                         decoration: BoxDecoration(
                           color: selectedButton == "LO"
                               ? Theme.of(context).colorScheme.primary
-                              : Color.fromARGB(255, 157, 41, 33),
+                              : Theme.of(context)
+                                  .colorScheme
+                                  .primary
+                                  .withOpacity(0.5),
                           borderRadius: BorderRadius.circular(4),
                         ),
                         child: Text("Giá khớp",
                             style: AppTextStyle.labelSmall_14.copyWith(
                               fontWeight: FontWeight.w400,
-                              color: selectedButton == "LO"
-                                  ? Colors.white
-                                  : Theme.of(context).colorScheme.surface,
+                              color: AppColors.white,
                             )),
                       ),
                     ),
@@ -357,69 +349,36 @@ class _PurchaseOrderState extends State<PurchaseOrder> {
                           ),
                         ),
                       ),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          GestureDetector(
-                              onTap: () {
-                                if (selectedButton == "LO") {
-                                  if (quantityController.text == "") {
-                                    quantityController.text = "0";
-                                  } else if (int.parse(
-                                          quantityController.text) >
-                                      100) {
-                                    quantityController.text =
-                                        (int.parse(quantityController.text) -
-                                                100)
-                                            .toString();
-                                  } else {
-                                    quantityController.text =
-                                        (int.parse(quantityController.text) - 1)
-                                            .toString();
-                                  }
-                                }
-                              },
-                              child: Icon(
-                                Icons.remove,
-                                color: Theme.of(context).colorScheme.secondary,
-                              )),
-                          Container(
-                            width: 80.w,
-                            child: TextField(
-                                controller: quantityController,
-                                keyboardType: TextInputType.number,
-                                textAlign: TextAlign.center,
-                                decoration: InputDecoration(
-                                  border: InputBorder.none,
-                                  hintText: "Khối lượng",
-                                  hintStyle: TextStyle(
-                                    color: Colors.grey[400],
-                                    fontSize: 14.sp,
-                                  ),
-                                ),
-                                style: AppTextStyle.labelSmall_14.copyWith(
-                                  fontWeight: FontWeight.w400,
-                                  color: Theme.of(context).colorScheme.surface,
-                                )),
-                          ),
-                          GestureDetector(
-                              onTap: () {
-                                if (selectedButton == "LO") {
-                                  if (quantityController.text == "") {
-                                    quantityController.text = "100";
-                                  } else {
-                                    quantityController.text =
-                                        (int.parse(quantityController.text) +
-                                                100)
-                                            .toString();
-                                  }
-                                }
-                              },
-                              child: Icon(
-                                Icons.add,
-                                color: Theme.of(context).colorScheme.secondary,
-                              )),
-                        ],
+                      child: TextFieldCustom(
+                        controller: quantityController,
+                        title: "Khối lượng",
+                        onTapRemove: () {
+                          if (selectedButton == "LO") {
+                            if (quantityController.text == "") {
+                              quantityController.text = "0";
+                            } else if (int.parse(quantityController.text) >
+                                100) {
+                              quantityController.text =
+                                  (int.parse(quantityController.text) - 100)
+                                      .toString();
+                            } else {
+                              quantityController.text =
+                                  (int.parse(quantityController.text) - 1)
+                                      .toString();
+                            }
+                          }
+                        },
+                        onTapAdd: () {
+                          if (selectedButton == "LO") {
+                            if (quantityController.text == "") {
+                              quantityController.text = "100";
+                            } else {
+                              quantityController.text =
+                                  (int.parse(quantityController.text) + 100)
+                                      .toString();
+                            }
+                          }
+                        },
                       ),
                     ),
                   ],
@@ -446,7 +405,7 @@ class _PurchaseOrderState extends State<PurchaseOrder> {
                             ),
                           ),
                           Text(
-                            (money / (92.20 * 1000)).toStringAsFixed(0),
+                            textToDisplay,
                             style: AppTextStyle.labelLarge_18.copyWith(
                               fontWeight: FontWeight.w400,
                               color: Colors.white,

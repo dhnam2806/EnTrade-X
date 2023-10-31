@@ -1,4 +1,5 @@
 import 'package:entradex/follow/component/bottom_add.dart';
+import 'package:entradex/theme/app_textstyle.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -81,7 +82,12 @@ class _CollectionState extends State<Collection> {
                         ),
                       ],
                     ),
-                    child: Center(child: Text(getName(data[index].name))),
+                    child: Center(
+                        child: Text(getName(data[index].name),
+                            style: AppTextStyle.bodySmall_14.copyWith(
+                              color:
+                                  Theme.of(context).textTheme.bodySmall!.color,
+                            ))),
                   );
                 },
               ),

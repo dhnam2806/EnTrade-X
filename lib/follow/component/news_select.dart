@@ -19,7 +19,7 @@ class NewsSelect extends StatelessWidget {
       height: 24.h,
       decoration: BoxDecoration(
         color: isSelected
-            ? AppColors.red
+            ? Theme.of(context).colorScheme.primary
             : Theme.of(context).colorScheme.onBackground,
         borderRadius: BorderRadius.circular(50),
       ),

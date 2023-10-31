@@ -7,7 +7,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:persistent_bottom_nav_bar_v2/persistent-tab-view.dart';
 
-import '../../Menu/screen/search_screen.dart';
+import '../../menu/screen/search_screen.dart';
 import '../bloc/detail_bloc.dart';
 
 class DetailHeader extends StatefulWidget {

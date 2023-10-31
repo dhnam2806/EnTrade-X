@@ -1,6 +1,7 @@
-import 'package:entradex/Menu/components/menu_title.dart';
-import 'package:entradex/Menu/components/profile.dart';
-import 'package:entradex/Menu/screen/setting_screen.dart';
+import 'package:entradex/menu/components/menu_title.dart';
+import 'package:entradex/menu/components/profile.dart';
+import 'package:entradex/menu/screen/setting_screen.dart';
+import 'package:entradex/theme/app_textstyle.dart';
 import 'package:entradex/widgets/menu_select.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -76,8 +77,9 @@ class _MenuScreenState extends State<MenuScreen> {
               height: 12.h,
             ),
             Container(
+              margin: EdgeInsets.symmetric(horizontal: 8),
               width: size.width,
-              height: 40.h,
+              height: 32.h,
               decoration: BoxDecoration(
                 color: Theme.of(context).colorScheme.background,
                 borderRadius: BorderRadius.circular(8),
@@ -85,7 +87,13 @@ class _MenuScreenState extends State<MenuScreen> {
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 16),
                 child: Center(
-                    child: Text("Đăng xuất", style: TextStyle(fontSize: 16))),
+                    child: Text(
+                  "Đăng xuất",
+                  style: AppTextStyle.bodyLarge_16.copyWith(
+                    fontWeight: FontWeight.w400,
+                    color: Theme.of(context).textTheme.bodyLarge!.color,
+                  ),
+                )),
               ),
             ),
             SizedBox(height: 8.h),

@@ -1,4 +1,4 @@
-import 'package:entradex/Menu/screen/menu_screen.dart';
+import 'package:entradex/menu/screen/menu_screen.dart';
 import 'package:entradex/follow/screen/follow_screen.dart';
 import 'package:entradex/screens/home_screen.dart';
 import 'package:entradex/screens/library_screen.dart';

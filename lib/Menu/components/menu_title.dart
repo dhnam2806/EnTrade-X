@@ -1,4 +1,5 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'package:entradex/theme/app_textstyle.dart';
 import 'package:flutter/material.dart';
 
 class MenuTitle extends StatelessWidget {
@@ -20,16 +21,23 @@ class MenuTitle extends StatelessWidget {
         color: Theme.of(context).colorScheme.background,
       ),
       child: ListTile(
+        minLeadingWidth: 0,
         leading: Icon(
           icon,
           color: Theme.of(context).colorScheme.surface,
         ),
-        title: Text(text),
+        title: Text(
+          text,
+          style: AppTextStyle.bodyMedium_15.copyWith(
+            fontWeight: FontWeight.w400,
+            color: Theme.of(context).textTheme.bodyMedium!.color,
+          ),
+        ),
         trailing: selected
             ? Icon(
                 Icons.arrow_forward_ios,
-                color: Theme.of(context).colorScheme.tertiary,
-                size: 16,
+                color: Theme.of(context).colorScheme.surface,
+                size: 12,
               )
             : null,
         onTap: () {},
