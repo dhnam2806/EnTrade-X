@@ -1,8 +1,10 @@
+import 'package:entradex/stock_detail/bloc/intermediate_bloc/intermediate_bloc.dart';
 import 'package:entradex/theme/app_colors.dart';
 import 'package:entradex/theme/app_textstyle.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import '../../data/datak.dart';
+import '../../repo/datak.dart';
 
 class ChartTable extends StatelessWidget {
   const ChartTable({
@@ -17,6 +19,7 @@ class ChartTable extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
+    final intermediateBloc = BlocProvider.of<IntermediateBloc>(context);
     return Column(
       children: [
         Container(
@@ -72,11 +75,18 @@ class ChartTable extends StatelessWidget {
                           GestureDetector(
                             child: Padding(
                               padding: const EdgeInsets.only(right: 16.0),
-                              child: Text(
-                                dataList1[index].number.toString(),
-                                style: AppTextStyle.bodyMedium_15.copyWith(
-                                  fontWeight: FontWeight.w600,
-                                  color: AppColors.green,
+                              child: GestureDetector(
+                                onTap: () => intermediateBloc.add(
+                                    IntermediateSelectedPriceEvent(
+                                        index: dataList1[index]
+                                            .number
+                                            .toString())),
+                                child: Text(
+                                  dataList1[index].number.toString(),
+                                  style: AppTextStyle.bodyMedium_15.copyWith(
+                                    fontWeight: FontWeight.w600,
+                                    color: AppColors.green,
+                                  ),
                                 ),
                               ),
                             ),
@@ -116,11 +126,18 @@ class ChartTable extends StatelessWidget {
                           GestureDetector(
                             child: Padding(
                               padding: const EdgeInsets.only(left: 16.0),
-                              child: Text(
-                                dataList2[index].number.toString(),
-                                style: AppTextStyle.bodyMedium_15.copyWith(
-                                  fontWeight: FontWeight.w600,
-                                  color: AppColors.red,
+                              child: GestureDetector(
+                                onTap: () => intermediateBloc.add(
+                                    IntermediateSelectedPriceEvent(
+                                        index: dataList2[index]
+                                            .number
+                                            .toString())),
+                                child: Text(
+                                  dataList2[index].number.toString(),
+                                  style: AppTextStyle.bodyMedium_15.copyWith(
+                                    fontWeight: FontWeight.w600,
+                                    color: AppColors.red,
+                                  ),
                                 ),
                               ),
                             ),

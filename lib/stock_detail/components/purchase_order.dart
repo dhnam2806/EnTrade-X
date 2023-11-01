@@ -1,9 +1,9 @@
+import 'package:entradex/stock_detail/bloc/detail_bloc/detail_bloc.dart';
 import 'package:entradex/theme/app_textstyle.dart';
 import 'package:entradex/widgets/textfield.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import '../bloc/detail_bloc.dart';
 import 'package:intl/intl.dart';
 import 'package:entradex/theme/app_colors.dart';
 

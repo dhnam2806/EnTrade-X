@@ -1,13 +1,11 @@
-import 'package:entradex/stock_detail/bloc/prices_bloc.dart';
+import 'package:entradex/stock_detail/bloc/intermediate_bloc/intermediate_bloc.dart';
 import 'package:entradex/stock_detail/components/chart_table.dart';
 import 'package:entradex/theme/app_colors.dart';
 import 'package:entradex/theme/app_textstyle.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
-import '../../data/datak.dart';
-import '../bloc/detail_bloc.dart';
+import '../../repo/datak.dart';
 
 class PriceStep extends StatefulWidget {
   const PriceStep({super.key});
@@ -19,8 +17,7 @@ class PriceStep extends StatefulWidget {
 class _PriceStepState extends State<PriceStep> {
   @override
   Widget build(BuildContext context) {
-    final priceBloc = BlocProvider.of<PricesBloc>(context);
-
+    final intermediateBloc = BlocProvider.of<IntermediateBloc>(context);
     return SizedBox(
       height: 240.h,
       child: Padding(
@@ -124,21 +121,35 @@ class _PriceStepState extends State<PriceStep> {
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text(
-                              "86.10",
-                              style: AppTextStyle.bodyMedium_15.copyWith(
-                                fontWeight: FontWeight.w500,
-                                color: AppColors.blue,
+                            GestureDetector(
+                              onTap: () {
+                                intermediateBloc.add(
+                                    IntermediateSelectedPriceEvent(
+                                        index: "86.10"));
+                              },
+                              child: Text(
+                                "86.10",
+                                style: AppTextStyle.bodyMedium_15.copyWith(
+                                  fontWeight: FontWeight.w500,
+                                  color: AppColors.blue,
+                                ),
                               ),
                             ),
                             SizedBox(
                               height: 8.h,
                             ),
-                            Text(
-                              "92.34",
-                              style: AppTextStyle.bodyMedium_15.copyWith(
-                                fontWeight: FontWeight.w500,
-                                color: AppColors.red,
+                            GestureDetector(
+                              onTap: () {
+                                intermediateBloc.add(
+                                    IntermediateSelectedPriceEvent(
+                                        index: "92.34"));
+                              },
+                              child: Text(
+                                "92.34",
+                                style: AppTextStyle.bodyMedium_15.copyWith(
+                                  fontWeight: FontWeight.w500,
+                                  color: AppColors.red,
+                                ),
                               ),
                             ),
                           ],
@@ -175,21 +186,31 @@ class _PriceStepState extends State<PriceStep> {
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text(
-                              "92.50",
-                              style: AppTextStyle.bodyMedium_15.copyWith(
-                                fontWeight: FontWeight.w500,
-                                color: AppColors.yellow,
+                            GestureDetector(
+                              onTap: () => intermediateBloc.add(
+                                  IntermediateSelectedPriceEvent(
+                                      index: "92.50")),
+                              child: Text(
+                                "92.50",
+                                style: AppTextStyle.bodyMedium_15.copyWith(
+                                  fontWeight: FontWeight.w500,
+                                  color: AppColors.yellow,
+                                ),
                               ),
                             ),
                             SizedBox(
                               height: 8.h,
                             ),
-                            Text(
-                              "91.31",
-                              style: AppTextStyle.bodyMedium_15.copyWith(
-                                fontWeight: FontWeight.w500,
-                                color: AppColors.green,
+                            GestureDetector(
+                              onTap: () => intermediateBloc.add(
+                                  IntermediateSelectedPriceEvent(
+                                      index: "91.31")),
+                              child: Text(
+                                "91.31",
+                                style: AppTextStyle.bodyMedium_15.copyWith(
+                                  fontWeight: FontWeight.w500,
+                                  color: AppColors.green,
+                                ),
                               ),
                             ),
                           ],
@@ -226,21 +247,31 @@ class _PriceStepState extends State<PriceStep> {
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text(
-                              "98.90",
-                              style: AppTextStyle.bodyMedium_15.copyWith(
-                                fontWeight: FontWeight.w500,
-                                color: AppColors.purple,
+                            GestureDetector(
+                              onTap: () => intermediateBloc.add(
+                                  IntermediateSelectedPriceEvent(
+                                      index: "98.90")),
+                              child: Text(
+                                "98.90",
+                                style: AppTextStyle.bodyMedium_15.copyWith(
+                                  fontWeight: FontWeight.w500,
+                                  color: AppColors.purple,
+                                ),
                               ),
                             ),
                             SizedBox(
                               height: 8.h,
                             ),
-                            Text(
-                              "93.50",
-                              style: AppTextStyle.bodyMedium_15.copyWith(
-                                fontWeight: FontWeight.w500,
-                                color: AppColors.green,
+                            GestureDetector(
+                              onTap: () => intermediateBloc.add(
+                                  IntermediateSelectedPriceEvent(
+                                      index: "93.50")),
+                              child: Text(
+                                "93.50",
+                                style: AppTextStyle.bodyMedium_15.copyWith(
+                                  fontWeight: FontWeight.w500,
+                                  color: AppColors.green,
+                                ),
                               ),
                             ),
                           ],

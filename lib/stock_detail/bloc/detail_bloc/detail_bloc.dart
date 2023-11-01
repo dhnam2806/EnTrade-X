@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
 
-import '../../model/stock.dart';
+import '../../../model/stock.dart';
 
 part 'detail_event.dart';
 part 'detail_state.dart';

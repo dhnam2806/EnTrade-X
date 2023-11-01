@@ -1,11 +1,11 @@
 import 'dart:async';
 import 'package:bloc/bloc.dart';
-import 'package:entradex/data/category.dart';
-import 'package:entradex/data/stock_data.dart';
+import 'package:entradex/repo/category.dart';
+import 'package:entradex/repo/stock_data.dart';
 import 'package:entradex/model/news.dart';
 import 'package:meta/meta.dart';
 
-import '../../data/news_data.dart';
+import '../../repo/news_data.dart';
 import '../../model/collection.dart';
 import '../../model/stock.dart';
 

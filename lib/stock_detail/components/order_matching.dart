@@ -80,15 +80,17 @@ class _OrderMatchingState extends State<OrderMatching> {
             : (changePercent < 0 ? AppColors.red : AppColors.green);
       }
 
-      return DataCell(Center(
-        child: Text(
-          data.toString(),
-          style: AppTextStyle.bodySmall_14.copyWith(
-            fontWeight: FontWeight.w500,
-            color: textColor,
+      return DataCell(
+        Center(
+          child: Text(
+            data.toString(),
+            style: AppTextStyle.bodySmall_14.copyWith(
+              fontWeight: FontWeight.w500,
+              color: textColor,
+            ),
           ),
         ),
-      ));
+      );
     }).toList();
   }
 

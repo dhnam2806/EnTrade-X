@@ -1,3 +1,4 @@
+import 'package:entradex/stock_detail/bloc/detail_bloc/detail_bloc.dart';
 import 'package:entradex/theme/app_colors.dart';
 import 'package:entradex/follow/bloc/follow_bloc.dart';
 import 'package:entradex/theme/app_textstyle.dart';
@@ -6,9 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:persistent_bottom_nav_bar_v2/persistent-tab-view.dart';
-
 import '../../menu/screen/search_screen.dart';
-import '../bloc/detail_bloc.dart';
 
 class DetailHeader extends StatefulWidget {
   const DetailHeader({super.key});

@@ -1,14 +1,14 @@
 import 'package:entradex/model/stock.dart';
+import 'package:entradex/stock_detail/bloc/detail_bloc/detail_bloc.dart';
+import 'package:entradex/stock_detail/bloc/intermediate_bloc/intermediate_bloc.dart';
 import 'package:entradex/stock_detail/components/detail_header.dart';
+import 'package:entradex/stock_detail/components/order.dart';
 import 'package:entradex/stock_detail/components/purchase_order.dart';
 import 'package:entradex/stock_detail/components/related_news.dart';
 import 'package:entradex/stock_detail/components/tab_bar_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import '../../widgets/search.dart';
-import '../bloc/detail_bloc.dart';
-import '../components/order.dart';
 
 class DetailScreen extends StatefulWidget {
   final Stock stock;
@@ -24,6 +24,7 @@ class _DetailScreenState extends State<DetailScreen> {
     super.initState();
     BlocProvider.of<DetailBloc>(context)
         .add(DetailInitialEvent(stock: widget.stock));
+    BlocProvider.of<IntermediateBloc>(context).add(IntermediateInitialEvent());
   }
 
   @override
@@ -44,8 +45,8 @@ class _DetailScreenState extends State<DetailScreen> {
               SizedBox(height: 180.h),
             ]),
           ),
-          PurchaseOrder(),
-          // Order(),
+          // PurchaseOrder(),
+          Order(),
         ],
       )),
     );
