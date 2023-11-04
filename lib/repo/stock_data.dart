@@ -16,7 +16,7 @@ class StockData {
         total: 26100),
     Stock(
         name: "CTG",
-        price: 10000,
+        price: 28.00,
         priceChange: 0.20,
         changePercent: -2,
         total: 6730),
@@ -34,13 +34,13 @@ class StockData {
         total: 3854),
     Stock(
         name: "HPG",
-        price: 10000,
+        price: 25.10,
         priceChange: 0.20,
         changePercent: 10,
         total: 1000),
     Stock(
         name: "MBB",
-        price: 10000,
+        price: 17.40,
         priceChange: 0.20,
         changePercent: 10,
         total: 1000),
@@ -52,7 +52,7 @@ class StockData {
         total: 14070),
     Stock(
         name: "SSI",
-        price: 10000,
+        price: 28.90,
         priceChange: 0.20,
         changePercent: 10,
         total: 1000),

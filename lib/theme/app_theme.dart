@@ -45,7 +45,7 @@ ColorScheme _lightColorScheme = ColorScheme(
   onPrimary: Colors.white,
   secondary: AppColors.black,
   onSecondary: Colors.white,
-  error: AppColors.redText,
+  error: AppColors.red,
   onError: Colors.white,
   background: AppColors.light_bg_02,
   onBackground: AppColors.light_bg_03,
@@ -58,7 +58,7 @@ ColorScheme _darkColorScheme = ColorScheme(
   onPrimary: AppColors.black,
   secondary: AppColors.white,
   onSecondary: Colors.white,
-  error: AppColors.redText,
+  error: AppColors.red,
   onError: Colors.white,
   background: AppColors.dark_bg_02,
   onBackground: AppColors.dark_bg_03,
@@ -95,23 +95,13 @@ final AppBarTheme _darkAppBarTheme = AppBarTheme(
 final ThemeData lightThemeData = ThemeData(
   scaffoldBackgroundColor: AppColors.light_bg_01,
   textTheme: lightTextTheme,
-  // inputDecorationTheme: lightInputDecorationTheme,
   colorScheme: _lightColorScheme,
-  // textButtonTheme: TextButtonThemeData(style: _lightTextButtonThemeData),
-  // bottomNavigationBarTheme: _lightBottomNavigationBarThemeData,
   appBarTheme: _lightAppBarTheme,
-  // iconTheme: _lightIconThemeData,
-  // tabBarTheme: _lightTabBarTheme,
 );
 
 final ThemeData darkThemeData = ThemeData(
   scaffoldBackgroundColor: AppColors.dark_bg_01,
   textTheme: darkTextTheme,
-  // inputDecorationTheme: darkInputDecorationTheme,
   colorScheme: _darkColorScheme,
-  // textButtonTheme: TextButtonThemeData(style: _darkTextButtonThemeData),
-  // bottomNavigationBarTheme: _darkBottomNavigationBarThemeData,
   appBarTheme: _darkAppBarTheme,
-  // iconTheme: _darkIconThemeData,
-  // tabBarTheme: _darkTabBarTheme,
 );

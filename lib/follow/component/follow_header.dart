@@ -53,7 +53,7 @@ class FollowHeader extends StatelessWidget {
                 Container(
                   padding: EdgeInsets.all(6),
                   decoration: BoxDecoration(
-                    color: Theme.of(context).colorScheme.background,
+                    color: Theme.of(context).colorScheme.onBackground,
                     borderRadius: BorderRadius.circular(50),
                     boxShadow: [
                       BoxShadow(

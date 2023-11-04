@@ -18,15 +18,18 @@ class Order extends StatefulWidget {
 class _OrderState extends State<Order> {
   TextEditingController priceController = TextEditingController();
   TextEditingController quantityController = TextEditingController();
+  final safePaddingTop = ScreenUtil().statusBarHeight;
   final numberFormat = new NumberFormat("##,##0", "en_US");
-  final double money = 1200000000;
+  final double money = 12000000;
   String selectedButton = "LO";
   bool enableText = true;
   String textToDisplay = '';
+  bool isBuy = true;
+  bool isSell = false;
 
   void calculateAndSetText() {
     double price = priceController.text == ''
-        ? 92500
+        ? 98900
         : double.parse(priceController.text) * 1000;
     String priceText = (money / price).toStringAsFixed(0);
     setState(() {
@@ -34,11 +37,94 @@ class _OrderState extends State<Order> {
     });
   }
 
+  void calculateAndSetTextQuantity() {
+    setState(() {
+      if (quantityController.text == "") {
+        isBuy = true;
+      } else {
+        if (int.parse(quantityController.text) > int.parse(textToDisplay)) {
+          isBuy = false;
+        } else {
+          isBuy = true;
+        }
+      }
+    });
+  }
+
   @override
   void initState() {
     super.initState();
     calculateAndSetText();
+    calculateAndSetTextQuantity();
     priceController.addListener(calculateAndSetText);
+    quantityController.addListener(calculateAndSetTextQuantity);
+  }
+
+  void showCustomOverlay(BuildContext context) {
+    String text = "";
+    final overlayState = Overlay.of(context);
+
+    if (priceController.text == "" && quantityController.text == "") {
+      text = "Chưa nhập giá đặt \nChưa nhập khối lượng mua";
+    } else if (priceController.text == "") {
+      text = "Chưa nhập giá đặt";
+      isSell = false;
+    } else if (quantityController.text == "") {
+      text = "Chưa nhập khối lượng mua";
+      isSell = false;
+    } else if (int.parse(quantityController.text) > int.parse(textToDisplay)) {
+      text = "Khối lượng mua vượt quá sức mua";
+      isSell = false;
+    } else {
+      text = "Đặt lệnh thành công";
+      isSell = true;
+    }
+
+    OverlayEntry? overlayEntry;
+    overlayEntry = OverlayEntry(
+      builder: (context) => Positioned(
+        top: 0,
+        left: 0,
+        right: 0,
+        child: Material(
+          color: isSell ? AppColors.green : AppColors.red,
+          child: Padding(
+            padding: EdgeInsets.only(
+                top: safePaddingTop + 4.h, bottom: 12.h, left: 8.w, right: 8.w),
+            child: Row(
+              children: [
+                GestureDetector(
+                    onTap: () => overlayEntry!.remove(),
+                    child: Container(
+                        margin: EdgeInsets.symmetric(horizontal: 8.w),
+                        decoration: BoxDecoration(
+                          color: AppColors.white,
+                          borderRadius: BorderRadius.circular(50),
+                        ),
+                        child: Icon(Icons.close,
+                            color: isSell ? AppColors.green : AppColors.red,
+                            size: 14.sp))),
+                Container(
+                  child: Text(
+                    text,
+                    style: AppTextStyle.labelMedium_16.copyWith(
+                      fontWeight: FontWeight.w400,
+                      color: Colors.white,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+
+    overlayState.insert(overlayEntry);
+
+    Future.delayed(Duration(seconds: 2), () {
+      overlayEntry!.remove();
+    });
   }
 
   @override
@@ -50,17 +136,18 @@ class _OrderState extends State<Order> {
 
   @override
   Widget build(BuildContext context) {
-    final int money = 12000000000;
     String formattedPrice = numberFormat.format(money);
     final intermediateBloc = BlocProvider.of<IntermediateBloc>(context);
 
     return BlocConsumer<IntermediateBloc, IntermediateState>(
       bloc: intermediateBloc,
       listener: (context, state) {
-        if (state is IntermediateLoadedState) {
+        if (state is IntermediateSelectedState) {
           priceController.text = state.purchase;
         }
       },
+      listenWhen: (previous, current) => current is IntermediateActionState,
+      buildWhen: (previous, current) => current is! IntermediateActionState,
       builder: (context, state) {
         if (state is IntermediateLoadingState) {
           return Container(
@@ -316,8 +403,8 @@ class _OrderState extends State<Order> {
                                 priceController.text = purchaseValue;
                               } else {
                                 priceController.text =
-                                    (double.parse(priceController.text) - 0.5)
-                                        .toString();
+                                    (double.parse(priceController.text) - 0.1)
+                                        .toStringAsFixed(2);
                               }
                             }
                           },
@@ -327,8 +414,8 @@ class _OrderState extends State<Order> {
                                 priceController.text = purchaseValue;
                               } else {
                                 priceController.text =
-                                    (double.parse(priceController.text) + 0.5)
-                                        .toString();
+                                    (double.parse(priceController.text) + 0.1)
+                                        .toStringAsFixed(2);
                               }
                             }
                           },
@@ -367,6 +454,7 @@ class _OrderState extends State<Order> {
                         ),
                       ),
                       child: TextFieldCustom(
+                        isBuy: isBuy,
                         controller: quantityController,
                         title: "Khối lượng",
                         onTapRemove: () {
@@ -404,59 +492,67 @@ class _OrderState extends State<Order> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Container(
-                      padding: EdgeInsets.symmetric(vertical: 6.w),
-                      width: MediaQuery.of(context).size.width / 2 - 16.w,
-                      decoration: BoxDecoration(
-                        color: AppColors.green,
-                        borderRadius: BorderRadius.circular(4),
+                    GestureDetector(
+                      onTap: () {
+                        showCustomOverlay(context);
+                      },
+                      child: Container(
+                        padding: EdgeInsets.symmetric(vertical: 6.w),
+                        width: MediaQuery.of(context).size.width / 2 - 16.w,
+                        decoration: BoxDecoration(
+                          color: AppColors.green,
+                          borderRadius: BorderRadius.circular(4),
+                        ),
+                        child: Center(
+                            child: Column(
+                          children: [
+                            Text(
+                              "MUA",
+                              style: AppTextStyle.labelLarge_18.copyWith(
+                                fontWeight: FontWeight.w400,
+                                color: Colors.white,
+                              ),
+                            ),
+                            Text(
+                              "(${textToDisplay})",
+                              style: AppTextStyle.labelLarge_18.copyWith(
+                                fontWeight: FontWeight.w400,
+                                color: Colors.white,
+                              ),
+                            ),
+                          ],
+                        )),
                       ),
-                      child: Center(
-                          child: Column(
-                        children: [
-                          Text(
-                            "MUA",
-                            style: AppTextStyle.labelLarge_18.copyWith(
-                              fontWeight: FontWeight.w400,
-                              color: Colors.white,
-                            ),
-                          ),
-                          Text(
-                            textToDisplay,
-                            style: AppTextStyle.labelLarge_18.copyWith(
-                              fontWeight: FontWeight.w400,
-                              color: Colors.white,
-                            ),
-                          ),
-                        ],
-                      )),
                     ),
-                    Container(
-                      padding: EdgeInsets.symmetric(vertical: 6.w),
-                      width: MediaQuery.of(context).size.width / 2 - 16.w,
-                      decoration: BoxDecoration(
-                        color: AppColors.red,
-                        borderRadius: BorderRadius.circular(4),
+                    GestureDetector(
+                      onTap: () => showCustomOverlay(context),
+                      child: Container(
+                        padding: EdgeInsets.symmetric(vertical: 6.w),
+                        width: MediaQuery.of(context).size.width / 2 - 16.w,
+                        decoration: BoxDecoration(
+                          color: AppColors.red,
+                          borderRadius: BorderRadius.circular(4),
+                        ),
+                        child: Center(
+                            child: Column(
+                          children: [
+                            Text(
+                              "BÁN",
+                              style: AppTextStyle.labelLarge_18.copyWith(
+                                fontWeight: FontWeight.w400,
+                                color: Colors.white,
+                              ),
+                            ),
+                            Text(
+                              "(0)",
+                              style: AppTextStyle.labelLarge_18.copyWith(
+                                fontWeight: FontWeight.w400,
+                                color: Colors.white,
+                              ),
+                            ),
+                          ],
+                        )),
                       ),
-                      child: Center(
-                          child: Column(
-                        children: [
-                          Text(
-                            "BÁN",
-                            style: AppTextStyle.labelLarge_18.copyWith(
-                              fontWeight: FontWeight.w400,
-                              color: Colors.white,
-                            ),
-                          ),
-                          Text(
-                            "(0)",
-                            style: AppTextStyle.labelLarge_18.copyWith(
-                              fontWeight: FontWeight.w400,
-                              color: Colors.white,
-                            ),
-                          ),
-                        ],
-                      )),
                     ),
                   ],
                 ),

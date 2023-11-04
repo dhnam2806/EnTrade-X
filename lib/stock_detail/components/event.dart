@@ -180,7 +180,7 @@ class _EventState extends State<Event> {
               )
             ],
           ),
-          SizedBox(height: 8.h),
+          SizedBox(height: 4.h),
           Text("Xem thêm",
               style: TextStyle(
                 color: Theme.of(context).colorScheme.primary,

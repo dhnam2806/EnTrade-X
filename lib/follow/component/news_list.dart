@@ -47,12 +47,48 @@ class _NewsListState extends State<NewsList> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
-                  "Tin danh mục",
-                  style: AppTextStyle.labelLarge_18.copyWith(
-                    fontWeight: FontWeight.w500,
-                    color: Theme.of(context).textTheme.labelLarge!.color,
-                  ),
+                Row(
+                  children: [
+                    Text(
+                      "Tin danh mục",
+                      style: AppTextStyle.labelLarge_18.copyWith(
+                        fontWeight: FontWeight.w500,
+                        color: Theme.of(context).textTheme.labelLarge!.color,
+                      ),
+                    ),
+                    SizedBox(
+                      width: 4.w,
+                    ),
+                    Tooltip(
+                      padding: EdgeInsets.all(12),
+                      decoration: BoxDecoration(
+                        color: Theme.of(context).colorScheme.onBackground,
+                        borderRadius: BorderRadius.circular(4),
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.grey.withOpacity(0.2),
+                            spreadRadius: 1,
+                            blurRadius: 1,
+                            offset: Offset(0, 1), // changes position of shadow
+                          ),
+                        ],
+                      ),
+                      preferBelow: false,
+                      showDuration: Duration(seconds: 8),
+                      triggerMode: TooltipTriggerMode.tap,
+                      message:
+                          "% tăng/giảm giá được chốt tại thời điểm kết phiên giao dịch gần nhất sau thời điểm diễn ra tin",
+                      textStyle: AppTextStyle.titleMedium_16.copyWith(
+                        fontWeight: FontWeight.w400,
+                        color: Theme.of(context).textTheme.titleMedium!.color,
+                      ),
+                      child: Icon(
+                        Icons.info_outline,
+                        color: Colors.grey,
+                        size: 20,
+                      ),
+                    )
+                  ],
                 ),
                 Row(
                   children: [

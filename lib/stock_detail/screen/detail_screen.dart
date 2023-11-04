@@ -3,7 +3,6 @@ import 'package:entradex/stock_detail/bloc/detail_bloc/detail_bloc.dart';
 import 'package:entradex/stock_detail/bloc/intermediate_bloc/intermediate_bloc.dart';
 import 'package:entradex/stock_detail/components/detail_header.dart';
 import 'package:entradex/stock_detail/components/order.dart';
-import 'package:entradex/stock_detail/components/purchase_order.dart';
 import 'package:entradex/stock_detail/components/related_news.dart';
 import 'package:entradex/stock_detail/components/tab_bar_view.dart';
 import 'package:flutter/material.dart';
@@ -45,7 +44,6 @@ class _DetailScreenState extends State<DetailScreen> {
               SizedBox(height: 180.h),
             ]),
           ),
-          // PurchaseOrder(),
           Order(),
         ],
       )),

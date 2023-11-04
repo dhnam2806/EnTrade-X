@@ -4,6 +4,7 @@ import 'package:entradex/theme/app_colors.dart';
 import 'package:entradex/theme/app_textstyle.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:intl/intl.dart';
 import 'package:persistent_bottom_nav_bar_v2/persistent-tab-view.dart';
 import '../bloc/follow_bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -17,6 +18,7 @@ class StockData extends StatefulWidget {
 }
 
 class _StockDataState extends State<StockData> {
+  final numberFormat = new NumberFormat("##,##0", "en_US");
   bool isAscending = false;
   int? sortColumnIndex;
   int sortCount = 0;
@@ -122,8 +124,14 @@ class _StockDataState extends State<StockData> {
                     ? AppColors.yellow
                     : (changePercent < 0 ? AppColors.red : AppColors.green);
               }
+              if (idx is double) {
+                idx = idx.toStringAsFixed(2);
+              }
+              if (idx is int) {
+                idx =  numberFormat.format(idx);
+              }
               return DataCell(
-                Text(idx.toString(),
+                Text(idx,
                     style: AppTextStyle.bodyMedium_15.copyWith(
                       fontWeight: FontWeight.w500,
                       color: textColor,
@@ -166,6 +174,7 @@ class _StockDataState extends State<StockData> {
                       ],
                     ),
                     PopupMenuButton(
+                        color: Theme.of(context).colorScheme.onBackground,
                         padding: EdgeInsets.zero,
                         itemBuilder: (context) {
                           return [
@@ -185,14 +194,24 @@ class _StockDataState extends State<StockData> {
                                     Navigator.pop(context);
                                   });
                                 },
-                                title: Text(popup[0]),
+                                title: Text(
+                                  popup[0],
+                                  style: AppTextStyle.labelMedium_16.copyWith(
+                                    color: Theme.of(context)
+                                        .textTheme
+                                        .labelMedium!
+                                        .color,
+                                    fontWeight: FontWeight.w400,
+                                  ),
+                                ),
                               ),
                             ),
                             PopupMenuItem(
                               padding: EdgeInsets.zero,
                               value: "Phái sinh",
                               child: RadioListTile(
-                                activeColor: Colors.red,
+                                activeColor:
+                                    Theme.of(context).colorScheme.primary,
                                 value: "Phái sinh",
                                 groupValue: select,
                                 onChanged: (value) {
@@ -204,7 +223,16 @@ class _StockDataState extends State<StockData> {
                                     Navigator.pop(context);
                                   });
                                 },
-                                title: Text(popup[1]),
+                                title: Text(
+                                  popup[1],
+                                  style: AppTextStyle.labelMedium_16.copyWith(
+                                    color: Theme.of(context)
+                                        .textTheme
+                                        .labelMedium!
+                                        .color,
+                                    fontWeight: FontWeight.w400,
+                                  ),
+                                ),
                               ),
                             ),
                             PopupMenuItem(
@@ -218,13 +246,21 @@ class _StockDataState extends State<StockData> {
                                 onChanged: (value) {
                                   followBloc
                                       .add(StockSelectedEvent(value: value!));
-
                                   setState(() {
                                     select = value.toString();
                                     Navigator.pop(context);
                                   });
                                 },
-                                title: Text(popup[2]),
+                                title: Text(
+                                  popup[2],
+                                  style: AppTextStyle.labelMedium_16.copyWith(
+                                    color: Theme.of(context)
+                                        .textTheme
+                                        .labelMedium!
+                                        .color,
+                                    fontWeight: FontWeight.w400,
+                                  ),
+                                ),
                               ),
                             ),
                           ];

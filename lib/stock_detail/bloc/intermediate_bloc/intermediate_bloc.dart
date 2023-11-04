@@ -16,12 +16,11 @@ class IntermediateBloc extends Bloc<IntermediateEvent, IntermediateState> {
       IntermediateInitialEvent event, Emitter<IntermediateState> emit) {
     final stock = detailBloc.state as DetailLoadedState;
     emit(IntermediateLoadingState());
-    emit(IntermediateLoadedState(purchase: ""));
+    emit(IntermediateLoadedState(purchase: stock.stock.price.toString()));
   }
 
   FutureOr<void> intermediateSelectedPriceEvent(
       IntermediateSelectedPriceEvent event, Emitter<IntermediateState> emit) {
-    emit(IntermediateLoadingState());
-    emit(IntermediateLoadedState(purchase: event.index));
+    emit(IntermediateSelectedState(purchase: event.index));
   }
 }

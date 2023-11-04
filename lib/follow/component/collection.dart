@@ -69,30 +69,21 @@ class _CollectionState extends State<Collection> {
                 itemBuilder: (context, index) {
                   return Container(
                     width: 32.w,
+                    height: 22.h,
                     margin: EdgeInsets.only(right: 4.w),
                     decoration: BoxDecoration(
-                      color: Theme.of(context).colorScheme.background,
+                      color: Theme.of(context).colorScheme.onBackground,
                       borderRadius: BorderRadius.circular(4),
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.grey.withOpacity(0.2),
-                          spreadRadius: 0.4,
-                          blurRadius: 1,
-                          offset: Offset(0, 2),
-                        ),
-                      ],
                     ),
                     child: Center(
                         child: Text(getName(data[index].name),
-                            style: AppTextStyle.bodySmall_14.copyWith(
+                            style: AppTextStyle.bodyMedium_15.copyWith(
+                              fontWeight: FontWeight.w400,
                               color:
-                                  Theme.of(context).textTheme.bodySmall!.color,
+                                  Theme.of(context).textTheme.bodyMedium!.color,
                             ))),
                   );
                 },
-              ),
-              SizedBox(
-                width: 8.w,
               ),
               isShow
                   ? GestureDetector(
@@ -102,20 +93,16 @@ class _CollectionState extends State<Collection> {
                       },
                       child: Container(
                         width: 32.w,
-                        padding: EdgeInsets.all(8),
                         decoration: BoxDecoration(
-                          color: Theme.of(context).colorScheme.background,
+                          color: Theme.of(context).colorScheme.onBackground,
                           borderRadius: BorderRadius.circular(4),
-                          boxShadow: [
-                            BoxShadow(
-                              color: Colors.grey.withOpacity(0.2),
-                              spreadRadius: 0.4,
-                              blurRadius: 1,
-                              offset: Offset(0, 2),
-                            ),
-                          ],
                         ),
-                        child: Center(child: Text("+")),
+                        child: Center(
+                          child: Icon(
+                            Icons.add,
+                            color: Theme.of(context).textTheme.bodySmall!.color,
+                          ),
+                        ),
                       ),
                     )
                   : Container(),

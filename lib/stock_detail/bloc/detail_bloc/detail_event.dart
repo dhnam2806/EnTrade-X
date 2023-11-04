@@ -9,6 +9,13 @@ class DetailInitialEvent extends DetailEvent {
   DetailInitialEvent({required this.stock});
 }
 
+class DetailSelectedPriceEvent extends DetailEvent {
+  final String index;
+
+  DetailSelectedPriceEvent({required this.index});
+}
+
+
 
 
 

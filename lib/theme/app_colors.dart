@@ -24,6 +24,4 @@ class AppColors {
   static const Color primary_01 = Color(0xFF91121C);
   static const Color primary_02 = Color(0xFFFD1010);
   static const Color secondary = Colors.grey;
-
-  static const Color redText = Color.fromARGB(255, 212, 67, 67);
 }

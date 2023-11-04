@@ -8,12 +8,16 @@ class TextFieldCustom extends StatefulWidget {
   Function onTapRemove;
   Function onTapAdd;
   TextEditingController controller;
-  final bool enabled;
-  TextFieldCustom(
-      {required this.controller,
-      required this.title,
-      required this.onTapRemove,
-      required this.onTapAdd, this.enabled = true,});
+  bool enabled;
+  bool isBuy;
+  TextFieldCustom({
+    required this.controller,
+    required this.title,
+    required this.onTapRemove,
+    required this.onTapAdd,
+    this.enabled = true,
+    this.isBuy = true,
+  });
 
   @override
   State<TextFieldCustom> createState() => _TextFieldCustomState();
@@ -50,9 +54,10 @@ class _TextFieldCustomState extends State<TextFieldCustom> {
               ),
             ),
             style: AppTextStyle.labelSmall_14.copyWith(
-              fontWeight: FontWeight.w400,
-              color: Theme.of(context).textTheme.labelSmall!.color,
-            ),
+                fontWeight: FontWeight.w400,
+                color: widget.isBuy
+                    ? Theme.of(context).textTheme.labelSmall!.color
+                    : Theme.of(context).colorScheme.primary),
           ),
         ),
         GestureDetector(

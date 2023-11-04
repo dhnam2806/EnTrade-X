@@ -19,4 +19,6 @@ class DetailBloc extends Bloc<DetailEvent, DetailState> {
     emit(DetailLoadedState(stock: event.stock));
   }
 
+  
+
 }
