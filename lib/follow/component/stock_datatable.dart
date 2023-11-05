@@ -287,15 +287,22 @@ class _StockDataState extends State<StockData> {
                         )),
                   ],
                 ),
-                DataTable(
-                  showCheckboxColumn: false,
-                  horizontalMargin: 0,
-                  sortAscending: isAscending,
-                  sortColumnIndex: sortColumnIndex,
-                  columns: getColumn(column),
-                  rows: getRow(data),
-                  columnSpacing: 52.w,
-                  dataRowHeight: 44.h,
+                Theme(
+                  data: Theme.of(context).copyWith(
+                    iconTheme: IconThemeData(
+                      color: Theme.of(context).colorScheme.primary,
+                    ),
+                  ),
+                  child: DataTable(
+                    showCheckboxColumn: false,
+                    horizontalMargin: 0,
+                    sortAscending: isAscending,
+                    sortColumnIndex: sortColumnIndex,
+                    columns: getColumn(column),
+                    rows: getRow(data),
+                    columnSpacing: 52.w,
+                    dataRowHeight: 44.h,
+                  ),
                 ),
               ],
             ),
