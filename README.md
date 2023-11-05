@@ -1,7 +1,9 @@
 # entradex
 
 Entrade-X App.
+
 Name: Dương Hải Nam.
+
 Màn hình làm việc: Theo dõi, Menu
 
 ## Getting Started
