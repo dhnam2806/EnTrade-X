@@ -52,6 +52,7 @@ ColorScheme _lightColorScheme = ColorScheme(
   surface: AppColors.gray,
   onSurface: Colors.grey,
 );
+
 ColorScheme _darkColorScheme = ColorScheme(
   brightness: Brightness.light,
   primary: AppColors.primary_02,

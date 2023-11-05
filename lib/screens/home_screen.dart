@@ -7,7 +7,6 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final textTheme = Theme.of(context).textTheme;
     return Scaffold(
         backgroundColor: Theme.of(context).scaffoldBackgroundColor,
         body: Center(

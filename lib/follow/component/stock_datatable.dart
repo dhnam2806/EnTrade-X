@@ -75,35 +75,37 @@ class _StockDataState extends State<StockData> {
             return column.map((String column) {
               return DataColumn(
                 numeric: column == "Tổng KL" ? true : false,
-                onSort: (columnIndex, ascending) {
-                  if (sortCount == 2) {
-                    resetDataTable();
-                    return;
-                  }
-                  if (columnIndex == 0) {
-                    resetDataTable();
-                  }
-                  if (columnIndex == 1) {
-                    data.sort((a, b) => ascending
-                        ? a.price.compareTo(b.price)
-                        : b.price.compareTo(a.price));
-                  }
-                  if (columnIndex == 2) {
-                    data.sort((a, b) => ascending
-                        ? a.changePercent.compareTo(b.changePercent)
-                        : b.changePercent.compareTo(a.changePercent));
-                  }
-                  if (columnIndex == 3) {
-                    data.sort((a, b) => ascending
-                        ? a.total.compareTo(b.total)
-                        : b.total.compareTo(a.total));
-                  }
-                  setState(() {
-                    sortColumnIndex = columnIndex;
-                    isAscending = ascending;
-                    sortCount++;
-                  });
-                },
+                onSort: column == "Mã"
+                    ? null
+                    : (columnIndex, ascending) {
+                        if (sortCount == 2) {
+                          resetDataTable();
+                          return;
+                        }
+                        if (columnIndex == 0) {
+                          resetDataTable();
+                        }
+                        if (columnIndex == 1) {
+                          data.sort((a, b) => ascending
+                              ? a.price.compareTo(b.price)
+                              : b.price.compareTo(a.price));
+                        }
+                        if (columnIndex == 2) {
+                          data.sort((a, b) => ascending
+                              ? a.changePercent.compareTo(b.changePercent)
+                              : b.changePercent.compareTo(a.changePercent));
+                        }
+                        if (columnIndex == 3) {
+                          data.sort((a, b) => ascending
+                              ? a.total.compareTo(b.total)
+                              : b.total.compareTo(a.total));
+                        }
+                        setState(() {
+                          sortColumnIndex = columnIndex;
+                          isAscending = ascending;
+                          sortCount++;
+                        });
+                      },
                 label: Text(
                   column,
                   style: TextStyle(
@@ -128,7 +130,7 @@ class _StockDataState extends State<StockData> {
                 idx = idx.toStringAsFixed(2);
               }
               if (idx is int) {
-                idx =  numberFormat.format(idx);
+                idx = numberFormat.format(idx);
               }
               return DataCell(
                 Text(idx,

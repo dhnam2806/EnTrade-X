@@ -12,11 +12,11 @@ class Profile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final Size size = MediaQuery.of(context).size;
-    // final safePadding = MediaQuery.of(context).padding.top;
+    final safePadding = MediaQuery.of(context).padding.top;
 
     return Container(
-      height: size.height * 0.24,
-      // padding: EdgeInsets.only(top: safePadding),
+      height: size.height * 0.23,
+      padding: EdgeInsets.only(top: safePadding),
       decoration: BoxDecoration(
           boxShadow: [
             BoxShadow(

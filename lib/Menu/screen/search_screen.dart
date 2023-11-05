@@ -1,4 +1,3 @@
-import 'package:entradex/follow/component/news_list.dart';
 import 'package:entradex/widgets/search.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';

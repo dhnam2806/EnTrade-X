@@ -121,11 +121,13 @@ class _DetailHeaderState extends State<DetailHeader> {
                             Container(
                               padding: EdgeInsets.all(6),
                               decoration: BoxDecoration(
-                                color: Theme.of(context).colorScheme.background,
+                                color:
+                                    Theme.of(context).colorScheme.onBackground,
                                 borderRadius: BorderRadius.circular(50),
                                 boxShadow: [
                                   BoxShadow(
-                                    color: Colors.grey.withOpacity(0.2),
+                                    color: Color.fromARGB(255, 45, 44, 44)
+                                        .withOpacity(0.2),
                                     spreadRadius: 0.4,
                                     blurRadius: 2,
                                     offset: Offset(0, 2),
@@ -140,11 +142,13 @@ class _DetailHeaderState extends State<DetailHeader> {
                             Container(
                               padding: EdgeInsets.all(6),
                               decoration: BoxDecoration(
-                                color: Theme.of(context).colorScheme.background,
+                                color:
+                                    Theme.of(context).colorScheme.onBackground,
                                 borderRadius: BorderRadius.circular(50),
                                 boxShadow: [
                                   BoxShadow(
-                                    color: Colors.grey.withOpacity(0.2),
+                                    color: Color.fromARGB(255, 45, 44, 44)
+                                        .withOpacity(0.2),
                                     spreadRadius: 0.4,
                                     blurRadius: 2,
                                     offset: Offset(0, 2),

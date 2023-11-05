@@ -1,4 +1,3 @@
-import 'package:entradex/theme/app_colors.dart';
 import 'package:entradex/theme/app_textstyle.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';

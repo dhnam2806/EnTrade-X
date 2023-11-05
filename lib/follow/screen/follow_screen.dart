@@ -2,9 +2,6 @@ import 'package:entradex/follow/component/follow_header.dart';
 import 'package:entradex/follow/component/news_list.dart';
 import 'package:entradex/follow/component/stock_datatable.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-
-import '../bloc/follow_bloc.dart';
 
 class FollowScreen extends StatefulWidget {
   const FollowScreen({super.key});

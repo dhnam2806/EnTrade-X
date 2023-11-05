@@ -30,7 +30,6 @@ class _NewsListState extends State<NewsList> {
     return BlocConsumer<FollowBloc, FollowState>(
       bloc: followBloc,
       listener: (context, state) {
-        // TODO: implement listener
       },
       builder: (context, state) {
         if (state is FollowLoadingState) {
@@ -159,6 +158,9 @@ class _NewsListState extends State<NewsList> {
                                                 changePercent: 0.00),
                                           ],
                                         ),
+                                  SizedBox(
+                                    height: 2.h,
+                                  ),
                                   Row(
                                     children: [
                                       Icon(

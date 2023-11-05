@@ -48,6 +48,7 @@ class SettingScreen extends StatelessWidget {
                 style: textTheme,
               ),
               trailing: Switch(
+                  inactiveTrackColor: Colors.grey,
                   onChanged: (value) {
                     print(value);
                   },

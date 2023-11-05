@@ -1,4 +1,3 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:entradex/theme/app_textstyle.dart';
 import 'package:flutter/material.dart';
 

@@ -14,12 +14,10 @@ class FollowHeader extends StatelessWidget {
   Widget build(BuildContext context) {
     final Size size = MediaQuery.of(context).size;
     final safePadding = MediaQuery.of(context).padding.top;
-    final textTheme = Theme.of(context).textTheme;
 
     return BlocListener<FollowBloc, FollowState>(
       bloc: BlocProvider.of<FollowBloc>(context),
       listener: (context, state) {
-        // TODO: implement listener
         if (state is SearchStockNavigateState) {
           pushNewScreen(
             context,
@@ -57,10 +55,10 @@ class FollowHeader extends StatelessWidget {
                     borderRadius: BorderRadius.circular(50),
                     boxShadow: [
                       BoxShadow(
-                        color: Colors.grey.withOpacity(0.2),
+                        color: Color.fromARGB(255, 45, 44, 44).withOpacity(0.1),
                         spreadRadius: 0.4,
-                        blurRadius: 1,
-                        offset: Offset(0, 1),
+                        blurRadius: 2,
+                        offset: Offset(0, 2),
                       ),
                     ],
                   ),

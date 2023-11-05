@@ -1,4 +1,3 @@
-import 'package:entradex/theme/app_colors.dart';
 import 'package:entradex/theme/app_textstyle.dart';
 import 'package:flutter/material.dart';
 
@@ -15,10 +14,10 @@ class SearchWidget extends StatelessWidget {
         borderRadius: BorderRadius.circular(50),
         boxShadow: [
           BoxShadow(
-            color: Theme.of(context).colorScheme.background.withOpacity(0.2),
+            color: Color.fromARGB(255, 45, 44, 44).withOpacity(0.1),
             spreadRadius: 0.4,
-            blurRadius: 1,
-            offset: Offset(0, 1),
+            blurRadius: 2,
+            offset: Offset(0, 2),
           ),
         ],
       ),
