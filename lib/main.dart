@@ -1,4 +1,3 @@
-import 'package:device_preview/device_preview.dart';
 import 'package:entradex/bot_navbar.dart';
 import 'package:entradex/follow/bloc/follow_bloc.dart';
 import 'package:entradex/stock_detail/bloc/detail_bloc/detail_bloc.dart';
