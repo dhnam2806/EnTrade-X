@@ -467,7 +467,8 @@ class _OrderState extends State<Order> {
                               quantityController.text =
                                   (int.parse(quantityController.text) - 100)
                                       .toString();
-                            } else {
+                            } else if (int.parse(quantityController.text) <=
+                                100) {
                               quantityController.text =
                                   (int.parse(quantityController.text) - 1)
                                       .toString();
@@ -478,9 +479,15 @@ class _OrderState extends State<Order> {
                           if (selectedButton == "LO") {
                             if (quantityController.text == "") {
                               quantityController.text = "100";
-                            } else {
+                            } else if (int.parse(quantityController.text) >=
+                                100) {
                               quantityController.text =
                                   (int.parse(quantityController.text) + 100)
+                                      .toString();
+                            } else if (int.parse(quantityController.text) <
+                                100) {
+                              quantityController.text =
+                                  (int.parse(quantityController.text) + 1)
                                       .toString();
                             }
                           }
