@@ -172,7 +172,7 @@ class _OrderState extends State<Order> {
           return Container(
             padding:
                 EdgeInsets.only(top: 12.h, left: 8.w, right: 8.w, bottom: 2.h),
-            height: 180.h,
+            // height: 180.h,
             decoration: BoxDecoration(
               color: Theme.of(context).colorScheme.background,
               boxShadow: [
@@ -185,6 +185,7 @@ class _OrderState extends State<Order> {
               ],
             ),
             child: Column(
+              mainAxisSize: MainAxisSize.min,
               children: [
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,

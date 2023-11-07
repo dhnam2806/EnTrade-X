@@ -19,11 +19,11 @@ class _PriceStepState extends State<PriceStep> {
   Widget build(BuildContext context) {
     final intermediateBloc = BlocProvider.of<IntermediateBloc>(context);
     return SizedBox(
-      height: 240.h,
       child: Padding(
         padding: const EdgeInsets.only(top: 12.0, left: 6, right: 6),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisSize: MainAxisSize.min,
           children: [
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 8.0),

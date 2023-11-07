@@ -28,7 +28,6 @@ class _RelatedNewsState extends State<RelatedNews> {
     return BlocConsumer<FollowBloc, FollowState>(
       bloc: followBloc,
       listener: (context, state) {
-        // TODO: implement listener
       },
       builder: (context, state) {
         if (state is FollowLoadingState) {
@@ -44,6 +43,7 @@ class _RelatedNewsState extends State<RelatedNews> {
             padding: EdgeInsets.symmetric(horizontal: 8, vertical: 12),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisSize: MainAxisSize.min,
               children: [
                 Column(
                   children: [

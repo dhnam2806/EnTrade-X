@@ -19,7 +19,6 @@ class DetailHeader extends StatefulWidget {
 class _DetailHeaderState extends State<DetailHeader> {
   @override
   Widget build(BuildContext context) {
-    final Size size = MediaQuery.of(context).size;
     final safePadding = MediaQuery.of(context).padding.top;
     return BlocConsumer<DetailBloc, DetailState>(
       bloc: BlocProvider.of<DetailBloc>(context),
@@ -42,15 +41,15 @@ class _DetailHeaderState extends State<DetailHeader> {
         if (state is DetailLoadedState) {
           final success = state as DetailLoadedState;
           return Container(
-            height: size.height * 0.14,
-            padding:
-                EdgeInsets.only(top: safePadding + 4.h, left: 12, right: 12),
+            padding: EdgeInsets.only(
+                top: safePadding + 4.h, left: 12, right: 12, bottom: 8.h),
             decoration: BoxDecoration(
                 borderRadius: BorderRadius.only(
                     bottomLeft: Radius.circular(12),
                     bottomRight: Radius.circular(12)),
                 color: Theme.of(context).colorScheme.background),
             child: Column(
+              mainAxisSize: MainAxisSize.min,
               children: [
                 Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,

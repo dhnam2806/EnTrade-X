@@ -25,7 +25,6 @@ class _OrderMatchingState extends State<OrderMatching> {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 250.h,
       child: Padding(
         padding: const EdgeInsets.only(top: 16.0),
         child: Column(
