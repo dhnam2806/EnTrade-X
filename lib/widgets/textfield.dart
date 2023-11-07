@@ -1,6 +1,7 @@
 import 'package:entradex/theme/app_colors.dart';
 import 'package:entradex/theme/app_textstyle.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class TextFieldCustom extends StatefulWidget {
@@ -10,6 +11,7 @@ class TextFieldCustom extends StatefulWidget {
   TextEditingController controller;
   bool enabled;
   bool isBuy;
+  bool isZero;
   TextFieldCustom({
     required this.controller,
     required this.title,
@@ -17,6 +19,7 @@ class TextFieldCustom extends StatefulWidget {
     required this.onTapAdd,
     this.enabled = true,
     this.isBuy = true,
+    this.isZero = false,
   });
 
   @override
@@ -40,7 +43,15 @@ class _TextFieldCustomState extends State<TextFieldCustom> {
         Container(
           width: 80.w,
           child: TextField(
-            enabled: widget.enabled,
+            inputFormatters: widget.title == "Giá đặt"
+                ? <TextInputFormatter>[
+                    FilteringTextInputFormatter.allow(
+                        RegExp(r'^\d+\.?\d{0,2}')),
+                  ]
+                : <TextInputFormatter>[
+                    FilteringTextInputFormatter.allow(RegExp(r'^\d+')),
+                  ],
+            enabled: widget.title == "Khối lượng" ? true : widget.enabled,
             onTapOutside: (event) => FocusScope.of(context).unfocus(),
             controller: widget.controller,
             keyboardType: TextInputType.number,
@@ -55,9 +66,11 @@ class _TextFieldCustomState extends State<TextFieldCustom> {
             ),
             style: AppTextStyle.labelSmall_14.copyWith(
                 fontWeight: FontWeight.w400,
-                color: widget.isBuy
-                    ? Theme.of(context).textTheme.labelSmall!.color
-                    : Theme.of(context).colorScheme.primary),
+                color: widget.isBuy == false
+                    ? Theme.of(context).colorScheme.primary
+                    : widget.isZero == true
+                        ? Theme.of(context).colorScheme.primary
+                        : Theme.of(context).textTheme.labelSmall!.color),
           ),
         ),
         GestureDetector(

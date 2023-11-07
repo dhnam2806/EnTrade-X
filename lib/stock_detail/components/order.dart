@@ -26,14 +26,22 @@ class _OrderState extends State<Order> {
   String textToDisplay = '';
   bool isBuy = true;
   bool isSell = false;
+  bool isZero = false;
 
   void calculateAndSetText() {
     double price = priceController.text == ''
         ? 98900
-        : double.parse(priceController.text) * 1000;
+        : double.tryParse(priceController.text) == 0
+            ? 98900
+            : double.parse(priceController.text) * 1000;
     String priceText = (money / price).toStringAsFixed(0);
     setState(() {
       textToDisplay = priceText;
+      if (double.tryParse(priceController.text) == 0) {
+        isZero = true;
+      } else {
+        isZero = false;
+      }
     });
   }
 
@@ -94,7 +102,10 @@ class _OrderState extends State<Order> {
             child: Row(
               children: [
                 GestureDetector(
-                    onTap: () => overlayEntry!.remove(),
+                    onTap: () {
+                      overlayEntry?.remove();
+                      overlayEntry = null;
+                    },
                     child: Container(
                         margin: EdgeInsets.symmetric(horizontal: 8.w),
                         decoration: BoxDecoration(
@@ -120,10 +131,10 @@ class _OrderState extends State<Order> {
       ),
     );
 
-    overlayState.insert(overlayEntry);
+    overlayState.insert(overlayEntry!);
 
-    Future.delayed(Duration(seconds: 2), () {
-      overlayEntry!.remove();
+    Future.delayed(Duration(seconds: 4), () {
+      overlayEntry?.remove();
     });
   }
 
@@ -136,7 +147,7 @@ class _OrderState extends State<Order> {
 
   @override
   Widget build(BuildContext context) {
-    String formattedPrice = numberFormat.format(money);
+    String formattedMoney = numberFormat.format(money);
     final intermediateBloc = BlocProvider.of<IntermediateBloc>(context);
 
     return BlocConsumer<IntermediateBloc, IntermediateState>(
@@ -199,7 +210,7 @@ class _OrderState extends State<Order> {
                                 color: AppColors.secondary,
                               )),
                           Text(
-                            formattedPrice,
+                            formattedMoney,
                             style: AppTextStyle.bodySmall_14.copyWith(
                               fontWeight: FontWeight.w400,
                               color:
@@ -397,10 +408,12 @@ class _OrderState extends State<Order> {
                         child: TextFieldCustom(
                           controller: priceController,
                           enabled: enableText,
+                          isZero: isZero,
                           title: "Giá đặt",
                           onTapRemove: () {
                             if (selectedButton == "LO") {
-                              if (priceController.text == "") {
+                              if (priceController.text == "" ||
+                                  double.parse(priceController.text) == 0) {
                                 priceController.text = purchaseValue;
                               } else {
                                 priceController.text =
@@ -411,7 +424,8 @@ class _OrderState extends State<Order> {
                           },
                           onTapAdd: () {
                             if (selectedButton == "LO") {
-                              if (priceController.text == "") {
+                              if (priceController.text == "" ||
+                                  double.parse(priceController.text) == 0) {
                                 priceController.text = purchaseValue;
                               } else {
                                 priceController.text =
@@ -459,7 +473,7 @@ class _OrderState extends State<Order> {
                         controller: quantityController,
                         title: "Khối lượng",
                         onTapRemove: () {
-                          if (selectedButton == "LO") {
+                          if (int.parse(quantityController.text) > 0) {
                             if (quantityController.text == "") {
                               quantityController.text = "0";
                             } else if (int.parse(quantityController.text) >
@@ -476,20 +490,18 @@ class _OrderState extends State<Order> {
                           }
                         },
                         onTapAdd: () {
-                          if (selectedButton == "LO") {
-                            if (quantityController.text == "") {
-                              quantityController.text = "100";
-                            } else if (int.parse(quantityController.text) >=
-                                100) {
-                              quantityController.text =
-                                  (int.parse(quantityController.text) + 100)
-                                      .toString();
-                            } else if (int.parse(quantityController.text) <
-                                100) {
-                              quantityController.text =
-                                  (int.parse(quantityController.text) + 1)
-                                      .toString();
-                            }
+                          if (quantityController.text == "" ||
+                              int.parse(quantityController.text) == 0) {
+                            quantityController.text = "100";
+                          } else if (int.parse(quantityController.text) >=
+                              100) {
+                            quantityController.text =
+                                (int.parse(quantityController.text) + 100)
+                                    .toString();
+                          } else if (int.parse(quantityController.text) < 100) {
+                            quantityController.text =
+                                (int.parse(quantityController.text) + 1)
+                                    .toString();
                           }
                         },
                       ),

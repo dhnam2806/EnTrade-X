@@ -6,6 +6,7 @@ import 'package:entradex/widgets/search.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:intl/intl.dart';
 import 'package:persistent_bottom_nav_bar_v2/persistent-tab-view.dart';
 import '../../menu/screen/search_screen.dart';
 
@@ -17,6 +18,7 @@ class DetailHeader extends StatefulWidget {
 }
 
 class _DetailHeaderState extends State<DetailHeader> {
+  final numberFormat = new NumberFormat("##,##0", "en_US");
   @override
   Widget build(BuildContext context) {
     final safePadding = MediaQuery.of(context).padding.top;
@@ -178,7 +180,7 @@ class _DetailHeaderState extends State<DetailHeader> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Text(
-                              state.stock.price.toString(),
+                              state.stock.price.toStringAsFixed(2),
                               style: AppTextStyle.labelLarge_18.copyWith(
                                 fontWeight: FontWeight.w500,
                                 color: state.stock.changePercent == 0
@@ -208,7 +210,7 @@ class _DetailHeaderState extends State<DetailHeader> {
                             RichText(
                                 text: TextSpan(children: [
                               TextSpan(
-                                text: success.stock.total.toString(),
+                                text: numberFormat.format(success.stock.total),
                                 style: AppTextStyle.bodySmall_14.copyWith(
                                   fontWeight: FontWeight.w400,
                                   color: Theme.of(context)
