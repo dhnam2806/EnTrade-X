@@ -72,20 +72,32 @@ class _OrderState extends State<Order> {
     String text = "";
     final overlayState = Overlay.of(context);
 
-    if (priceController.text == "" && quantityController.text == "") {
-      text = "Chưa nhập giá đặt \nChưa nhập khối lượng mua";
-    } else if (priceController.text == "") {
-      text = "Chưa nhập giá đặt";
-      isSell = false;
-    } else if (quantityController.text == "") {
-      text = "Chưa nhập khối lượng mua";
-      isSell = false;
-    } else if (int.parse(quantityController.text) > int.parse(textToDisplay)) {
-      text = "Khối lượng mua vượt quá sức mua";
-      isSell = false;
+    if (selectedButton == "LO") {
+      if (priceController.text == "" && quantityController.text == "") {
+        text = "Chưa nhập giá đặt \nChưa nhập khối lượng mua";
+      } else if (priceController.text == "") {
+        text = "Chưa nhập giá đặt";
+        isSell = false;
+      } else if (quantityController.text == "") {
+        text = "Chưa nhập khối lượng mua";
+        isSell = false;
+      } else if (int.parse(quantityController.text) >
+          int.parse(textToDisplay)) {
+        text = "Khối lượng mua vượt quá sức mua";
+        isSell = false;
+      } else {
+        text = "Đặt lệnh thành công";
+        isSell = true;
+      }
     } else {
-      text = "Đặt lệnh thành công";
-      isSell = true;
+      if (quantityController.text == "") {
+        text = "Chưa nhập khối lượng mua";
+      } else if (int.parse(quantityController.text) >
+          int.parse(textToDisplay)) {
+        text = "Khối lượng mua vượt quá sức mua";
+      } else {
+        text = "Đặt lệnh thành công";
+      }
     }
 
     OverlayEntry? overlayEntry;
