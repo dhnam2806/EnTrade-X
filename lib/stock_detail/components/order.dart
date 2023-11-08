@@ -95,8 +95,10 @@ class _OrderState extends State<Order> {
       } else if (int.parse(quantityController.text) >
           int.parse(textToDisplay)) {
         text = "Khối lượng mua vượt quá sức mua";
+        isSell = false;
       } else {
         text = "Đặt lệnh thành công";
+        isSell = true;
       }
     }
 
