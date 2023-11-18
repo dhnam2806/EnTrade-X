@@ -19,6 +19,7 @@ class DetailHeader extends StatefulWidget {
 
 class _DetailHeaderState extends State<DetailHeader> {
   final numberFormat = new NumberFormat("##,##0", "en_US");
+  final numberFormat2 = new NumberFormat("##,##0.0", "en_US");
   @override
   Widget build(BuildContext context) {
     final safePadding = MediaQuery.of(context).padding.top;
@@ -178,7 +179,9 @@ class _DetailHeaderState extends State<DetailHeader> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Text(
-                              state.stock.price.toStringAsFixed(2),
+                              state.stock.price > 1000
+                                  ? numberFormat2.format(state.stock.price)
+                                  : state.stock.price.toStringAsFixed(2),
                               style: AppTextStyle.labelLarge_18.copyWith(
                                 fontWeight: FontWeight.w500,
                                 color: state.stock.changePercent == 0

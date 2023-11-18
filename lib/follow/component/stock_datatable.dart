@@ -19,6 +19,7 @@ class StockData extends StatefulWidget {
 
 class _StockDataState extends State<StockData> {
   final numberFormat = new NumberFormat("##,##0", "en_US");
+  final numberFormat2 = new NumberFormat("##,##0.0", "en_US");
   bool isAscending = false;
   int? sortColumnIndex;
   int sortCount = 0;
@@ -127,7 +128,10 @@ class _StockDataState extends State<StockData> {
                     : (changePercent < 0 ? AppColors.red : AppColors.green);
               }
               if (idx is double) {
-                idx = idx.toStringAsFixed(2);
+                if (idx > 1000) {
+                  idx = numberFormat2.format(idx);
+                } else
+                  idx = idx.toStringAsFixed(2);
               }
               if (idx is int) {
                 idx = numberFormat.format(idx);

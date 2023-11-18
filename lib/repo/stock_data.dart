@@ -67,7 +67,7 @@ class StockData {
         total: 52470),
     Stock(
         name: "VNF1",
-        price: 1232,
+        price: 1232.8,
         priceChange: 0.20,
         changePercent: -0.5,
         total: 26100),
@@ -79,7 +79,7 @@ class StockData {
         total: 6730),
     Stock(
         name: "VNF0",
-        price: 1225,
+        price: 1225.5,
         priceChange: 0.20,
         changePercent: 10,
         total: 1000),
@@ -100,7 +100,7 @@ class StockData {
         total: 26100),
     Stock(
         name: "AAT",
-        price: 10000,
+        price: 100,
         priceChange: 0.20,
         changePercent: -2,
         total: 6730),
@@ -118,13 +118,13 @@ class StockData {
         total: 3854),
     Stock(
         name: "ABT",
-        price: 10000,
+        price: 100,
         priceChange: 0.20,
         changePercent: 10,
         total: 1000),
     Stock(
         name: "ACB",
-        price: 10000,
+        price: 100,
         priceChange: 0.20,
         changePercent: 10,
         total: 1000),
@@ -136,7 +136,7 @@ class StockData {
         total: 14070),
     Stock(
         name: "SSI",
-        price: 10000,
+        price: 100,
         priceChange: 0.20,
         changePercent: 10,
         total: 1000),

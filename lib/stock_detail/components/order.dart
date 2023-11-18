@@ -34,7 +34,7 @@ class _OrderState extends State<Order> {
         : double.tryParse(priceController.text) == 0
             ? 98900
             : double.parse(priceController.text) * 1000;
-    String priceText = (money / price).toStringAsFixed(0);
+    String priceText = (money ~/ price).toStringAsFixed(0);
     setState(() {
       textToDisplay = priceText;
       if (double.tryParse(priceController.text) == 0) {
