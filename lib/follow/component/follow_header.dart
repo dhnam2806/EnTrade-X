@@ -13,7 +13,6 @@ class FollowHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final Size size = MediaQuery.of(context).size;
     final safePadding = MediaQuery.of(context).padding.top;
 
     return BlocListener<FollowBloc, FollowState>(

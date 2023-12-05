@@ -599,6 +599,5 @@ class _OrderState extends State<Order> {
         );
       },
     );
-    ;
   }
 }
